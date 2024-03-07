@@ -170,6 +170,7 @@
         <DCCReference Include="..\sources\CDisplayConfigurationInfo.pas"/>
         <DCCReference Include="..\sources\CProcessInfo.pas"/>
         <DCCReference Include="..\sources\WbemScripting_TLB.pas"/>
+        <None Include="ModelSupport_GLibWMI\default.txaPackage"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
