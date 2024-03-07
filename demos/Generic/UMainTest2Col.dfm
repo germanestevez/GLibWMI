@@ -1,8 +1,8 @@
 object FormMain: TFormMain
   Left = 355
   Top = 125
-  Width = 971
-  Height = 677
+  Width = 1089
+  Height = 765
   Caption = 'Demo de la librer'#237'a GLibWMI  - by Neftal'#237' -Germ'#225'n Est'#233'vez-'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,7 +10,7 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
+  OldCreateOrder = True
   Position = poScreenCenter
   OnCreate = FormCreate
   OnResize = FormResize
@@ -18,17 +18,17 @@ object FormMain: TFormMain
   PixelsPerInch = 96
   TextHeight = 13
   object Splitter2: TSplitter
-    Left = 327
+    Left = 445
     Top = 65
     Width = 6
-    Height = 535
+    Height = 623
     Align = alRight
     Beveled = True
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 963
+    Width = 1081
     Height = 65
     Align = alTop
     Color = clWhite
@@ -5100,16 +5100,16 @@ object FormMain: TFormMain
   object Panel2: TPanel
     Left = 0
     Top = 65
-    Width = 327
-    Height = 535
+    Width = 445
+    Height = 623
     Align = alClient
     Caption = 'Panel2'
     TabOrder = 1
     object List: TListView
       Left = 1
       Top = 73
-      Width = 325
-      Height = 461
+      Width = 443
+      Height = 549
       Align = alClient
       Columns = <
         item
@@ -5139,7 +5139,7 @@ object FormMain: TFormMain
     object Panel5: TPanel
       Left = 1
       Top = 1
-      Width = 325
+      Width = 443
       Height = 18
       Align = alTop
       Alignment = taLeftJustify
@@ -5156,14 +5156,14 @@ object FormMain: TFormMain
     object pnlInstancia: TPanel
       Left = 1
       Top = 19
-      Width = 325
+      Width = 443
       Height = 54
       Align = alTop
       BevelOuter = bvLowered
       Color = 16116991
       TabOrder = 2
       DesignSize = (
-        325
+        443
         54)
       object Label2: TLabel
         Left = 16
@@ -5249,7 +5249,7 @@ object FormMain: TFormMain
       object lblComponentCaption: TLabel
         Left = 16
         Top = 32
-        Width = 287
+        Width = 405
         Height = 17
         Anchors = [akLeft, akTop, akRight]
         AutoSize = False
@@ -5265,8 +5265,8 @@ object FormMain: TFormMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 627
-    Width = 963
+    Top = 715
+    Width = 1081
     Height = 19
     Cursor = crHandPoint
     Panels = <>
@@ -5276,8 +5276,8 @@ object FormMain: TFormMain
   end
   object pnlBotones: TPanel
     Left = 0
-    Top = 600
-    Width = 963
+    Top = 688
+    Width = 1081
     Height = 27
     Align = alBottom
     Caption = 'pnlBotones'
@@ -5285,7 +5285,7 @@ object FormMain: TFormMain
     object ToolBar1: TToolBar
       Left = 1
       Top = 1
-      Width = 961
+      Width = 1079
       Height = 29
       Caption = 'ToolBar1'
       Images = imagelist1
@@ -5355,10 +5355,10 @@ object FormMain: TFormMain
     end
   end
   object Panel3: TPanel
-    Left = 333
+    Left = 451
     Top = 65
     Width = 630
-    Height = 535
+    Height = 623
     Align = alRight
     TabOrder = 4
     object Panel4: TPanel
@@ -5433,14 +5433,14 @@ object FormMain: TFormMain
       Left = 313
       Top = 33
       Width = 316
-      Height = 501
-      VertScrollBar.Position = 325
+      Height = 589
+      VertScrollBar.Position = 236
       Align = alClient
       BorderStyle = bsNone
       TabOrder = 1
       inline FrameProcess: TFrameComponent
         Left = 0
-        Top = -325
+        Top = -236
         Width = 299
         Height = 59
         Align = alTop
@@ -5527,7 +5527,7 @@ object FormMain: TFormMain
       end
       inline FrameService: TFrameComponent
         Left = 0
-        Top = -266
+        Top = -177
         Width = 299
         Height = 59
         Align = alTop
@@ -5617,7 +5617,7 @@ object FormMain: TFormMain
       end
       inline FrameDeskopMonitor: TFrameComponent
         Left = 0
-        Top = -207
+        Top = -118
         Width = 299
         Height = 59
         Align = alTop
@@ -5701,7 +5701,7 @@ object FormMain: TFormMain
       end
       inline FrameComputerSystem: TFrameComponent
         Left = 0
-        Top = -148
+        Top = -59
         Width = 299
         Height = 59
         Align = alTop
@@ -5787,7 +5787,7 @@ object FormMain: TFormMain
       end
       inline FrameStartupCommand: TFrameComponent
         Left = 0
-        Top = -89
+        Top = 0
         Width = 299
         Height = 59
         Align = alTop
@@ -5875,7 +5875,7 @@ object FormMain: TFormMain
       end
       inline FrameNetWorkAdapter: TFrameComponent
         Left = 0
-        Top = -30
+        Top = 59
         Width = 299
         Height = 59
         Align = alTop
@@ -5962,7 +5962,7 @@ object FormMain: TFormMain
       end
       inline FrameUserAccount: TFrameComponent
         Left = 0
-        Top = 29
+        Top = 118
         Width = 299
         Height = 59
         Align = alTop
@@ -6048,7 +6048,7 @@ object FormMain: TFormMain
       end
       inline FrameShare: TFrameComponent
         Left = 0
-        Top = 88
+        Top = 177
         Width = 299
         Height = 59
         Align = alTop
@@ -6134,7 +6134,7 @@ object FormMain: TFormMain
       end
       inline FramePrintJob: TFrameComponent
         Left = 0
-        Top = 147
+        Top = 236
         Width = 299
         Height = 59
         Align = alTop
@@ -6222,7 +6222,7 @@ object FormMain: TFormMain
       end
       inline FrameUSbController: TFrameComponent
         Left = 0
-        Top = 206
+        Top = 295
         Width = 299
         Height = 59
         Align = alTop
@@ -6309,7 +6309,7 @@ object FormMain: TFormMain
       end
       inline FrameDiskPartition: TFrameComponent
         Left = 0
-        Top = 265
+        Top = 354
         Width = 299
         Height = 59
         Align = alTop
@@ -6395,7 +6395,7 @@ object FormMain: TFormMain
       end
       inline FrameEnvironment: TFrameComponent
         Left = 0
-        Top = 324
+        Top = 413
         Width = 299
         Height = 59
         Align = alTop
@@ -6482,7 +6482,7 @@ object FormMain: TFormMain
       end
       inline FrameProduct: TFrameComponent
         Left = 0
-        Top = 383
+        Top = 472
         Width = 299
         Height = 59
         Align = alTop
@@ -6569,7 +6569,7 @@ object FormMain: TFormMain
       end
       inline FrameVideoController: TFrameComponent
         Left = 0
-        Top = 442
+        Top = 531
         Width = 299
         Height = 59
         Align = alTop
@@ -6655,14 +6655,14 @@ object FormMain: TFormMain
       Left = 1
       Top = 33
       Width = 312
-      Height = 501
-      VertScrollBar.Position = 325
+      Height = 589
+      VertScrollBar.Position = 236
       Align = alLeft
       BorderStyle = bsNone
       TabOrder = 2
       inline FrameOperatingSystem: TFrameComponent
         Left = 0
-        Top = 147
+        Top = 236
         Width = 295
         Height = 59
         Align = alTop
@@ -6751,7 +6751,7 @@ object FormMain: TFormMain
       end
       inline FrameBattery: TFrameComponent
         Left = 0
-        Top = 88
+        Top = 177
         Width = 295
         Height = 59
         Align = alTop
@@ -6838,7 +6838,7 @@ object FormMain: TFormMain
       end
       inline FrameSoundDevice: TFrameComponent
         Left = 0
-        Top = -266
+        Top = -177
         Width = 295
         Height = 59
         Align = alTop
@@ -6926,7 +6926,7 @@ object FormMain: TFormMain
       end
       inline FramePrinter: TFrameComponent
         Left = 0
-        Top = -148
+        Top = -59
         Width = 295
         Height = 59
         Align = alTop
@@ -7015,7 +7015,7 @@ object FormMain: TFormMain
       end
       inline FrameKeyboard: TFrameComponent
         Left = 0
-        Top = -89
+        Top = 0
         Width = 295
         Height = 59
         Align = alTop
@@ -7102,7 +7102,7 @@ object FormMain: TFormMain
       end
       inline FrameCDROM: TFrameComponent
         Left = 0
-        Top = 29
+        Top = 118
         Width = 295
         Height = 59
         Align = alTop
@@ -7191,7 +7191,7 @@ object FormMain: TFormMain
       end
       inline FrameProcessor: TFrameComponent
         Left = 0
-        Top = -30
+        Top = 59
         Width = 295
         Height = 59
         Align = alTop
@@ -7278,7 +7278,7 @@ object FormMain: TFormMain
       end
       inline FrameDiskDrive: TFrameComponent
         Left = 0
-        Top = -207
+        Top = -118
         Width = 295
         Height = 59
         Align = alTop
@@ -7366,7 +7366,7 @@ object FormMain: TFormMain
       end
       inline FrameBios: TFrameComponent
         Left = 0
-        Top = -325
+        Top = -236
         Width = 295
         Height = 59
         Align = alTop
@@ -7455,7 +7455,7 @@ object FormMain: TFormMain
       end
       inline FramePointerDevice: TFrameComponent
         Left = 0
-        Top = 206
+        Top = 295
         Width = 295
         Height = 59
         Align = alTop
@@ -7544,7 +7544,7 @@ object FormMain: TFormMain
       end
       inline FramePhysicalMemory: TFrameComponent
         Left = 0
-        Top = 265
+        Top = 354
         Width = 295
         Height = 59
         Align = alTop
@@ -7636,7 +7636,7 @@ object FormMain: TFormMain
       end
       inline FrameFan: TFrameComponent
         Left = 0
-        Top = 324
+        Top = 413
         Width = 295
         Height = 59
         Align = alTop
@@ -7726,7 +7726,7 @@ object FormMain: TFormMain
       end
       inline FramePnpEntity: TFrameComponent
         Left = 0
-        Top = 383
+        Top = 472
         Width = 295
         Height = 59
         Align = alTop
@@ -7815,7 +7815,7 @@ object FormMain: TFormMain
       end
       inline FrameDisplayConfiguration: TFrameComponent
         Left = 0
-        Top = 442
+        Top = 531
         Width = 295
         Height = 59
         Align = alTop

@@ -1,6 +1,6 @@
 {
-TWMISQL  Component Version 1.9b - Suite GLib
-Copyright (©) 2009,  by Germán Estévez (Neftalí) 
+TWMISQL  Component Version 3.2 - Suite GLib
+Copyright (©) 2024,  by Germán Estévez (Neftalí) 
  
   Componente para acceder de forma genérica a las propiedades de WMI.
   Component for access to WMI properties (all components).

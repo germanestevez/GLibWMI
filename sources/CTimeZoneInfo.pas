@@ -1,6 +1,6 @@
 {
-TTimeZoneInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TTimeZoneInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_TimeZone representa la información de zona horaria para un sistema Win32. Esta información 
 incluye los cambios necesarios para la transición a y desde el horario de verano.

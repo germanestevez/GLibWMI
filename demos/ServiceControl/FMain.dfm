@@ -1,8 +1,8 @@
 object FormMain: TFormMain
   Left = 378
   Top = 179
-  Width = 838
-  Height = 425
+  Width = 847
+  Height = 417
   Caption = 'Service control Demo'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,18 +10,18 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
+  OldCreateOrder = True
   OnShow = FormShow
   DesignSize = (
-    830
-    394)
+    839
+    386)
   PixelsPerInch = 96
   TextHeight = 13
   object sgServices: TStringGrid
     Left = 0
     Top = 29
     Width = 673
-    Height = 346
+    Height = 338
     Align = alLeft
     Anchors = [akLeft, akTop, akRight, akBottom]
     DefaultRowHeight = 18
@@ -78,8 +78,8 @@ object FormMain: TFormMain
   end
   object sbMain: TStatusBar
     Left = 0
-    Top = 375
-    Width = 830
+    Top = 367
+    Width = 839
     Height = 19
     Panels = <>
     SimplePanel = True
@@ -107,7 +107,7 @@ object FormMain: TFormMain
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 830
+    Width = 839
     Height = 29
     Align = alTop
     Anchors = [akTop, akRight]
@@ -118,7 +118,7 @@ object FormMain: TFormMain
     object ToolBar1: TToolBar
       Left = 0
       Top = 0
-      Width = 830
+      Width = 839
       Height = 29
       Caption = 'ToolBar1'
       TabOrder = 0
@@ -5060,7 +5060,7 @@ object FormMain: TFormMain
     Top = 8
   end
   object Timer1: TTimer
-    Interval = 4000
+    Interval = 10000
     OnTimer = Timer1Timer
     Left = 424
     Top = 8

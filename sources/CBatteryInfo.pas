@@ -1,6 +1,6 @@
 {
-TBatteryInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TBatteryInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Battery  representa una batería conectada al sistema del equipo. Esta clase se aplica 
 a las baterías en los sistemas portátiles y otras baterías internas/externas.

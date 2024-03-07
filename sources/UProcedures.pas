@@ -1,6 +1,6 @@
 {
   UProcedures Unit
-  Copyright (©) 2020,  by Germán Estévez (Neftalí)
+  Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
   Varios procedimientos de caracter general.                               
 

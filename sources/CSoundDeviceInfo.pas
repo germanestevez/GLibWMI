@@ -1,6 +1,6 @@
 {
-TSoundDeviceInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TSoundDeviceInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_SoundDevice representa las propiedades de un dispositivo de sonido instalado en un sistema 
 Win32.

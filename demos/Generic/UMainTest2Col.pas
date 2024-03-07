@@ -21,7 +21,11 @@ uses
   CDesktopMonitorInfo, CStartupCommandInfo, ActnList, ToolWin, CShareInfo,
   CUserAccountInfo, CNetworkAdapterInfo, CUSBControllerInfo, CPrintJobInfo,
   CDiskPartitionInfo, CEnvironmentInfo, CFanInfo, CPnPEntityInfo,
-  CVideoControllerInfo, CProductInfo, CDisplayConfigurationInfo;
+  CVideoControllerInfo, CProductInfo, CDisplayConfigurationInfo
+{$IFDEF DELPHIXE_UP}
+  , System.Actions, System.ImageList
+{$ENDIF}  
+  ;
 
 type
   TFormMain = class(TForm)
@@ -449,9 +453,9 @@ var
 begin
 
   // Visualizar el panel
-//  pnlInfo.Visible := True;
+  pnlInfo.Visible := True;
   Application.ProcessMessages;
-//  pnlInfo.Refresh;
+  pnlInfo.Refresh;
 
   // proteccion
   try
@@ -490,9 +494,9 @@ begin
 
   finally
     // Visualizar el panel
-//    pnlInfo.Visible := False;
+    pnlInfo.Visible := False;
     Application.ProcessMessages;
-//    pnlInfo.Refresh;
+    pnlInfo.Refresh;
   end;
 end;
 

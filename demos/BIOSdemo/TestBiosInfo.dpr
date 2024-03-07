@@ -1,5 +1,7 @@
 program TestBiosInfo;
 
+{%File '..\..\package\jedi.inc'}
+
 uses
   Forms,
   UMainDemoBIOS in 'UMainDemoBIOS.pas' {FormMainBios},

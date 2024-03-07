@@ -18,7 +18,7 @@ begin
   Application.Initialize;
   Application.Run;
 
-  SInfo := TComputerSystemInfo.Create(nil);
+    SInfo := TComputerSystemInfo.Create(nil);
   sInfo.Active := True;
   p := sInfo.ComputerSystemProperties;
 
@@ -32,12 +32,6 @@ begin
     'Modelo: ' + p.Model + sLineBreak +
     'Familia: ' + p.SystemFamily + sLineBreak +
     'Tipo de sistema: ' + p.SystemType + sLineBreak;
-
-
-    
-
-
-
   ShowMessage(Str);
 
 

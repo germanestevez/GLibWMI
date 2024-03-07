@@ -1,8 +1,8 @@
 object FormMain: TFormMain
   Left = 359
   Top = 173
-  Width = 696
-  Height = 608
+  Width = 688
+  Height = 600
   Caption = 'Demo de Impresoras y Esc'#225'neres...'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,7 +10,7 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
+  OldCreateOrder = True
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -18,7 +18,7 @@ object FormMain: TFormMain
     Left = 0
     Top = 65
     Width = 169
-    Height = 493
+    Height = 485
     Align = alLeft
     Columns = <>
     LargeImages = ilMain
@@ -29,7 +29,7 @@ object FormMain: TFormMain
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 688
+    Width = 680
     Height = 65
     Align = alTop
     Alignment = taLeftJustify
@@ -218,8 +218,8 @@ object FormMain: TFormMain
   object Panel2: TPanel
     Left = 169
     Top = 65
-    Width = 519
-    Height = 493
+    Width = 511
+    Height = 485
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel2'
@@ -227,16 +227,16 @@ object FormMain: TFormMain
     object pcCaracteristicas: TPageControl
       Left = 0
       Top = 0
-      Width = 519
-      Height = 493
+      Width = 511
+      Height = 485
       ActivePage = tsMetodos
       Align = alClient
       TabOrder = 0
       object tsGeneral: TTabSheet
         Caption = 'General'
         DesignSize = (
-          511
-          465)
+          503
+          457)
         object edtNombre: TLabeledEdit
           Left = 96
           Top = 24
@@ -350,8 +350,8 @@ object FormMain: TFormMain
         Caption = '&Puertos y Papeles'
         ImageIndex = 1
         DesignSize = (
-          511
-          465)
+          503
+          457)
         object gbPuertos: TGroupBox
           Left = 3
           Top = 14
@@ -395,8 +395,8 @@ object FormMain: TFormMain
         Caption = '&Metodos'
         ImageIndex = 2
         DesignSize = (
-          511
-          465)
+          503
+          457)
         object edtImpDefecto: TLabeledEdit
           Left = 136
           Top = 24
@@ -486,8 +486,8 @@ object FormMain: TFormMain
   end
   object sbMain: TStatusBar
     Left = 0
-    Top = 558
-    Width = 688
+    Top = 550
+    Width = 680
     Height = 19
     Panels = <>
     SimplePanel = True

@@ -5,8 +5,9 @@ interface
 {$I .\..\package\jedi.inc}
 
 uses
-  {$IFDEF DELPHIX_TOKYO_UP}
-  VCL.Forms, VCL.StdCtrls, VCL.ExtCtrls, VCL.Graphics, VCL.Controls, System.Classes, Vcl.Imaging.jpeg;
+  {$IFNDEF DELPHIXE_UP}
+  VCL.Forms, VCL.StdCtrls, VCL.ExtCtrls, VCL.Graphics, VCL.Controls, System.Classes, Vcl.Imaging.jpeg,
+  StdCtrls, Graphics, jpeg, Controls, ExtCtrls, Classes;
   {$ELSE}
   Forms, StdCtrls, ExtCtrls, Graphics, Controls, Classes, jpeg;
   {$ENDIF}

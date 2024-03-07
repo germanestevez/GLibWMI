@@ -1,6 +1,6 @@
 {
-TDiskPartitionInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TDiskPartitionInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_DiskPartition representa las posibilidades y la capacidad de administración de un área 
 con particiones en un disco físico de un sistema Win32.

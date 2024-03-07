@@ -6,7 +6,11 @@ uses
   {$IFDEF DELPHIX_TOKYO_UP} System.ImageList, System.Actions, {$ENDIF}
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Grids, CWMIBase, CServiceInfo, StdCtrls, ComCtrls, ExtCtrls,
-  ToolWin, ImgList, ActnList;
+  ToolWin, ImgList, ActnList
+{$IFDEF DELPHIXE_UP}
+  ,System.ImageList, System.Actions
+{$ENDIF}  
+  ;
 
 type
   TFormMain = class(TForm)

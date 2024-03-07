@@ -7,11 +7,14 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, ImgList, ComCtrls, StdCtrls,
-  {$IFDEF DELPHIX_TOKYO_UP} System.ImageList, Vcl.CheckLst,
-  {$ELSE}
-  CheckLst, ImageList,
+  {$IFNDEF DELPHIX_TOKYO_UP}
+  CheckLst,
   {$ENDIF}
-  CWMIBase, CPrinterInfo;
+  CWMIBase, CPrinterInfo
+{$IFDEF DELPHIXE_UP}
+  , System.ImageList, Vcl.CheckLst, Vcl.Mask
+{$ENDIF}
+  ;
 
 // Mensages
 const

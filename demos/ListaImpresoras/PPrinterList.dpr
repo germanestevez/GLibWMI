@@ -2,7 +2,8 @@ program PPrinterList;
 
 uses
   Forms,
-  FMainList in 'FMainList.pas' {FormMain};
+  FMainList in 'FMainList.pas' {FormMain},
+  FormAbout in '..\..\sources\FormAbout.pas' {FAbout};
 
 {$R *.res}
 

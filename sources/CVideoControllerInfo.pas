@@ -1,6 +1,6 @@
 {
-TVideoControllerInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TVideoControllerInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_VideoController representa las posibilidades y la capacidad de administración de la controladora 
 de vídeo en un equipo Win32. 

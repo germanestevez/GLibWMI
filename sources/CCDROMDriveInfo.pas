@@ -1,6 +1,6 @@
 {
-TCDROMDriveInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TCDROMDriveInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_CDROMDrive representa una unidad de CD-ROM en Win32_ComputerSystem. 
 Nota: el nombre 

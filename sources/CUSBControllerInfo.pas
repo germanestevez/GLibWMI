@@ -1,6 +1,6 @@
 {
-TUSBControllerInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TUSBControllerInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_USBController administra las capacidades de una controladora de bus serie universal (
 USB).

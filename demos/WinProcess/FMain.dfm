@@ -1,8 +1,8 @@
 object FormMain: TFormMain
   Left = 181
   Top = 24
-  Width = 1133
-  Height = 720
+  Width = 1142
+  Height = 712
   Caption = 'Viewer Process.  v.1.1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,7 +11,7 @@ object FormMain: TFormMain
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   Menu = MainMenu1
-  OldCreateOrder = False
+  OldCreateOrder = True
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
@@ -20,11 +20,10 @@ object FormMain: TFormMain
   PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
-    Left = 894
+    Left = 903
     Top = 0
     Width = 5
-    Height = 650
-    Cursor = crHSplit
+    Height = 642
     Align = alRight
     Beveled = True
     Color = clMedGray
@@ -32,8 +31,8 @@ object FormMain: TFormMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 650
-    Width = 1125
+    Top = 642
+    Width = 1134
     Height = 19
     Cursor = crHandPoint
     Panels = <>
@@ -44,16 +43,16 @@ object FormMain: TFormMain
   object pnlCentral: TPanel
     Left = 0
     Top = 0
-    Width = 894
-    Height = 650
+    Width = 903
+    Height = 642
     Align = alClient
     Caption = 'pnlCentral'
     TabOrder = 1
     object sgProcess: TStringGrid
       Left = 1
       Top = 1
-      Width = 892
-      Height = 648
+      Width = 901
+      Height = 640
       Align = alClient
       Color = 16250871
       Ctl3D = False
@@ -261,10 +260,10 @@ object FormMain: TFormMain
     end
   end
   object pnlRight: TPanel
-    Left = 899
+    Left = 908
     Top = 0
     Width = 226
-    Height = 650
+    Height = 642
     Align = alRight
     BevelOuter = bvLowered
     Color = clInfoBk
@@ -275,7 +274,7 @@ object FormMain: TFormMain
       Left = 1
       Top = 1
       Width = 224
-      Height = 648
+      Height = 640
       Align = alClient
       Columns = <
         item

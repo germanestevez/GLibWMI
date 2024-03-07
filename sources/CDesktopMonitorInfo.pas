@@ -1,6 +1,6 @@
 {
-TDesktopMonitorInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TDesktopMonitorInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_DesktopMonitor representa el tipo de dispositivo de pantalla o monitor conectado al e
 quipo.

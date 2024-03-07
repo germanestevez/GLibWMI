@@ -5,10 +5,13 @@ interface
 {$I .\..\..\package\jedi.inc}
 
 uses
-  {$IFDEF DELPHIX_TOKYO_UP} System.UITypes, {$ENDIF}
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ActnList, ComCtrls, ToolWin, StdCtrls, ExtCtrls, ImgList,
-  Buttons, CWMIBase, CBiosInfo, CheckLst, System.ImageList, System.Actions;
+  Buttons, CWMIBase, CBiosInfo, CheckLst
+{$IFDEF DELPHIXE_UP}
+  , System.ImageList, System.Actions
+{$ENDIF}
+  ;
 
 // Mensages
 const
@@ -101,6 +104,9 @@ implementation
 {$R *.dfm}
 
 uses
+{$IFDEF DELPHI20_UP}
+  System.UITypes,
+{$ENDIF}
   FormAbout;
 
 function IndexOfIntegerValue(Arr:TArrInteger; Value:integer):integer;

@@ -1,6 +1,6 @@
 {
-TCodecFileInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TCodecFileInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_CodecFile representa el códec de audio o vídeo instalado en el equipo. Los códecs convierten 
 un tipo de formato de medio en otro, normalmente un formato comprimido a uno descomprimido. El nombre 

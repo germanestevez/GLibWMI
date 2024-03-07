@@ -1,6 +1,6 @@
 {
-TDesktopInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TDesktopInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Desktop representa las características comunes del escritorio de un usuario. El usuario 
 puede modificar las propiedades de esta clase para personalizar el escritorio.

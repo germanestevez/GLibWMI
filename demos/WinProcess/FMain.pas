@@ -7,20 +7,18 @@ unit FMain;
 //=========================================================================
 interface
 
-{$I .\jedi.inc}
+{$I .\..\..\package\jedi.inc}
 
 uses
-  {$IFDEF DELPHIX_TOKYO_UP}
-  System.UITypes, System.Types,
-  Vcl.ImgList,
-  {$ELSE}
-  ImgList,
-  {$ENDIF}
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ActnList, Menus, CWMIBase, CProcessInfo, Grids,
-  UConst,ExtCtrls, ComCtrls,
+  UConst, ImgList, ExtCtrls, ComCtrls,
   ShellAPI, OI, StdCtrls,
-  ComObj, System.ImageList, System.Actions;
+  ComObj
+{$IFDEF DELPHIXE_UP}
+  , System.ImageList, System.Actions
+{$ENDIF}
+  ;
 
 Type
   //: Tipo de Dat de la columna por la que queremos ordenar.
@@ -214,6 +212,9 @@ implementation
 {$R *.dfm}
 
 uses
+{$IFDEF DELPHI12_UP}
+  System.UITypes, System.Types,
+{$ENDIF}
   Registry, FormAbout,
   {gnuGetText,} // Prepared for translations
   UPLProcedures, UPLconstantesMI,
@@ -477,14 +478,12 @@ begin
       if not (ProcessInfo1.Active) then begin
         ProcessInfo1.Active := True;
         props := ProcessInfo1.ProcessProperties;
-
       end;
     end
     else begin
       // !!!!!!!!!!  POR ahora sólo la primera
       // Exit;
     end;
-
 
     // refrescar columnas
     for i := 1 to (ProcessInfo1.ObjectsCount) do begin
@@ -1108,10 +1107,8 @@ begin
   // ini
   OI := nil;
 
-{
-  XPMenu := TXPMenu.Create(Self);
-  XPMenu.Active := True;
-}
+//  XPMenu := TXPMenu.Create(Self);
+//  XPMenu.Active := True;
 
   // Crear componente de exportación
 
@@ -1239,14 +1236,15 @@ var
   str:string;
 begin
   Str := sgProcess.Cells[3, sgProcess.Row];
-  ProcessInfo1.SetPriority('Handle', Str, 128);
+  {i := }ProcessInfo1.SetPriority('Handle', Str, 128);
 end;
 
 procedure TFormMain.Button3Click(Sender: TObject);
 var
   i:Integer;
 begin
-  i := ProcessInfo1.Create_('', '', 'c:\WINDOWS\NOTEPAD.EXE ', STR_EMPTY, '', 0);
+  i := 0;
+  i := ProcessInfo1.Create_('', '', 'c:\WINDOWS\NOTEPAD.EXE ', STR_EMPTY, '', i);
   MessageDlg('Resultado; PID=' + IntToStr(i), mtInformation, [mbOK], 0);
 end;
 
@@ -1256,7 +1254,7 @@ var
   AUsuario, ADominio:string;
 begin
   Str := sgProcess.Cells[3, sgProcess.Row];
-  ProcessInfo1.GetOwner('Handle', Str, AUsuario, ADominio);
+  {i := }ProcessInfo1.GetOwner('Handle', Str, AUsuario, ADominio);
   MessageDlg('Pertenece a: ' + ADominio + ' | ' + AUsuario, mtInformation, [mbOK], 0);
 end;
 
@@ -1266,7 +1264,7 @@ var
   SID:string;
 begin
   Str := sgProcess.Cells[3, sgProcess.Row];
-  ProcessInfo1.GetOwnerSID('Handle' , Str, SID);
+  {i := }ProcessInfo1.GetOwnerSID('Handle' , Str, SID);
   MessageDlg('Pertenece a: ' + SID, mtInformation, [mbOK], 0);
 
 end;
@@ -1388,8 +1386,8 @@ var
   i, res:Integer;
   Str:string;
   cap, Str1, Str2:string;
+  h:int64;
 begin
-
 
   // Seleccion actual
   i := sgProcess.Row;
@@ -1409,11 +1407,11 @@ begin
   if (res = idYes) then begin
     // Matar el proceso
     Str := sgProcess.Cells[3{colHandle.Index}, i];
-    StrToIntDef(Str, 0);
-//    // Correcto
-//    if (h > 0) then begin
-//      ProcessInfo1.Terminate('Handle', Str, 0);
-//    end;
+    h := StrToIntDef(Str, 0);
+    // Correcto
+    if (h > 0) then begin
+      ProcessInfo1.Terminate('Handle', Str, 0);
+    end;
   end;
 
 

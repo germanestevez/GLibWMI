@@ -14,7 +14,7 @@ object FormMainBios: TFormMainBios
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
+  OldCreateOrder = True
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
   PixelsPerInch = 96
@@ -418,7 +418,7 @@ object FormMainBios: TFormMainBios
         BevelInner = bvNone
         BevelOuter = bvNone
         Ctl3D = False
-        Font.Charset = DEFAULT_CHARSET
+        Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'MS Sans Serif'

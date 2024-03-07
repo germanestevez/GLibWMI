@@ -1,6 +1,6 @@
 {
-TPhysicalMemoryInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TPhysicalMemoryInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_PhysicalMemory representa un dispositivo de memoria física que se encuentra en un sistema 
 como disponible para el sistema operativo.

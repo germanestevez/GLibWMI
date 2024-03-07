@@ -1,6 +1,6 @@
 {
-TPnPEntityInfo Component Version 3.1 - Suite GLibWMI
-Copyright (©) 2020,  by Germán Estévez (Neftalí)
+TPnPEntityInfo Component Version 3.2 - Suite GLibWMI
+Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_PnPEntity representa las propiedades de un dispositivo Plug and Play. Las entidades Plug 
 and Play se muestran como entradas en el Administrador de dispositivos que se encuentra en el Panel de 

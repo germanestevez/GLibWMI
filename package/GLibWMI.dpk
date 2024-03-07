@@ -27,19 +27,20 @@ package GLibWMI;
 {$IMAGEBASE $400000}
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'GLibWMI for Windows Management Instrumentation'}
+{$DESCRIPTION 'GLibWMI para Windows Management Instrumentation'}
 {$IMPLICITBUILD OFF}
 
 {$I .\..\package\jedi.inc}
 
 requires
-  {$IFDEF DELPHIX_TOKYO_UP}
-  {$ELSE}
-  vcljpg,
-  {$ENDIF}
   designide,
   vcl,
-  rtl;
+  rtl
+{$IFNDEF DELPHIXE_UP}
+  ,
+  vcljpg
+{$ENDIF}
+  ;
 
 contains
   CBiosInfo in '..\Sources\CBiosInfo.pas',
