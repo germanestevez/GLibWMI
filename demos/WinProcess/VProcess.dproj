@@ -92,7 +92,8 @@
         <BT_BuildType>Debug</BT_BuildType>
         <DCC_ExeOutput>.\</DCC_ExeOutput>
         <DCC_DcuOutput>.\lib</DCC_DcuOutput>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <DCC_UnitSearchPath>.\..\..\sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -160,8 +161,9 @@
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\ProyectosDelphi\GLibWMI_3.0_svn\DCUs\GLibWMI.bpl">File C:\ProyectosDelphi\GLibWMI_3.0_svn\DCUs\GLibWMI.bpl not found</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

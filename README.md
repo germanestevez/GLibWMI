@@ -1,5 +1,16 @@
 # GLibWMI
 
+## NOTA IMPORTANTE!!
+Debido a problemas con la doble autentificación de Github, el antiguo repositorio (original) queda obsoleto:  
+https://github.com/NeftaliDelphi/GLibWMI  
+A partir de ahora las actualizaciones a partir de la version 3.2, se realizarán sobre este.
+
+## IMPORTANT NOTE!!
+Due to problems with Github's authentication processes, the old repository has become inaccessible and obsolete:
+https://github.com/NeftaliDelphi/GLibWMI  
+From now on (version 3.2) this will be the one that will receive the updates.
+
+
 ## DESCRIPCIÓN
 
 ___________________________________________________________________________
