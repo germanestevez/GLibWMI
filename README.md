@@ -1,5 +1,18 @@
 # GLibWMI
 
+___________________________________________________________________________
+## NOTA IMPORTANTE!!
+Debido a problemas con la doble autentificación de Github, este repositorio (original) queda OBSOLETO:  
+A partir de ahora las actualizaciones a partir de la version 3.2, se realizarán sobre el nuevo:
+https://github.com/germanestevez/GLibWMI
+
+## IMPORTANT NOTE!!
+Due to problems with Github's authentication processes, this repository has become inaccessible and OBSOLETE: 
+From now on, updates from version 3.2 will be made on the new one:
+https://github.com/germanestevez/GLibWMI
+___________________________________________________________________________
+
+
 ## DESCRIPCIÓN
 
 ___________________________________________________________________________
