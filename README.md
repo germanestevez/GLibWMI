@@ -1,6 +1,6 @@
 # GLibWMI
 
-<img  src=https://i.imgur.com/lK6aU2Z.png>
+<img  src=https://i.imgur.com/Ka0Q1FV.png>
 
 ## NOTA IMPORTANTE!!
 Debido a problemas con la doble autentificación de Github, el antiguo repositorio (original) queda obsoleto:  
