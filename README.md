@@ -1,5 +1,7 @@
 # GLibWMI
 
+<img  src=https://i.imgur.com/lK6aU2Z.png>
+
 ## NOTA IMPORTANTE!!
 Debido a problemas con la doble autentificación de Github, el antiguo repositorio (original) queda obsoleto:  
 https://github.com/NeftaliDelphi/GLibWMI  
