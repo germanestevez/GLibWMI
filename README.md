@@ -1,4 +1,4 @@
-# GLibWMI
+﻿# GLibWMI
 
 <img  src=https://i.imgur.com/Ka0Q1FV.png>
 
@@ -248,10 +248,30 @@ MSDN link: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-sta
 MSDN link: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-bootconfiguration
 
 
-<img src=https://neftali.clubdelphi.com/GLibWMI/imagenes/CDisplayConfigurationInfo.jpg> 
+<img src=https://neftali.clubdelphi.com/GLibWMI/imagenes/CDisplayConfigurationInfo.jpg>
 - <b>TDisplayConfigurationInfo</b>: La clase Win32_DisplayConfiguration representa la información de configuración del dispositivo de pantalla en un sistema Win32. Esta clase quedó obsoleta en favor de las propiedades de las clases Win32_VideoController, Win32_DesktopMonitor y CIM_VideoControllerResolution
 
 MSDN link: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-displayconfiguration
+
+<img src=https://neftali.clubdelphi.com/GLibWMI/imagenes/CAccountInfo.jpg>
+- <b>TAccountInfo</b>: La clase Win32_Account contiene información sobre las cuentas de usuario y las cuentas de grupo conocidas por el sistema informático. Proporciona datos relacionados con cuentas locales y de dominio disponibles en Windows.
+
+MSDN link: https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-account
+
+<img src=https://neftali.clubdelphi.com/GLibWMI/imagenes/CBaseBoardInfo.jpg>
+- <b>TBaseBoardInfo</b>: La clase Win32_BaseBoard representa las características de la placa base del sistema (motherboard), incluyendo fabricante, modelo, número de serie y versión.
+
+MSDN link: https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-baseboard
+
+<img src=https://neftali.clubdelphi.com/GLibWMI/imagenes/CNetworkProtocolInfo.jpg>
+- <b>TNetworkProtocolInfo</b>: La clase Win32_NetworkProtocol representa un protocolo de red y proporciona información sobre sus características, estado y configuración dentro del sistema Win32.
+
+MSDN link: https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-networkprotocol
+
+<img src=https://neftali.clubdelphi.com/GLibWMI/imagenes/CSerialPortInfo.jpg>
+- <b>TSerialPortInfo</b>: La clase Win32_SerialPort representa un puerto serie de un sistema informático Win32. Permite obtener información sobre el dispositivo, configuración y estado operativo de los puertos COM instalados.
+MSDN link: https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/win32-serialport
+
 
 
 ## DEMOS Y EJEMPLOS
