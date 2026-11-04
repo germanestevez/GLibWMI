@@ -1,5 +1,5 @@
 {
-TUSBControllerInfo Component Version 3.3 - Suite GLibWMI
+TUSBControllerInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_USBController administra las capacidades de una controladora de bus serie universal (
@@ -63,7 +63,8 @@ type
     FPNPDeviceID:string;
     FPowerManagementCapabilities:TArrInteger;
     FPowerManagementCapabilitiesCount:integer;
-    FPowerManagementCapabilitiesAsString:string;    FPowerManagementSupported:boolean;
+    FPowerManagementCapabilitiesAsString:string;
+    FPowerManagementSupported:boolean;
     FProtocolSupported:integer;
     FStatus:string;
     FStatusInfo:integer;
@@ -118,16 +119,7 @@ type
     /// </summary>
     property Availability:integer read FAvailability write FAvailability stored False;
     /// <summary>
-    ///  La disponibilidad y estado del dispositivo. Por ejemplo, la propiedad disponibilidad, indica que el dispositivo 
-    ///  está en funcionamiento y tiene energía total (valor=3), o se encuentra en un estado de aviso (4), prueba 
-    ///  (5), degradado (10) o ahorro de energía (valores 13-15 y 17). En relación con los estados de ahorro de 
-    ///  energía, éstos se definen como sigue: Valor 13 ("Ahorro de energía: desconocido") indica que se sabe 
-    ///  que el dispositivo está en un modo de ahorro de energía, pero se desconoce su estado exacto en este modo; 
-    ///  14 ("Ahorro de energía: modo de bajo consumo") indica que el dispositivo está en un estado de  ahorro 
-    ///  de energía, pero sigue funcionando y puede exhibir una baja de rendimiento;  15 ("Ahorro de energía: 
-    ///  espera") describe que el sistema no está en funcionamiento, pero que se podría poner en operación "rápidamente"; 
-    ///  y valor 17 ("Ahorro de energía: advertencia") indica que el equipo está en un estado de aviso, aunque 
-    ///  está también en modo de ahorro de energía.
+    ///  Descripción breve del objeto.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -188,60 +180,7 @@ type
     /// </summary>
     property ConfigManagerErrorCode:integer read FConfigManagerErrorCode write FConfigManagerErrorCode stored False;
     /// <summary>
-    ///  Indica el código de error del Administrador de configuración de Win32. Los valores siguientes pueden 
-    ///  ser devueltos: 
-    ///  0 Este dispositivo funciona correctamente. 
-    ///  1 Este dispositivo no está configurado correctamente. 
-    ///  2 Windows no puede cargar el controlador para este dispositivo. 
-    ///  3 El controlador de este dispositivo 
-    ///  puede estar dañado o le falta memoria o recursos a su sistema. 
-    ///  4 Este dispositivo no funciona correctamente. 
-    ///  Uno de sus controladores o el Registro pueden estar dañados. 
-    ///  5 El controlador de este dispositivo necesita 
-    ///  un recurso que Windows no puede administrar. 
-    ///  6 La configuración de arranque de este dispositivo entra 
-    ///  en conflicto con otros dispositivos. 
-    ///  7 No se puede filtrar. 
-    ///  8 Falta el cargador de controlador del 
-    ///  dispositivo. 
-    ///  9 Este dispositivo no funciona correctamente porque el firmware de control está informando 
-    ///  incorrectamente acerca de los recursos del dispositivo. 
-    ///  10 El dispositivo no puede se iniciar. 
-    ///  11 Error 
-    ///  en el dispositivo. 
-    ///  12 Este dispositivo no encuentra suficientes recursos libres para usar. 
-    ///  13 Windows 
-    ///  no puede comprobar los recursos de este dispositivo. 
-    ///  14 Este dispositivo no funcionará correctamente 
-    ///  hasta que reinicie su equipo. 
-    ///  15 Este dispositivo no funciona correctamente porque hay un posible problema 
-    ///  de enumeración. 
-    ///  16 Windows no puede identificar todos los recursos que utiliza este dispositivo. 
-    ///  17 
-    ///  Este dispositivo está solicitando un tipo de recurso desconocido. 
-    ///  18 Vuelva a instalar los controladores 
-    ///  de este dispositivo 
-    ///  19 Su Registro debe estar dañado. 
-    ///  20 Error usar el cargador VxD. 
-    ///  21 Error del 
-    ///  sistema: intente cambiar el controlador de este dispositivo. Si esto no funciona, consulte la documentación 
-    ///  de hardware. Windows está quitando este dispositivo. 
-    ///  22 Este dispositivo está deshabilitado. 
-    ///  23 Error 
-    ///  del ntación de hardware. 
-    ///  24 Este dispositivo no está presente, no funciona correctamente o no tiene 
-    ///  todos los controladores instalados. 
-    ///  25 Windows aún está instalando este dispositivo. 
-    ///  26 Windows aún 
-    ///  está instalando este dispositivo. 
-    ///  27 Este dispositivo no tiene una configuración de Registro válida. 
-    ///  28 Los controladores de este dispositivo no están instalados. 
-    ///  29 Este dispositivo está deshabilitado 
-    ///  porque el firmware no proporcionó los recursos requeridos. 
-    ///  30 Este dispositivo está utilizando una recurso 
-    ///  de solicitud de interrupción (IRQ) que ya está usando otro dispositivo. 
-    ///  31 Este dispositivo no funciona 
-    ///  correctamente porque Windows no puede cargar los controladores requeridos.
+    ///  Si es TRUE, el dispositivo usa una configuración definida por el usuario.
     /// </summary>
     property ConfigManagerUserConfig:boolean read FConfigManagerUserConfig write FConfigManagerUserConfig stored False;
     /// <summary>
@@ -251,9 +190,7 @@ type
     /// </summary>
     property CreationClassName:string read FCreationClassName write FCreationClassName stored False;
     /// <summary>
-    ///  CreationClassName indica el nombre de la clase o subclase que se usa en la creación de una instancia. 
-    ///  Cuando se usa con las demás propiedades clave de esta clase, esta propiedad permite que se identifiquen 
-    ///  de manera única todas las instancias de esta clase y sus subclases.
+    ///  Descripción del objeto.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -273,9 +210,7 @@ type
     /// </summary>
     property ErrorDescription:string read FErrorDescription write FErrorDescription stored False;
     /// <summary>
-    ///  ErrorDescription es una cadena de forma libre que ofrece más información acerca del error registrado 
-    ///  en la propiedad LastErrorCode e información acerca de cualquier acción correctiva que se pueda tomar
-    ///  .
+    ///  Fecha y hora en que se instaló el objeto. Esta propiedad no necesita un valor para indicar que el objeto está instalado.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -293,13 +228,11 @@ type
     /// </summary>
     property MaxNumberControlled:integer read FMaxNumberControlled write FMaxNumberControlled stored False;
     /// <summary>
-    ///  Número máximo de entidades directamente direccionables compatibles con esta controladora. Se debe usar 
-    ///  un valor de 0 si el número es desconocido o ilimitado.
+    ///  Etiqueta por la que se conoce el objeto. Al crear subclases, la propiedad puede sobrescribirse para convertirse en una propiedad clave.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
-    ///  Número máximo de entidades directamente direccionables compatibles con esta controladora. Se debe usar 
-    ///  un valor de 0 si el número es desconocido o ilimitado.
+    ///  Identificador de dispositivo Plug and Play de Windows del dispositivo lógico. Ejemplo: "*PNP030b"
     /// </summary>
     property PNPDeviceID:string read FPNPDeviceID write FPNPDeviceID stored False;
     /// <summary>
@@ -330,7 +263,7 @@ type
     /// </summary>
     property ProtocolSupported:integer read FProtocolSupported write FProtocolSupported stored False;
     /// <summary>
-    ///  El protocolo usado por el controlador para tener acceso a dispositivos "controlados".
+    ///  Estado actual del objeto. Entre los estados operativos figuran "OK", "Degraded" y "Pred Fail"; entre los no operativos, "Error", "Starting", "Stopping" y "Service".
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
@@ -340,15 +273,11 @@ type
     /// </summary>
     property StatusInfo:integer read FStatusInfo write FStatusInfo stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  Valor de la propiedad CreationClassName del sistema de ámbito.
     /// </summary>
     property SystemCreationClassName:string read FSystemCreationClassName write FSystemCreationClassName stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  Nombre del sistema de ámbito.
     /// </summary>
     property SystemName:string read FSystemName write FSystemName stored False;
     /// <summary>
@@ -411,7 +340,7 @@ const
   ENUM_STRING_AVAILABILITY_15 = 'Ciclo de energía';
   ENUM_STRING_AVAILABILITY_16 = 'Ahorro de energía: advertencia';
   ENUM_STRING_AVAILABILITY_17 = 'Pausado';
-  ENUM_STRING_AVAILABILITY_18 = 'no está listo';
+  ENUM_STRING_AVAILABILITY_18 = 'No está listo';
   ENUM_STRING_AVAILABILITY_19 = 'No configurado';
   ENUM_STRING_AVAILABILITY_20 = 'Inactivo';
 

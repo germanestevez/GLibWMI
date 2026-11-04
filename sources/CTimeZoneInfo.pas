@@ -1,5 +1,5 @@
 {
-TTimeZoneInfo Component Version 3.3 - Suite GLibWMI
+TTimeZoneInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_TimeZone representa la información de zona horaria para un sistema Win32. Esta información 
@@ -100,13 +100,11 @@ type
     /// <summary>
     ///  La propiedad Bias especifica la diferencia actual para la conversión de hora local. Se trata de la diferencia 
     ///  entre la hora universal coordinada (UTC) y la hora local. Todas las conversiones entre la UTC y la hora 
-    ///  local se basan en la siguiente fórmula: UTC = hora local + diferencia. Este miembro es necesario.
+    ///  local se basan en la siguiente fórmula: UTC = hora local - diferencia. Este miembro es necesario.
     /// </summary>
     property Bias:integer read FBias write FBias stored False;
     /// <summary>
-    ///  La propiedad Bias especifica la diferencia actual para la conversión de hora local. Se trata de la diferencia 
-    ///  entre la hora universal coordinada (UTC) y la hora local. Todas las conversiones entre la UTC y la hora 
-    ///  local se basan en la siguiente fórmula: UTC = hora local + diferencia. Este miembro es necesario.
+    ///  La propiedad Caption indica una descripción textual corta del objeto actual.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -174,15 +172,11 @@ type
     /// </summary>
     property DaylightYear:integer read FDaylightYear write FDaylightYear stored False;
     /// <summary>
-    ///  La propiedad DaylightYear indica el año en que está vigente el horario de verano. Este miembro no es 
-    ///  necesario.
-    ///  Ejemplo: 1997
+    ///  La propiedad Description indica una descripción textual del objeto actual.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
-    ///  La propiedad DaylightYear indica el año en que está vigente el horario de verano. Este miembro no es 
-    ///  necesario.
-    ///  Ejemplo: 1997
+    ///  La propiedad SettingID indica el identificador por el que se conoce el objeto actual.
     /// </summary>
     property SettingID:string read FSettingID write FSettingID stored False;
     /// <summary>

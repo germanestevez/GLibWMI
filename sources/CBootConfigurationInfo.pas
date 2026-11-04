@@ -1,5 +1,5 @@
 {
-TBootConfigurationInfo Component Version 3.3 - Suite GLibWMI
+TBootConfigurationInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_BootConfiguration representa la configuración de arranque de un sistema Win32.
@@ -72,9 +72,7 @@ type
     /// </summary>
     property BootDirectory:string read FBootDirectory write FBootDirectory stored False;
     /// <summary>
-    ///  La propiedad BootDirectory indica la ruta de acceso a los archivos de sistema requeridos para arrancar 
-    ///  el sistema. 
-    ///  Ejemplo: C:\Windows.
+    ///  La propiedad Caption indica una descripción textual corta del objeto actual.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -83,8 +81,7 @@ type
     /// </summary>
     property ConfigurationPath:string read FConfigurationPath write FConfigurationPath stored False;
     /// <summary>
-    ///  La propiedad ConfigurationPath indica la ruta de acceso a los archivos de configuración. Este valor puede 
-    ///  ser similar al de BootDirectory.
+    ///  La propiedad Description indica una descripción textual del objeto actual.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -103,8 +100,7 @@ type
     /// </summary>
     property ScratchDirectory:string read FScratchDirectory write FScratchDirectory stored False;
     /// <summary>
-    ///  La propiedad ScratchDirectory indica el directorio en que pueden residir los archivos temporales durante 
-    ///  el arranque.
+    ///  La propiedad SettingID indica el identificador por el que se conoce el objeto actual.
     /// </summary>
     property SettingID:string read FSettingID write FSettingID stored False;
     /// <summary>

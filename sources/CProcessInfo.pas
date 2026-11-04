@@ -1,10 +1,9 @@
 {
-TProcessInfo Component Version 3.3 - Suite GLibWMI
+TProcessInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
-La clase Win32_Process representa una secuencia de eventos en un sistema Win32. Cualquier secuencia compuesta 
-por la interacción de uno o más procesadores o intérpretes, código ejecutable y un conjunto de datos 
-de entrada, es un descendiente (o miembro) de esta clase.
+La clase Win32_Process representa un proceso en un sistema operativo. Un proceso es una instancia de un programa
+en ejecución, con su propio espacio de direcciones y uno o más subprocesos.
 Ejemplo: una aplicación cliente que se ejecuta 
 en un sistema Win32.
 
@@ -110,6 +109,7 @@ type
   published
     {%PublishedProperties PropertiesClass%}
     /// <summary>
+    ///  Descripción breve de un objeto: una cadena de una sola línea (máximo 64 caracteres).
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -124,9 +124,7 @@ type
     /// </summary>
     property CreationClassName:string read FCreationClassName write FCreationClassName stored False;
     /// <summary>
-    ///  CreationClassName indica el nombre de la clase o subclase que se usa en la creación de una instancia. 
-    ///  Cuando se usa con las demás propiedades clave de esta clase, esta propiedad permite que se identifiquen 
-    ///  de manera única todas las instancias de esta clase y sus subclases.
+    ///  La propiedad CreationDate indica la fecha y hora en que se creó el proceso.
     /// </summary>
     property CreationDate:TDatetime read FCreationDate write FCreationDate stored False;
     /// <summary>
@@ -134,17 +132,16 @@ type
     /// </summary>
     property CSCreationClassName:string read FCSCreationClassName write FCSCreationClassName stored False;
     /// <summary>
-    ///  CSCreationClassName contiene el nombre de la clase de creación del sistema de ámbito.
+    ///  CSName contiene el nombre del sistema informático de ámbito.
     /// </summary>
     property CSName:string read FCSName write FCSName stored False;
     /// <summary>
-    ///  CSCreationClassName contiene el nombre de la clase de creación del sistema de ámbito.
+    ///  Descripción de un objeto.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
     ///  La propiedad ExecutablePath indica la ruta de acceso al archivo ejecutable del proceso.
-    ///  Ejemplo: C:\
-    ///  WINDOWS\EXPLORER.EXE
+    ///  Ejemplo: C:\WINDOWS\EXPLORER.EXE
     /// </summary>
     property ExecutablePath:string read FExecutablePath write FExecutablePath stored False;
     /// <summary>
@@ -153,8 +150,7 @@ type
     /// </summary>
     property ExecutionState:integer read FExecutionState write FExecutionState stored False;
     /// <summary>
-    ///  Una cadena usada para identificar un proceso. Un id. de proceso es una clase de identificador de pro
-    ///  ceso.
+    ///  Identificador del proceso, en formato de cadena.
     /// </summary>
     property Handle:string read FHandle write FHandle stored False;
     /// <summary>
@@ -166,11 +162,7 @@ type
     /// </summary>
     property HandleCount:integer read FHandleCount write FHandleCount stored False;
     /// <summary>
-    ///  La propiedad HandleCount especifica el número total de identificadores que este proceso mantiene abiertos. 
-    ///  Este número es la suma de los identificadores que mantienen abiertos los subprocesos de este proceso. 
-    ///  Los identificadores se utilizan para examinar o modificar recursos del sistema. Cada identificador tiene 
-    ///  una entrada en una tabla que se mantiene de forma interna. Estas entradas contienen las direcciones de 
-    ///  los recursos y los medios para identificar el tipo de recurso.
+    ///  Fecha de instalación del objeto. Puede estar instalado sin que se escriba un valor en esta propiedad.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -195,27 +187,15 @@ type
     /// </summary>
     property MinimumWorkingSetSize:integer read FMinimumWorkingSetSize write FMinimumWorkingSetSize stored False;
     /// <summary>
-    ///  La propiedad MinimumWorkingSetSize indica el tamaño mínimo del espacio de trabajo del proceso. El espacio 
-    ///  de trabajo de un proceso es el conjunto de páginas de memoria que puede ver el proceso en la memoria 
-    ///  RAM física. Estas páginas son residentes y están disponibles para que una aplicación las utilice sin 
-    ///  desencadenar un error de página.
-    ///  Ejemplo: 20480.
+    ///  Nombre del archivo ejecutable responsable del proceso.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
-    ///  La propiedad MinimumWorkingSetSize indica el tamaño mínimo del espacio de trabajo del proceso. El espacio 
-    ///  de trabajo de un proceso es el conjunto de páginas de memoria que puede ver el proceso en la memoria 
-    ///  RAM física. Estas páginas son residentes y están disponibles para que una aplicación las utilice sin 
-    ///  desencadenar un error de página.
-    ///  Ejemplo: 20480.
+    ///  OSCreationClassName contiene el nombre de la clase de creación del sistema operativo de ámbito.
     /// </summary>
     property OSCreationClassName:string read FOSCreationClassName write FOSCreationClassName stored False;
     /// <summary>
-    ///  La propiedad MinimumWorkingSetSize indica el tamaño mínimo del espacio de trabajo del proceso. El espacio 
-    ///  de trabajo de un proceso es el conjunto de páginas de memoria que puede ver el proceso en la memoria 
-    ///  RAM física. Estas páginas son residentes y están disponibles para que una aplicación las utilice sin 
-    ///  desencadenar un error de página.
-    ///  Ejemplo: 20480.
+    ///  OSName contiene el nombre del sistema operativo instalado en el sistema.
     /// </summary>
     property OSName:string read FOSName write FOSName stored False;
     /// <summary>
@@ -230,14 +210,12 @@ type
     property OtherTransferCount:int64 read FOtherTransferCount write FOtherTransferCount stored False;
     /// <summary>
     ///  La propiedad PageFaults indica el número de errores de página que ha generado el proceso.
-    ///  Ejemplo: 1
-    ///  0
+    ///  Ejemplo: 10
     /// </summary>
     property PageFaults:integer read FPageFaults write FPageFaults stored False;
     /// <summary>
     ///  La propiedad PageFileUsage indica el tamaño del archivo de paginación que utiliza actualmente el proceso.
-    ///  Ejemplo: 
-    ///  102435
+    ///  Ejemplo: 102435
     /// </summary>
     property PageFileUsage:integer read FPageFileUsage write FPageFileUsage stored False;
     /// <summary>
@@ -265,8 +243,7 @@ type
     property PeakVirtualSize:int64 read FPeakVirtualSize write FPeakVirtualSize stored False;
     /// <summary>
     ///  La propiedad PeakWorkingSetSize indica el tamaño máximo del espacio de trabajo del proceso.
-    ///  Ejemplo: 
-    ///  1413120
+    ///  Ejemplo: 1413120
     /// </summary>
     property PeakWorkingSetSize:integer read FPeakWorkingSetSize write FPeakWorkingSetSize stored False;
     /// <summary>
@@ -294,8 +271,7 @@ type
     property QuotaNonPagedPoolUsage:integer read FQuotaNonPagedPoolUsage write FQuotaNonPagedPoolUsage stored False;
     /// <summary>
     ///  La propiedad QuotaPagedPoolUsage indica la cuota de utilización en el proceso del bloque de memoria paginada.
-    ///  Ejemplo: 
-    ///  22
+    ///  Ejemplo: 22
     /// </summary>
     property QuotaPagedPoolUsage:integer read FQuotaPagedPoolUsage write FQuotaPagedPoolUsage stored False;
     /// <summary>
@@ -307,7 +283,7 @@ type
     /// <summary>
     ///  La propiedad QuotaPeakPagedPoolUsage indica la cuota máxima de utilización en el proceso del bloque de 
     ///  memoria paginada.
-    ///   Ejemplo: 31
+    ///  Ejemplo: 31
     /// </summary>
     property QuotaPeakPagedPoolUsage:integer read FQuotaPeakPagedPoolUsage write FQuotaPeakPagedPoolUsage stored False;
     /// <summary>
@@ -315,7 +291,7 @@ type
     /// </summary>
     property ReadOperationCount:int64 read FReadOperationCount write FReadOperationCount stored False;
     /// <summary>
-    ///  La propiedad ReadOperationCount especifica el número de operaciones de lectura realizadas.
+    ///  La propiedad ReadTransferCount especifica el número de bytes transferidos en operaciones de lectura.
     /// </summary>
     property ReadTransferCount:int64 read FReadTransferCount write FReadTransferCount stored False;
     /// <summary>
@@ -325,15 +301,11 @@ type
     /// </summary>
     property SessionId:integer read FSessionId write FSessionId stored False;
     /// <summary>
-    ///  La propiedad SessionId especifica el identificador único que genera el sistema operativo cuando se crea 
-    ///  la sesión. Una sesión abarca el período de tiempo desde que se inicia la sesión en un sistema determinado 
-    ///  hasta que se cierra.
+    ///  La propiedad Status indica el estado operativo del proceso. Los valores posibles son OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service, Stressed, NonRecover, No Contact y Lost Comm.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
-    ///  La propiedad SessionId especifica el identificador único que genera el sistema operativo cuando se crea 
-    ///  la sesión. Una sesión abarca el período de tiempo desde que se inicia la sesión en un sistema determinado 
-    ///  hasta que se cierra.
+    ///  La propiedad TerminationDate indica la fecha y hora en que terminó el proceso.
     /// </summary>
     property TerminationDate:TDatetime read FTerminationDate write FTerminationDate stored False;
     /// <summary>
@@ -373,16 +345,15 @@ type
     /// </summary>
     property WriteOperationCount:int64 read FWriteOperationCount write FWriteOperationCount stored False;
     /// <summary>
-    ///  La propiedad WriteOperationCount especifica el número de operaciones de escritura realizadas.
+    ///  La propiedad WriteTransferCount especifica el número de bytes transferidos en operaciones de escritura.
     /// </summary>
     property WriteTransferCount:int64 read FWriteTransferCount write FWriteTransferCount stored False;
   end;
 
   {%InterfaceClass WMIClass%}
   /// <summary>
-  ///  La clase Win32_Process representa una secuencia de eventos en un sistema Win32. Cualquier secuencia compuesta 
-  ///  por la interacción de uno o más procesadores o intérpretes, código ejecutable y un conjunto de datos 
-  ///  de entrada, es un descendiente (o miembro) de esta clase.
+  ///  La clase Win32_Process representa un proceso en un sistema operativo. Un proceso es una instancia de un programa
+  ///  en ejecución, con su propio espacio de direcciones y uno o más subprocesos.
   ///  Ejemplo: una aplicación cliente que se ejecuta 
   ///  en un sistema Win32.
   /// </summary>

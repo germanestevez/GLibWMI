@@ -29,6 +29,7 @@ uses
     CStartupCommandInfo, CNetworkAdapterInfo, CUserAccountInfo, CShareInfo,
     CPrintJobInfo, CUSBControllerInfo, CDiskPartitionInfo, CFanInfo, CPnPEntityInfo,
     CDisplayConfigurationInfo, CProductInfo, CVideoControllerInfo,
+    CAccountInfo, CBaseBoardInfo, CNetworkProtocolInfo, CSerialPortInfo,
     CEnvironmentInfo, CWMISQL,
     FormAbout, UTAboutProp;
 
@@ -42,7 +43,8 @@ begin
     TProcessorInfo, TCDROMDriveInfo, TKeyboardInfo,
 	TPrinterInfo, TBatteryInfo, TNetworkAdapterInfo,
     TSoundDeviceInfo, TPointingDeviceInfo, TUSBControllerInfo,
-    TPhysicalMemoryInfo, TFanInfo, TPnPEntityInfo]);
+    TPhysicalMemoryInfo, TFanInfo, TPnPEntityInfo, TBaseBoardInfo,
+    TSerialPortInfo]);
 
   // Componentes de software
   RegisterComponents(GLIBWMI_PACKAGE_SOFT, [
@@ -51,7 +53,7 @@ begin
 	TServiceInfo, TDesktopMonitorInfo, TEnvironmentInfo,
     TEnvironmentInfo, TComputerSystemInfo, TStartupCommandInfo,
     TUserAccountInfo, TShareInfo, TDisplayConfigurationInfo, 
-	TProductInfo, TVideoControllerInfo]);
+	TProductInfo, TVideoControllerInfo, TAccountInfo, TNetworkProtocolInfo]);
 	
   // Editores de propiedades
   RegisterPropertyEditor(TypeInfo(TFAbout),nil,'',TAboutGlibWMIProp);

@@ -1,5 +1,5 @@
 {
-TKeyboardInfo Component Version 3.3 - Suite GLibWMI
+TKeyboardInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Keyboard representa un teclado instalado en un sistema Win32.
@@ -66,7 +66,8 @@ type
     FPNPDeviceID:string;
     FPowerManagementCapabilities:TArrInteger;
     FPowerManagementCapabilitiesCount:integer;
-    FPowerManagementCapabilitiesAsString:string;    FPowerManagementSupported:boolean;
+    FPowerManagementCapabilitiesAsString:string;
+    FPowerManagementSupported:boolean;
     FStatus:string;
     FStatusInfo:integer;
     FSystemCreationClassName:string;
@@ -119,16 +120,7 @@ type
     /// </summary>
     property Availability:integer read FAvailability write FAvailability stored False;
     /// <summary>
-    ///  La disponibilidad y estado del dispositivo. Por ejemplo, la propiedad disponibilidad, indica que el dispositivo 
-    ///  está en funcionamiento y tiene energía total (valor=3), o se encuentra en un estado de aviso (4), prueba 
-    ///  (5), degradado (10) o ahorro de energía (valores 13-15 y 17). En relación con los estados de ahorro de 
-    ///  energía, éstos se definen como sigue: Valor 13 ("Ahorro de energía: desconocido") indica que se sabe 
-    ///  que el dispositivo está en un modo de ahorro de energía, pero se desconoce su estado exacto en este modo; 
-    ///  14 ("Ahorro de energía: modo de bajo consumo") indica que el dispositivo está en un estado de  ahorro 
-    ///  de energía, pero sigue funcionando y puede exhibir una baja de rendimiento;  15 ("Ahorro de energía: 
-    ///  espera") describe que el sistema no está en funcionamiento, pero que se podría poner en operación "rápidamente"; 
-    ///  y valor 17 ("Ahorro de energía: advertencia") indica que el equipo está en un estado de aviso, aunque 
-    ///  está también en modo de ahorro de energía.
+    ///  Breve descripción de un objeto: una cadena de una sola línea.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -252,9 +244,7 @@ type
     /// </summary>
     property CreationClassName:string read FCreationClassName write FCreationClassName stored False;
     /// <summary>
-    ///  CreationClassName indica el nombre de la clase o subclase que se usa en la creación de una instancia. 
-    ///  Cuando se usa con las demás propiedades clave de esta clase, esta propiedad permite que se identifiquen 
-    ///  de manera única todas las instancias de esta clase y sus subclases.
+    ///  Descripción del objeto.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -274,9 +264,7 @@ type
     /// </summary>
     property ErrorDescription:string read FErrorDescription write FErrorDescription stored False;
     /// <summary>
-    ///  ErrorDescription es una cadena de forma libre que ofrece más información acerca del error registrado 
-    ///  en la propiedad LastErrorCode e información acerca de cualquier acción correctiva que se pueda tomar
-    ///  .
+    ///  Fecha y hora en que se instaló el objeto.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -289,15 +277,17 @@ type
     /// </summary>
     property LastErrorCode:integer read FLastErrorCode write FLastErrorCode stored False;
     /// <summary>
-    ///  LastErrorCode captura el último código de error informado por el dispositivo lógico.
+    ///  Layout es una cadena que indica la distribución del teclado (por ejemplo, el código de idioma
+    ///  y la disposición física de las teclas).
     /// </summary>
     property Layout:string read FLayout write FLayout stored False;
     /// <summary>
-    ///  LastErrorCode captura el último código de error informado por el dispositivo lógico.
+    ///  Etiqueta mediante la que se conoce al objeto. Al subclasificar, la propiedad Name puede
+    ///  sobrescribirse para que sea una propiedad clave.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
-    ///  LastErrorCode captura el último código de error informado por el dispositivo lógico.
+    ///  Número de teclas de función del teclado.
     /// </summary>
     property NumberOfFunctionKeys:integer read FNumberOfFunctionKeys write FNumberOfFunctionKeys stored False;
     /// <summary>
@@ -307,9 +297,7 @@ type
     /// </summary>
     property Password:integer read FPassword write FPassword stored False;
     /// <summary>
-    ///  Un entero que indica si la contraseña de nivel de hardware está habilitada en el teclado (valor=4), evitando 
-    ///  entrada local. Otros valores son:  "Deshabilitado" (3), "No implementado" (5), "Otros" (1) y "Desconocido" 
-    ///  (2).
+    ///  Identificador del dispositivo Plug and Play (PnP) del dispositivo lógico.
     /// </summary>
     property PNPDeviceID:string read FPNPDeviceID write FPNPDeviceID stored False;
     /// <summary>
@@ -340,26 +328,21 @@ type
     ///  de ahorro de energía. Este booleano no indica que las características de administración de energía están 
     ///  actualmente habilitadas, o si están deshabilitadas, las características que son compatibles. Consulte 
     ///  la matriz PowerManagementCapabilities para obtener esta información. Si este booleano es falso, el valor 
-    ///  entero 1, para la cadena, "No compatible", debe ser la única entrada en la matriz PowerManagementCap
-    ///  abilities.
+    ///  Estado actual del objeto. Pueden definirse varios estados operativos y no operativos.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
+    ///  StatusInfo es un entero que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
     ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
     ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
     /// </summary>
     property StatusInfo:integer read FStatusInfo write FStatusInfo stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  Nombre de la clase de creación del sistema que contiene al dispositivo lógico.
     /// </summary>
     property SystemCreationClassName:string read FSystemCreationClassName write FSystemCreationClassName stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  Nombre del sistema al que pertenece el dispositivo lógico.
     /// </summary>
     property SystemName:string read FSystemName write FSystemName stored False;
   end;
@@ -418,7 +401,7 @@ const
   ENUM_STRING_AVAILABILITY_15 = 'Ciclo de energía';
   ENUM_STRING_AVAILABILITY_16 = 'Ahorro de energía: advertencia';
   ENUM_STRING_AVAILABILITY_17 = 'Pausado';
-  ENUM_STRING_AVAILABILITY_18 = 'no está listo';
+  ENUM_STRING_AVAILABILITY_18 = 'No está listo';
   ENUM_STRING_AVAILABILITY_19 = 'No configurado';
   ENUM_STRING_AVAILABILITY_20 = 'Inactivo';
 

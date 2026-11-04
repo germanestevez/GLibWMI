@@ -14,11 +14,9 @@ object FormMainDiskDrive: TFormMainDiskDrive
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object PanelFondo: TPanel
     Left = 0
@@ -49,28 +47,28 @@ object FormMainDiskDrive: TFormMainDiskDrive
         TabOrder = 0
         object ToolButton1: TToolButton
           Left = 0
-          Top = 2
+          Top = 0
           Width = 8
           Caption = 'ToolButton1'
           Style = tbsDivider
         end
         object ToolButton2: TToolButton
           Left = 8
-          Top = 2
+          Top = 0
           Action = ActionInfo
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton5: TToolButton
           Left = 31
-          Top = 2
+          Top = 0
           Action = ActionPrint
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton4: TToolButton
           Left = 54
-          Top = 2
+          Top = 0
           Width = 8
           Caption = 'ToolButton4'
           ImageIndex = 1
@@ -78,20 +76,20 @@ object FormMainDiskDrive: TFormMainDiskDrive
         end
         object ToolButton3: TToolButton
           Left = 62
-          Top = 2
+          Top = 0
           Action = ActionCerrar
           ParentShowHint = False
           ShowHint = True
         end
         object rePrint: TRichEdit
           Left = 85
-          Top = 2
+          Top = 0
           Width = 89
           Height = 25
           BevelInner = bvNone
           BevelOuter = bvNone
           Ctl3D = False
-          Font.Charset = DEFAULT_CHARSET
+          Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
           Font.Name = 'MS Sans Serif'
@@ -281,7 +279,7 @@ object FormMainDiskDrive: TFormMainDiskDrive
     Left = 232
     Top = 56
     Bitmap = {
-      494C010103000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -466,7 +464,7 @@ object FormMainDiskDrive: TFormMainDiskDrive
     Left = 328
     Top = 56
     Bitmap = {
-      494C010101000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

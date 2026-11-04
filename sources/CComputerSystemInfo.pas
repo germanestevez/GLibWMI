@@ -1,5 +1,5 @@
 {
-TComputerSystemInfo Component Version 3.3 - Suite GLibWMI
+TComputerSystemInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_ComputerSystem representa el sistema operativo de un equipo en un entorno Win32.
@@ -781,7 +781,7 @@ const
   ENUM_STRING_PCSYSTEMTYPE_00 = 'Sin especificar';
   ENUM_STRING_PCSYSTEMTYPE_01 = 'Escritorio';
   ENUM_STRING_PCSYSTEMTYPE_02 = 'Mobile';
-  ENUM_STRING_PCSYSTEMTYPE_03 = 'Mobile';
+  ENUM_STRING_PCSYSTEMTYPE_03 = 'Estación de trabajo';
   ENUM_STRING_PCSYSTEMTYPE_04 = 'Enterprise Server';
   ENUM_STRING_PCSYSTEMTYPE_05 = 'SOHO Server';
   ENUM_STRING_PCSYSTEMTYPE_06 = 'Appliance PC';

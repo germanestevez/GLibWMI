@@ -1,5 +1,5 @@
 {
-TDisplayConfigurationInfo Component Version 3.3 - Suite GLibWMI
+TDisplayConfigurationInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_DisplayConfiguration representa la información de configuración del dispositivo de pantalla 
@@ -94,19 +94,19 @@ type
     /// </summary>
     property BitsPerPel:integer read FBitsPerPel write FBitsPerPel stored False;
     /// <summary>
-    ///  La propiedad BitsPerPel indica el número de bits utilizados para representar el color en esta configuración 
-    ///  (los bits por píxel).
-    ///  Ejemplo: 8.  
-    ///  Esta propiedad quedó obsoleta en favor de la propiedad correspondiente 
-    ///  contenida en Win32_VideoController, Win32_DesktopMonitor y//o CIM_VideoControllerResolution
+    ///  La propiedad Caption contiene la descripción breve del objeto CIM_Setting.
+    ///  Es una propiedad heredada de CIM_Setting.
+    ///  No está marcada como obsoleta (DEPRECATED) en MSDN.
+    ///  Solo lectura en WMI.
+    ///  Tipo de dato: string.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
-    ///  La propiedad BitsPerPel indica el número de bits utilizados para representar el color en esta configuración 
-    ///  (los bits por píxel).
-    ///  Ejemplo: 8.  
-    ///  Esta propiedad quedó obsoleta en favor de la propiedad correspondiente 
-    ///  contenida en Win32_VideoController, Win32_DesktopMonitor y//o CIM_VideoControllerResolution
+    ///  La propiedad Description contiene la descripción del objeto CIM_Setting.
+    ///  Es una propiedad heredada de CIM_Setting.
+    ///  No está marcada como obsoleta (DEPRECATED) en MSDN.
+    ///  Solo lectura en WMI.
+    ///  Tipo de dato: string.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>

@@ -1,5 +1,5 @@
 {
-TBatteryInfo Component Version 3.3 - Suite GLibWMI
+TBatteryInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Battery  representa una batería conectada al sistema del equipo. Esta clase se aplica 
@@ -486,7 +486,7 @@ const
   ENUM_STRING_AVAILABILITY_17 = 'Pausado';
   ENUM_STRING_AVAILABILITY_18 = 'no está listo';
   ENUM_STRING_AVAILABILITY_19 = 'No configurado';
-  ENUM_STRING_AVAILABILITY_20 = 'Inactivo';
+  ENUM_STRING_AVAILABILITY_20 = 'Silenciado';
 
 // Constantes para la propiedad BatteryStatus
 const 
@@ -511,7 +511,7 @@ const
   ENUM_STRING_CHEMISTRY_04 = 'Batería de níquel-hidruro';
   ENUM_STRING_CHEMISTRY_05 = 'Ion-litio';
   ENUM_STRING_CHEMISTRY_06 = 'Batería de zinc-aire';
-  ENUM_STRING_CHEMISTRY_07 = 'batería de litio-polímero';
+  ENUM_STRING_CHEMISTRY_07 = 'Batería de litio-polímero';
 
 // Constantes para la propiedad ConfigManagerErrorCode
 const 

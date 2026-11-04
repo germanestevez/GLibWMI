@@ -1,5 +1,5 @@
 {
-TEnvironmentInfo Component Version 3.3 - Suite GLibWMI
+TEnvironmentInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Environment representa una configuración de entorno o de sistema en un sistema Win32.
@@ -81,10 +81,11 @@ type
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
-    ///  La propiedad Name contiene una cadena de caracteres que especifica el nombre de una variable de entorno 
-    ///  de Win32. Al especificar nombres de variables que no existen, las aplicaciones pueden crear nuevas variables 
-    ///  de entorno. 
-    ///  Ejemplo: ruta.
+    ///  La propiedad Status contiene una cadena que indica el estado actual del objeto. Los valores posibles son:
+    ///  "OK", "Error", "Degraded", "Unknown", "Pred Fail", "Starting", "Stopping", "Service", "Stressed",
+    ///  "NonRecover", "No Contact" y "Lost Comm". "Pred Fail" indica que el elemento funciona correctamente,
+    ///  pero predice un fallo (por ejemplo, un disco duro con SMART).
+    ///  Ejemplo: OK.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>

@@ -1,5 +1,5 @@
 {
-TProcessorInfo Component Version 3.3 - Suite GLibWMI
+TProcessorInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Processor representa un dispositivo capaz de interpretar una secuencia de instrucciones 
@@ -156,6 +156,7 @@ type
   published
     {%PublishedProperties PropertiesClass%}
     /// <summary>
+    ///  Ancho en bits de la arquitectura del procesador: 32 en sistemas de 32 bits y 64 en sistemas de 64 bits.
     /// </summary>
     property AddressWidth:integer read FAddressWidth write FAddressWidth stored False;
     /// <summary>
@@ -668,10 +669,12 @@ type
 const 
   ENUM_STRING_ARCHITECTURE_00 = 'x86';
   ENUM_STRING_ARCHITECTURE_01 = 'MIPS';
-  ENUM_STRING_ARCHITECTURE_02 = 'Opacidad (Alpha)';
+  ENUM_STRING_ARCHITECTURE_02 = 'Alpha';
   ENUM_STRING_ARCHITECTURE_03 = 'PowerPC';
   ENUM_STRING_ARCHITECTURE_04 = 'ia64';
   ENUM_STRING_ARCHITECTURE_05 = 'x64';
+  ENUM_STRING_ARCHITECTURE_06 = 'ARM';
+  ENUM_STRING_ARCHITECTURE_07 = 'ARM64';
 
 // Constantes para la propiedad Availability
 const 
@@ -683,7 +686,7 @@ const
   ENUM_STRING_AVAILABILITY_05 = 'No aplicable';
   ENUM_STRING_AVAILABILITY_06 = 'Apagado';
   ENUM_STRING_AVAILABILITY_07 = 'Sin conexión a la red';
-  ENUM_STRING_AVAILABILITY_08 = 'Inactivo';
+  ENUM_STRING_AVAILABILITY_08 = 'Fuera de servicio';
   ENUM_STRING_AVAILABILITY_09 = 'Degradado';
   ENUM_STRING_AVAILABILITY_10 = 'No instalado';
   ENUM_STRING_AVAILABILITY_11 = 'Error de instalación';
@@ -693,9 +696,9 @@ const
   ENUM_STRING_AVAILABILITY_15 = 'Ciclo de energía';
   ENUM_STRING_AVAILABILITY_16 = 'Ahorro de energía: advertencia';
   ENUM_STRING_AVAILABILITY_17 = 'Pausado';
-  ENUM_STRING_AVAILABILITY_18 = 'no está listo';
+  ENUM_STRING_AVAILABILITY_18 = 'No está listo';
   ENUM_STRING_AVAILABILITY_19 = 'No configurado';
-  ENUM_STRING_AVAILABILITY_20 = 'Inactivo';
+  ENUM_STRING_AVAILABILITY_20 = 'En reposo';
 
 // Constantes para la propiedad ConfigManagerErrorCode
 const 
@@ -836,10 +839,10 @@ const
   ENUM_STRING_FAMILY_88 = 'Intel(R) Itanium(R) 2';
   ENUM_STRING_FAMILY_89 = 'Procesador Intel Pentium M';
   ENUM_STRING_FAMILY_90 = 'K7';
-  ENUM_STRING_FAMILY_91 = 'Familia IBM390';
-  ENUM_STRING_FAMILY_92 = 'G4';
-  ENUM_STRING_FAMILY_93 = 'G5';
-  ENUM_STRING_FAMILY_94 = 'G6';
+  ENUM_STRING_FAMILY_91 = 'Familia S/390 y zSeries';
+  ENUM_STRING_FAMILY_92 = 'ESA/390 G4';
+  ENUM_STRING_FAMILY_93 = 'ESA/390 G5';
+  ENUM_STRING_FAMILY_94 = 'ESA/390 G6';
   ENUM_STRING_FAMILY_95 = 'Base z/Architecture';
   ENUM_STRING_FAMILY_96 = 'i860';
   ENUM_STRING_FAMILY_97 = 'i960';
@@ -888,7 +891,7 @@ const
   ENUM_STRING_UPGRADEMETHOD_01 = 'Desconocido';
   ENUM_STRING_UPGRADEMETHOD_02 = 'Placa base secundaria';
   ENUM_STRING_UPGRADEMETHOD_03 = 'Socket ZIF';
-  ENUM_STRING_UPGRADEMETHOD_04 = 'Replacement/Piggy Back';
+  ENUM_STRING_UPGRADEMETHOD_04 = 'Reemplazo o Piggy Back';
   ENUM_STRING_UPGRADEMETHOD_05 = 'Ninguna';
   ENUM_STRING_UPGRADEMETHOD_06 = 'Socket LIF';
   ENUM_STRING_UPGRADEMETHOD_07 = 'Ranura 1';
@@ -1220,6 +1223,8 @@ begin
     03: Result := ENUM_STRING_ARCHITECTURE_03;
     04: Result := ENUM_STRING_ARCHITECTURE_04;
     05: Result := ENUM_STRING_ARCHITECTURE_05;
+    06: Result := ENUM_STRING_ARCHITECTURE_06;
+    07: Result := ENUM_STRING_ARCHITECTURE_07;
   else
     Result := STR_EMPTY;
   end;
@@ -1507,7 +1512,7 @@ end;
 // Obtener núm. de elementos de la propiedad como string
 function TProcessorProperties.GetAllArchitectureCount:integer;
 begin
-  Result := 6
+  Result := 8
 end;
 
 // Obtener núm. de elementos de la propiedad como string

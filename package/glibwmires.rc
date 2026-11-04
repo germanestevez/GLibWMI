@@ -1,19 +1,9 @@
 // Fichero .RC con los recursos
 TBATTERYINFO				BITMAP 	"resources\CBatteryInfo.bmp"
-
-
 TBIOSINFO     				BITMAP  "resources\CBiosInfo.bmp"
-
-
 TBOOTCONFIGURATIONINFO      BITMAP  "resources\CBootConfigurationInfo.bmp"
-
-
 TCDROMDRIVEINFO     		BITMAP  "resources\CCDROMDriveInfo.bmp"
-
-
 TCODECFILEINFO     			BITMAP  "resources\CCodecFileInfo.bmp"
-
-
 TCOMPUTERSYSTEMINFO     	BITMAP  "resources\CComputerSystemInfo.bmp"
 TDESKTOPINFO      			BITMAP  "resources\CDesktopInfo.bmp"
 TDESKTOPMONITORINFO     	BITMAP  "resources\CDesktopMonitorInfo.bmp"
@@ -42,6 +32,11 @@ TTIMEZONEINFO				BITMAP  "resources\CTimeZoneInfo.bmp"
 TUSBCONTROLLERINFO 			BITMAP  "resources\CUSBControllerInfo.bmp"
 TUSERACCOUNTINFO  			BITMAP  "resources\CUserAccountInfo.bmp"
 TVIDEOCONTROLLERINFO		BITMAP  "resources\CVideoControllerInfo.bmp"
+
+TACCOUNTINFO				BITMAP  "resources\CAccountInfo.bmp"
+TBASEBOARDINFO				BITMAP  "resources\CBaseBoardInfo.bmp"
+TNETWORKPROTOCOLINFO		BITMAP  "resources\CNetworkProtocolInfo.bmp"
+TSERIALPORTINFO				BITMAP  "resources\CSerialPortInfo.bmp"
 
 
 

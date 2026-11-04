@@ -1,5 +1,5 @@
 {
-TStartupCommandInfo Component Version 3.3 - Suite GLibWMI
+TStartupCommandInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_StartupCommand representa un comando que se ejecuta automáticamente cuando un usuario 
@@ -70,6 +70,7 @@ type
   published
     {%PublishedProperties PropertiesClass%}
     /// <summary>
+    ///  Descripción corta y textual del objeto actual.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -79,9 +80,7 @@ type
     /// </summary>
     property Command:string read FCommand write FCommand stored False;
     /// <summary>
-    ///  La propiedad Command indica la cadena que representa la línea de comandos que ejecuta el comando de inicio.
-    ///  Ejemplo: 
-    ///  c:\winnt\notepad.exe miArchivo.txt.
+    ///  La propiedad Description indica la descripción textual del objeto actual.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -95,8 +94,7 @@ type
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
-    ///  La propiedad Name indica el nombre de archivo del comando de inicio.
-    ///  Ejemplo: FindFast
+    ///  La propiedad SettingID indica el identificador por el que se conoce el objeto actual.
     /// </summary>
     property SettingID:string read FSettingID write FSettingID stored False;
     /// <summary>

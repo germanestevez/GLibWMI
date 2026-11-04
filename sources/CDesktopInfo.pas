@@ -1,5 +1,5 @@
 {
-TDesktopInfo Component Version 3.3 - Suite GLibWMI
+TDesktopInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Desktop representa las características comunes del escritorio de un usuario. El usuario 
@@ -85,9 +85,9 @@ type
     /// </summary>
     property BorderWidth:integer read FBorderWidth write FBorderWidth stored False;
     /// <summary>
-    ///  La propiedad BorderWidth configura el ancho de los bordes alrededor de todas las ventanas con bordes 
-    ///  ajustables.
-    ///  Ejemplo: 3.
+    ///  La propiedad Caption indica una breve descripción textual del objeto actual.
+    ///  Longitud máxima: 64 caracteres.
+    ///  Propiedad heredada de CIM_Setting.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -102,9 +102,9 @@ type
     /// </summary>
     property CursorBlinkRate:integer read FCursorBlinkRate write FCursorBlinkRate stored False;
     /// <summary>
-    ///  La propiedad CursorBlinkRate indica el espacio de tiempo transcurrido entre parpadeos sucesivos del cursor.
-    ///  Ejemplo: 
-    ///  530.
+    ///  La propiedad Description indica una descripción textual del objeto actual.
+    ///  Propiedad heredada de CIM_Setting.
+    ///  Propiedad de solo lectura.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -122,10 +122,10 @@ type
     /// </summary>
     property GridGranularity:integer read FGridGranularity write FGridGranularity stored False;
     /// <summary>
-    ///  La propiedad GridGranularity indica el espaciado de la cuadrícula a la que están enlazadas las ventanas 
-    ///  en el escritorio. Así se facilita la organización de las ventanas. Normalmente, el espaciado es lo suficientemente 
-    ///  fino como para que el usuario no repare en él.
-    ///  Ejemplo: 1.
+    ///  La propiedad IconSpacing indica el espaciado entre iconos.
+    ///  Valor entero.
+    ///  Unidades: píxeles.
+    ///  Propiedad de solo lectura.
     /// </summary>
     property IconSpacing:integer read FIconSpacing write FIconSpacing stored False;
     /// <summary>
@@ -135,9 +135,9 @@ type
     /// </summary>
     property IconTitleFaceName:string read FIconTitleFaceName write FIconTitleFaceName stored False;
     /// <summary>
-    ///  La propiedad IconTitleFaceName indica el nombre del tipo de fuente utilizada en los nombres de los iconos.
-    ///  Ejemplo: 
-    ///  MS San Serif.
+    ///  La propiedad IconTitleSize indica el tamaño de la fuente utilizada en los nombres de los iconos.
+    ///  Unidades: puntos.
+    ///  Propiedad de solo lectura.
     /// </summary>
     property IconTitleSize:integer read FIconTitleSize write FIconTitleSize stored False;
     /// <summary>
@@ -147,9 +147,9 @@ type
     /// </summary>
     property IconTitleWrap:boolean read FIconTitleWrap write FIconTitleWrap stored False;
     /// <summary>
-    ///  La propiedad IconTitleWrap indica si el texto del título del icono se ajusta a la línea siguiente.
-    ///  Valores: 
-    ///  TRUE o FALSE. El valor TRUE indica que el título se ajusta a la línea siguiente.
+    ///  La propiedad Name indica el nombre que identifica el perfil de escritorio actual.
+    ///  Propiedad clave de la clase.
+    ///  Propiedad de solo lectura.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
@@ -180,8 +180,8 @@ type
     /// </summary>
     property ScreenSaverTimeout:integer read FScreenSaverTimeout write FScreenSaverTimeout stored False;
     /// <summary>
-    ///  La propiedad ScreenSaverTimeout indica el espacio de tiempo que debe transcurrir para que se inicie el 
-    ///  protector de pantalla.
+    ///  La propiedad SettingID indica el identificador por el que se conoce el objeto actual.
+    ///  Longitud máxima: 256 caracteres.
     /// </summary>
     property SettingID:string read FSettingID write FSettingID stored False;
     /// <summary>

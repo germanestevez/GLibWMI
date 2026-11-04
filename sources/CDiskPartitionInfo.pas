@@ -1,5 +1,5 @@
 {
-TDiskPartitionInfo Component Version 3.3 - Suite GLibWMI
+TDiskPartitionInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_DiskPartition representa las posibilidades y la capacidad de administración de un área 
@@ -48,6 +48,7 @@ type
   private
     {%PrivateClassVars PropertiesClass%}
     FAccess:integer;
+    FAdditionalAvailability:integer;
     FAvailability:integer;
     FBlockSize:int64;
     FBootable:boolean;
@@ -63,15 +64,21 @@ type
     FErrorDescription:string;
     FErrorMethodology:string;
     FHiddenSectors:integer;
+    FIdentifyingDescriptions:TArrString;
+    FIdentifyingDescriptionsCount:integer;
+    FIdentifyingDescriptionsAsString:string;
     FIndex:integer;
     FInstallDate:TDatetime;
     FLastErrorCode:integer;
+    FMaxQuiesceTime:int64;
     FName:string;
     FNumberOfBlocks:int64;
+    FOtherIdentifyingInfo:int64;
     FPNPDeviceID:string;
     FPowerManagementCapabilities:TArrInteger;
     FPowerManagementCapabilitiesCount:integer;
     FPowerManagementCapabilitiesAsString:string;    FPowerManagementSupported:boolean;
+    FPowerOnHours:int64;
     FPrimaryPartition:boolean;
     FPurpose:string;
     FRewritePartition:boolean;
@@ -81,11 +88,13 @@ type
     FStatusInfo:integer;
     FSystemCreationClassName:string;
     FSystemName:string;
+    FTotalPowerOnHours:int64;
     FType_:string;
 
   private
     {%PrivateGetMethods PropertiesClass%}
     function GetPowerManagementCapabilities(index: integer):integer;
+    function GetIdentifyingDescriptions(index: integer):string;
 
   public
     {%PublicGetMethods PropertiesClass%}
@@ -93,6 +102,10 @@ type
     function GetAllAccessAsString(index:integer):string;
     // Obtener el número de elementos disponibles de la propiedad <Access>
     function GetAllAccessCount:integer;
+    // Obtener la propiedad <AdditionalAvailability> como string
+    function GetAllAdditionalAvailabilityAsString(index:integer):string;
+    // Obtener el número de elementos disponibles de la propiedad <AdditionalAvailability>
+    function GetAllAdditionalAvailabilityCount:integer;
     // Obtener la propiedad <Availability> como string
     function GetAllAvailabilityAsString(index:integer):string;
     // Obtener el número de elementos disponibles de la propiedad <Availability>
@@ -115,6 +128,8 @@ type
     function GetAllType_Count:integer;
 
     {%PublicArrayMethods PropertiesClass%}
+    property IdentifyingDescriptions[index:integer]:string read GetIdentifyingDescriptions;
+    property IdentifyingDescriptionsCount:integer read FIdentifyingDescriptionsCount stored False;
     property PowerManagementCapabilities[index:integer]:integer read GetPowerManagementCapabilities;
     property PowerManagementCapabilitiesCount:integer read FPowerManagementCapabilitiesCount stored False;
 
@@ -122,9 +137,14 @@ type
     {%PublishedProperties PropertiesClass%}
     /// <summary>
     ///  Access describe si el medio es legible (valor=1), grabable (valor=2), o ambos (valor=3). "Desconocido" 
-    ///  (0) y "De sólo una escritura" (4) también se pueden definir.
+    ///  (0) y "Escritura única" (4) también se pueden definir.
     /// </summary>
     property Access:integer read FAccess write FAccess stored False;
+    /// <summary>
+    ///  AdditionalAvailability describe la disponibilidad adicional del dispositivo. Usa los mismos valores 
+    ///  que la propiedad Availability.
+    /// </summary>
+    property AdditionalAvailability:integer read FAdditionalAvailability write FAdditionalAvailability stored False;
     /// <summary>
     ///  La disponibilidad y estado del dispositivo. Por ejemplo, la propiedad disponibilidad, indica que el dispositivo 
     ///  está en funcionamiento y tiene energía total (valor=3), o se encuentra en un estado de aviso (4), prueba 
@@ -157,10 +177,7 @@ type
     /// </summary>
     property BootPartition:boolean read FBootPartition write FBootPartition stored False;
     /// <summary>
-    ///  La propiedad BootPartition determina si ésta es la partición activa. El sistema operativo usa la partición 
-    ///  activa al arrancar desde un disco duro.
-    ///  Valores: TRUE o FALSE. Si es TRUE, la partición es la activa
-    ///  .
+    ///  Caption es una cadena breve que describe la partición.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -284,9 +301,7 @@ type
     /// </summary>
     property CreationClassName:string read FCreationClassName write FCreationClassName stored False;
     /// <summary>
-    ///  CreationClassName indica el nombre de la clase o subclase que se usa en la creación de una instancia. 
-    ///  Cuando se usa con las demás propiedades clave de esta clase, esta propiedad permite que se identifiquen 
-    ///  de manera única todas las instancias de esta clase y sus subclases.
+    ///  Description es una cadena de texto que describe la partición.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -321,13 +336,15 @@ type
     /// </summary>
     property HiddenSectors:integer read FHiddenSectors write FHiddenSectors stored False;
     /// <summary>
-    ///  La propiedad HiddenSectors indica el número de sectores ocultos de la partición.
-    ///  Ejemplo: 63
+    ///  IdentifyingDescriptionsAsString es la lista de descripciones que identifican la partición, separadas por comas.
+    /// </summary>
+    property IdentifyingDescriptionsAsString:string read FIdentifyingDescriptionsAsString write FIdentifyingDescriptionsAsString stored False;
+    /// <summary>
+    ///  Index es el número de índice de la partición dentro del disco.
     /// </summary>
     property Index:integer read FIndex write FIndex stored False;
     /// <summary>
-    ///  La propiedad HiddenSectors indica el número de sectores ocultos de la partición.
-    ///  Ejemplo: 63
+    ///  InstallDate es la fecha y hora en que se instaló la partición.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -335,7 +352,11 @@ type
     /// </summary>
     property LastErrorCode:integer read FLastErrorCode write FLastErrorCode stored False;
     /// <summary>
-    ///  LastErrorCode captura el último código de error informado por el dispositivo lógico.
+    ///  MaxQuiesceTime indica el tiempo máximo (en milisegundos) que la partición puede permanecer en reposo. Propiedad obsoleta según MSDN.
+    /// </summary>
+    property MaxQuiesceTime:int64 read FMaxQuiesceTime write FMaxQuiesceTime stored False;
+    /// <summary>
+    ///  Name es el nombre de la partición.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
@@ -346,10 +367,11 @@ type
     /// </summary>
     property NumberOfBlocks:int64 read FNumberOfBlocks write FNumberOfBlocks stored False;
     /// <summary>
-    ///  Número total de bloques consecutivos, cada  uno bloquea el tamaño del valor contenido en la propiedad 
-    ///  BlockSize que forma esta extensión de almacenamiento. Tamaño total de la extensión  de almacenamiento 
-    ///  puede ser calculado multiplicando el valor de la propiedad BlockSize por el valor de esta propiedad. 
-    ///  Si el valor de BlockSize es 1, esta propiedad es el tamaño total de la extensión de almacenamiento.
+    ///  OtherIdentifyingInfo contiene información adicional que identifica la partición.
+    /// </summary>
+    property OtherIdentifyingInfo:int64 read FOtherIdentifyingInfo write FOtherIdentifyingInfo stored False;
+    /// <summary>
+    ///  PNPDeviceID es el identificador de dispositivo Plug and Play de la partición.
     /// </summary>
     property PNPDeviceID:string read FPNPDeviceID write FPNPDeviceID stored False;
     /// <summary>
@@ -376,13 +398,16 @@ type
     /// </summary>
     property PowerManagementSupported:boolean read FPowerManagementSupported write FPowerManagementSupported stored False;
     /// <summary>
+    ///  PowerOnHours indica el número de horas de funcionamiento de la partición.
+    /// </summary>
+    property PowerOnHours:int64 read FPowerOnHours write FPowerOnHours stored False;
+    /// <summary>
     ///  Booleano indicando que DiskPartition está etiquetada como la partición primaria para un ComputerSyst
     ///  em.
     /// </summary>
     property PrimaryPartition:boolean read FPrimaryPartition write FPrimaryPartition stored False;
     /// <summary>
-    ///  Booleano indicando que DiskPartition está etiquetada como la partición primaria para un ComputerSyst
-    ///  em.
+    ///  Purpose describe el uso previsto de la partición.
     /// </summary>
     property Purpose:string read FPurpose write FPurpose stored False;
     /// <summary>
@@ -404,8 +429,7 @@ type
     /// </summary>
     property StartingOffset:int64 read FStartingOffset write FStartingOffset stored False;
     /// <summary>
-    ///  La propiedad StartingOffset indica la posición de inicio (en bytes) de la partición.
-    ///  Ejemplo: 32256
+    ///  Status es una cadena que indica el estado actual de la partición.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
@@ -415,21 +439,19 @@ type
     /// </summary>
     property StatusInfo:integer read FStatusInfo write FStatusInfo stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  SystemCreationClassName indica el nombre de la clase del sistema que se usa en la creación de la partición.
     /// </summary>
     property SystemCreationClassName:string read FSystemCreationClassName write FSystemCreationClassName stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  SystemName indica el nombre del sistema al que pertenece la partición.
     /// </summary>
     property SystemName:string read FSystemName write FSystemName stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  TotalPowerOnHours indica el número total de horas de funcionamiento de la partición.
+    /// </summary>
+    property TotalPowerOnHours:int64 read FTotalPowerOnHours write FTotalPowerOnHours stored False;
+    /// <summary>
+    ///  Type_ indica el tipo de partición (por ejemplo, primaria, extendida o lógica). Consulte ENUM_STRING_TYPE_.
     /// </summary>
     property Type_:string read FType_ write FType_ stored False;
   end;
@@ -474,7 +496,31 @@ const
   ENUM_STRING_ACCESS_01 = 'Lectura';
   ENUM_STRING_ACCESS_02 = 'Grabable';
   ENUM_STRING_ACCESS_03 = 'Lectura/escritura';
-  ENUM_STRING_ACCESS_04 = 'De sólo una escritura';
+  ENUM_STRING_ACCESS_04 = 'Escritura única';
+
+// Constantes para la propiedad AdditionalAvailability
+const 
+  ENUM_STRING_ADDITIONALAVAILABILITY_00 = 'Otros';
+  ENUM_STRING_ADDITIONALAVAILABILITY_01 = 'Desconocido';
+  ENUM_STRING_ADDITIONALAVAILABILITY_02 = 'Funcionar/Energía completa';
+  ENUM_STRING_ADDITIONALAVAILABILITY_03 = 'Advertencia';
+  ENUM_STRING_ADDITIONALAVAILABILITY_04 = 'En prueba';
+  ENUM_STRING_ADDITIONALAVAILABILITY_05 = 'No aplicable';
+  ENUM_STRING_ADDITIONALAVAILABILITY_06 = 'Apagado';
+  ENUM_STRING_ADDITIONALAVAILABILITY_07 = 'Sin conexión a la red';
+  ENUM_STRING_ADDITIONALAVAILABILITY_08 = 'Inactivo';
+  ENUM_STRING_ADDITIONALAVAILABILITY_09 = 'Degradado';
+  ENUM_STRING_ADDITIONALAVAILABILITY_10 = 'No instalado';
+  ENUM_STRING_ADDITIONALAVAILABILITY_11 = 'Error de instalación';
+  ENUM_STRING_ADDITIONALAVAILABILITY_12 = 'Ahorro de energía: desconocido';
+  ENUM_STRING_ADDITIONALAVAILABILITY_13 = 'Ahorro de energía: modo de bajo consumo';
+  ENUM_STRING_ADDITIONALAVAILABILITY_14 = 'Ahorro de energía: espera';
+  ENUM_STRING_ADDITIONALAVAILABILITY_15 = 'Ciclo de energía';
+  ENUM_STRING_ADDITIONALAVAILABILITY_16 = 'Ahorro de energía: advertencia';
+  ENUM_STRING_ADDITIONALAVAILABILITY_17 = 'Pausado';
+  ENUM_STRING_ADDITIONALAVAILABILITY_18 = 'No está listo';
+  ENUM_STRING_ADDITIONALAVAILABILITY_19 = 'No configurado';
+  ENUM_STRING_ADDITIONALAVAILABILITY_20 = 'En reposo';
 
 // Constantes para la propiedad Availability
 const 
@@ -496,9 +542,9 @@ const
   ENUM_STRING_AVAILABILITY_15 = 'Ciclo de energía';
   ENUM_STRING_AVAILABILITY_16 = 'Ahorro de energía: advertencia';
   ENUM_STRING_AVAILABILITY_17 = 'Pausado';
-  ENUM_STRING_AVAILABILITY_18 = 'no está listo';
+  ENUM_STRING_AVAILABILITY_18 = 'No está listo';
   ENUM_STRING_AVAILABILITY_19 = 'No configurado';
-  ENUM_STRING_AVAILABILITY_20 = 'Inactivo';
+  ENUM_STRING_AVAILABILITY_20 = 'En reposo';
 
 // Constantes para la propiedad ConfigManagerErrorCode
 const 
@@ -587,6 +633,7 @@ uses
 procedure TDiskPartitionInfo.ClearProps;
 begin
   Self.DiskPartitionProperties.FAccess := 0;
+  Self.DiskPartitionProperties.FAdditionalAvailability := 0;
   Self.DiskPartitionProperties.FAvailability := 0;
   Self.DiskPartitionProperties.FBlockSize := 0;
   Self.DiskPartitionProperties.FBootable := False;
@@ -602,16 +649,22 @@ begin
   Self.DiskPartitionProperties.FErrorDescription := EmptyStr;
   Self.DiskPartitionProperties.FErrorMethodology := EmptyStr;
   Self.DiskPartitionProperties.FHiddenSectors := 0;
+  Self.DiskPartitionProperties.FIdentifyingDescriptionsCount := 0;
+  Self.DiskPartitionProperties.FIdentifyingDescriptionsAsString := EmptyStr;
+  SetLength(DiskPartitionProperties.FIdentifyingDescriptions, 0);
   Self.DiskPartitionProperties.FIndex := 0;
   Self.DiskPartitionProperties.FInstallDate := 0;
   Self.DiskPartitionProperties.FLastErrorCode := 0;
+  Self.DiskPartitionProperties.FMaxQuiesceTime := 0;
   Self.DiskPartitionProperties.FName := EmptyStr;
   Self.DiskPartitionProperties.FNumberOfBlocks := 0;
+  Self.DiskPartitionProperties.FOtherIdentifyingInfo := 0;
   Self.DiskPartitionProperties.FPNPDeviceID := EmptyStr;
   Self.DiskPartitionProperties.FPowerManagementCapabilitiesCount := 0;
   Self.DiskPartitionProperties.FPowerManagementCapabilitiesAsString := EmptyStr;
   SetLength(DiskPartitionProperties.FPowerManagementCapabilities, 0);
   Self.DiskPartitionProperties.FPowerManagementSupported := False;
+  Self.DiskPartitionProperties.FPowerOnHours := 0;
   Self.DiskPartitionProperties.FPrimaryPartition := False;
   Self.DiskPartitionProperties.FPurpose := EmptyStr;
   Self.DiskPartitionProperties.FRewritePartition := False;
@@ -621,6 +674,7 @@ begin
   Self.DiskPartitionProperties.FStatusInfo := 0;
   Self.DiskPartitionProperties.FSystemCreationClassName := EmptyStr;
   Self.DiskPartitionProperties.FSystemName := EmptyStr;
+  Self.DiskPartitionProperties.FTotalPowerOnHours := 0;
   Self.DiskPartitionProperties.FType_ := EmptyStr;
 end;
 
@@ -669,6 +723,52 @@ begin
 end;
 
 
+// Acceso a los elementos de la propiedad <IdentifyingDescriptions>
+function TDiskPartitionProperties.GetIdentifyingDescriptions(index: integer):string;
+begin
+  if (index >= Self.FIdentifyingDescriptionsCount) then begin
+    Index := Self.FIdentifyingDescriptionsCount - 1;
+  end;
+  Result := Self.FIdentifyingDescriptions[index];
+end;
+
+// Obtener la propiedad como string
+function TDiskPartitionProperties.GetAllAdditionalAvailabilityAsString(index:integer):string;
+begin
+  case index of
+    00: Result := ENUM_STRING_ADDITIONALAVAILABILITY_00;
+    01: Result := ENUM_STRING_ADDITIONALAVAILABILITY_01;
+    02: Result := ENUM_STRING_ADDITIONALAVAILABILITY_02;
+    03: Result := ENUM_STRING_ADDITIONALAVAILABILITY_03;
+    04: Result := ENUM_STRING_ADDITIONALAVAILABILITY_04;
+    05: Result := ENUM_STRING_ADDITIONALAVAILABILITY_05;
+    06: Result := ENUM_STRING_ADDITIONALAVAILABILITY_06;
+    07: Result := ENUM_STRING_ADDITIONALAVAILABILITY_07;
+    08: Result := ENUM_STRING_ADDITIONALAVAILABILITY_08;
+    09: Result := ENUM_STRING_ADDITIONALAVAILABILITY_09;
+    10: Result := ENUM_STRING_ADDITIONALAVAILABILITY_10;
+    11: Result := ENUM_STRING_ADDITIONALAVAILABILITY_11;
+    12: Result := ENUM_STRING_ADDITIONALAVAILABILITY_12;
+    13: Result := ENUM_STRING_ADDITIONALAVAILABILITY_13;
+    14: Result := ENUM_STRING_ADDITIONALAVAILABILITY_14;
+    15: Result := ENUM_STRING_ADDITIONALAVAILABILITY_15;
+    16: Result := ENUM_STRING_ADDITIONALAVAILABILITY_16;
+    17: Result := ENUM_STRING_ADDITIONALAVAILABILITY_17;
+    18: Result := ENUM_STRING_ADDITIONALAVAILABILITY_18;
+    19: Result := ENUM_STRING_ADDITIONALAVAILABILITY_19;
+    20: Result := ENUM_STRING_ADDITIONALAVAILABILITY_20;
+  else
+    Result := STR_EMPTY;
+  end;
+end;
+
+// Obtener el número de elementos de la propiedad
+function TDiskPartitionProperties.GetAllAdditionalAvailabilityCount:integer;
+begin
+  Result := 21;
+end;
+
+
 //: Rellenar las propiedades del componente.
 procedure TDiskPartitionInfo.FillProperties(AIndex: integer);
 var
@@ -683,6 +783,9 @@ begin
 
   GetWMIPropertyValue(Self, 'Access', v, vNull);
   vp.FAccess := VariantIntegerValue(v, vNull);
+
+  GetWMIPropertyValue(Self, 'AdditionalAvailability', v, vNull);
+  vp.FAdditionalAvailability := VariantIntegerValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'Availability', v, vNull);
   vp.FAvailability := VariantIntegerValue(v, vNull);
@@ -729,6 +832,11 @@ begin
   GetWMIPropertyValue(Self, 'HiddenSectors', v, vNull);
   vp.FHiddenSectors := VariantIntegerValue(v, vNull);
 
+  GetWMIPropertyValue(Self, 'IdentifyingDescriptions', v, vNull);
+  vp.FIdentifyingDescriptionsAsString := VariantStrValue(v, vNull);
+  StringToArrayString(vp.FIdentifyingDescriptionsAsString, vp.FIdentifyingDescriptions);
+  vp.FIdentifyingDescriptionsCount := Length(vp.FIdentifyingDescriptions);
+
   GetWMIPropertyValue(Self, 'Index', v, vNull);
   vp.FIndex := VariantIntegerValue(v, vNull);
 
@@ -738,11 +846,17 @@ begin
   GetWMIPropertyValue(Self, 'LastErrorCode', v, vNull);
   vp.FLastErrorCode := VariantIntegerValue(v, vNull);
 
+  GetWMIPropertyValue(Self, 'MaxQuiesceTime', v, vNull);
+  vp.FMaxQuiesceTime := VariantIntegerValue(v, vNull);
+
   GetWMIPropertyValue(Self, 'Name', v, vNull);
   vp.FName := VariantStrValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'NumberOfBlocks', v, vNull);
   vp.FNumberOfBlocks := VariantIntegerValue(v, vNull);
+
+  GetWMIPropertyValue(Self, 'OtherIdentifyingInfo', v, vNull);
+  vp.FOtherIdentifyingInfo := VariantIntegerValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'PNPDeviceID', v, vNull);
   vp.FPNPDeviceID := VariantStrValue(v, vNull);
@@ -754,6 +868,9 @@ begin
 
   GetWMIPropertyValue(Self, 'PowerManagementSupported', v, vNull);
   vp.FPowerManagementSupported := VariantBooleanValue(v, vNull);
+
+  GetWMIPropertyValue(Self, 'PowerOnHours', v, vNull);
+  vp.FPowerOnHours := VariantIntegerValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'PrimaryPartition', v, vNull);
   vp.FPrimaryPartition := VariantBooleanValue(v, vNull);
@@ -781,6 +898,9 @@ begin
 
   GetWMIPropertyValue(Self, 'SystemName', v, vNull);
   vp.FSystemName := VariantStrValue(v, vNull);
+
+  GetWMIPropertyValue(Self, 'TotalPowerOnHours', v, vNull);
+  vp.FTotalPowerOnHours := VariantIntegerValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'Type_', v, vNull);
   vp.FType_ := VariantStrValue(v, vNull);

@@ -1,5 +1,5 @@
 {
-TShareInfo Component Version 3.3 - Suite GLibWMI
+TShareInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Share representa un recurso compartido en un sistema Win32. Puede tratarse de una unidad 
@@ -86,24 +86,17 @@ type
     /// </summary>
     property AllowMaximum:boolean read FAllowMaximum write FAllowMaximum stored False;
     /// <summary>
-    ///  La propiedad AllowMaximum indica si se ha limitado el número de usuarios simultáneos para este recurso.
-    ///  Valores: 
-    ///  TRUE o FALSE. El valor TRUE indica que no se ha limitado el número de usuarios simultáneos para este 
-    ///  recurso y se omite el valor de la propiedad MaximumAllowed
+    ///  Descripción textual corta del objeto. Esta propiedad está heredada de CIM_ManagedSystemElement.
+    ///  Longitud máxima: 64 caracteres.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
-    ///  La propiedad AllowMaximum indica si se ha limitado el número de usuarios simultáneos para este recurso.
-    ///  Valores: 
-    ///  TRUE o FALSE. El valor TRUE indica que no se ha limitado el número de usuarios simultáneos para este 
-    ///  recurso y se omite el valor de la propiedad MaximumAllowed
+    ///  Descripción textual del objeto. Esta propiedad está heredada de CIM_ManagedSystemElement.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
-    ///  La propiedad AllowMaximum indica si se ha limitado el número de usuarios simultáneos para este recurso.
-    ///  Valores: 
-    ///  TRUE o FALSE. El valor TRUE indica que no se ha limitado el número de usuarios simultáneos para este 
-    ///  recurso y se omite el valor de la propiedad MaximumAllowed
+    ///  Indica cuándo se instaló el objeto. La falta de valor no indica que el objeto no esté instalado.
+    ///  Esta propiedad está heredada de CIM_ManagedSystemElement.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -126,9 +119,8 @@ type
     /// </summary>
     property Path:string read FPath write FPath stored False;
     /// <summary>
-    ///  La propiedad Path indica la ruta de acceso local del recurso compartido de Win32.
-    ///  Ejemplo: C:\Archivos 
-    ///  de programa
+    ///  Cadena que indica el estado actual del objeto. Puede ser un estado operativo (OK, Degraded, Pred Fail)
+    ///  o no operativo (Error, Starting, Stopping, Service). Esta propiedad está heredada de CIM_ManagedSystemElement.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>

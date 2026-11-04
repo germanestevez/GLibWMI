@@ -1,5 +1,5 @@
 {
-TOperatingSystemInfo Component Version 3.3 - Suite GLibWMI
+TOperatingSystemInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_OperatingSystem representa un sistema operativo instalado en un sistema Win32. Los sistemas 
@@ -98,6 +98,8 @@ type
     FPortableOperatingSystem:boolean;
     FPrimary:boolean;
     FProductType:integer;
+    FQuantumLength:integer;
+    FQuantumType:integer;
     FRegisteredUser:string;
     FSerialNumber:string;
     FServicePackMajorVersion:integer;
@@ -174,8 +176,7 @@ type
     /// </summary>
     property BuildType:string read FBuildType write FBuildType stored False;
     /// <summary>
-    ///  La propiedad BuildType indica el tipo de versión utilizado en el sistema operativo. Ejemplos son las 
-    ///  versiones comerciales y las versiones de comprobación.
+    ///  La propiedad Caption contiene una descripción breve del objeto (cadena de una sola línea).
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -215,11 +216,7 @@ type
     /// </summary>
     property CSDVersion:string read FCSDVersion write FCSDVersion stored False;
     /// <summary>
-    ///  La propiedad CSDVersion contiene una cadena terminada en nulo, que indica la versión más reciente del 
-    ///  Service Pack instalado en el equipo. Si no hay un Service Pack instalado, el valor de la cadena es NULL. 
-    ///  En sistemas que ejecutan Windows 95, esta propiedad contiene una cadena terminada en nulo que proporciona 
-    ///  información arbitraria adicional acerca del sistema operativo.
-    ///  Ejemplo: Service Pack 3.
+    ///  Nombre del sistema informático al que pertenece el sistema operativo.
     /// </summary>
     property CSName:string read FCSName write FCSName stored False;
     /// <summary>
@@ -298,13 +295,7 @@ type
     /// </summary>
     property ForegroundApplicationBoost:integer read FForegroundApplicationBoost write FForegroundApplicationBoost stored False;
     /// <summary>
-    ///  La propiedad ForegroundApplicationBoost indica el aumento de prioridad proporcionado a la aplicación 
-    ///  en primer plano. En sistemas que ejecutan Windows NT 4.0 y Windows 2000, la mejora de aplicaciones se 
-    ///  implementa al proporcionar a una aplicación más intervalos de tiempo de ejecución (longitudes de cuanto). 
-    ///  El valor 0 de ForegroundApplicationBoost indica que el sistema aumenta la longitud de cuanto en 6, si 
-    ///  el valor es 1 aumenta en 12 y si el valor es 2 aumenta en 18. En Windows NT 3.51 y anteriores, la mejora 
-    ///  se implementa al aumentar la prioridad de programación. En estos sistemas, la prioridad de programación 
-    ///  se aumenta en el valor de esta propiedad. El valor predeterminado es 2.
+    ///  Número de kilobytes de memoria física actualmente no utilizada y disponible.
     /// </summary>
     property FreePhysicalMemory:int64 read FFreePhysicalMemory write FFreePhysicalMemory stored False;
     /// <summary>
@@ -319,9 +310,7 @@ type
     /// </summary>
     property FreeVirtualMemory:int64 read FFreeVirtualMemory write FFreeVirtualMemory stored False;
     /// <summary>
-    ///  Número de kilobytes de memoria virtual actualmente no utilizado y disponible. Por ejemplo, se puede calcular 
-    ///  agregando la cantidad de RAM libre a la cantidad de espacio de paginación libre (por ej., agregando propiedades, 
-    ///  FreePhysicalMemory y FreeSpaceInPagingFiles).
+    ///  Fecha de instalación del sistema operativo. Se expresa en formato CIM_DATETIME.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -330,13 +319,11 @@ type
     /// </summary>
     property LargeSystemCache:integer read FLargeSystemCache write FLargeSystemCache stored False;
     /// <summary>
-    ///  La propiedad LargeSystemCache indica si se optimiza la memoria para aplicaciones (value=0) o para el 
-    ///  rendimiento del sistema (value=1).
+    ///  Fecha y hora en que se arrancó por última vez el sistema operativo. Se expresa en formato CIM_DATETIME.
     /// </summary>
     property LastBootUpTime:TDatetime read FLastBootUpTime write FLastBootUpTime stored False;
     /// <summary>
-    ///  La propiedad LargeSystemCache indica si se optimiza la memoria para aplicaciones (value=0) o para el 
-    ///  rendimiento del sistema (value=1).
+    ///  Fecha y hora local del sistema operativo. Se expresa en formato CIM_DATETIME.
     /// </summary>
     property LocalDateTime:TDatetime read FLocalDateTime write FLocalDateTime stored False;
     /// <summary>
@@ -365,15 +352,11 @@ type
     /// </summary>
     property MaxProcessMemorySize:int64 read FMaxProcessMemorySize write FMaxProcessMemorySize stored False;
     /// <summary>
-    ///  La propiedad MUILanguages indica los idiomas MUI que están instalados en el sistema. 
-    ///   Ejemplo: es-e
-    ///  s.
+    ///  Idiomas MUI instalados en el sistema, en formato de cadena (versión de texto de la propiedad MUILanguages).
     /// </summary>
     property MUILanguagesAsString:string read FMUILanguagesAsString write FMUILanguagesAsString stored False;
     /// <summary>
-    ///  La propiedad MUILanguages indica los idiomas MUI que están instalados en el sistema. 
-    ///   Ejemplo: es-e
-    ///  s.
+    ///  Nombre del sistema operativo. Ejemplo: Microsoft Windows 2000 Advanced Server.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
@@ -382,8 +365,7 @@ type
     /// </summary>
     property NumberOfLicensedUsers:integer read FNumberOfLicensedUsers write FNumberOfLicensedUsers stored False;
     /// <summary>
-    ///  Número de licencias de usuario para el sistema operativo. Si es ilimitado, escriba 0. Si se desconoce, 
-    ///  escriba -1.
+    ///  Número de procesos cargados o en ejecución en el sistema operativo. Si se desconoce, escriba -1.
     /// </summary>
     property NumberOfProcesses:integer read FNumberOfProcesses write FNumberOfProcesses stored False;
     /// <summary>
@@ -391,7 +373,7 @@ type
     /// </summary>
     property NumberOfUsers:integer read FNumberOfUsers write FNumberOfUsers stored False;
     /// <summary>
-    ///  Número de sesiones por usuario para el que el sistema operativo almacena información
+    ///  Número de sesiones de usuario para las que el sistema operativo almacena información actualmente.
     /// </summary>
     property OperatingSystemSKU:integer read FOperatingSystemSKU write FOperatingSystemSKU stored False;
     /// <summary>
@@ -417,8 +399,7 @@ type
     /// </summary>
     property OSProductSuite:integer read FOSProductSuite write FOSProductSuite stored False;
     /// <summary>
-    ///  La propiedad OSProductSuite identifica los elementos adicionales instalados y con licencia del sistema 
-    ///  operativo.
+    ///  La propiedad OSType indica el tipo de sistema operativo. Ver los valores de la tabla OSType.
     /// </summary>
     property OSType:integer read FOSType write FOSType stored False;
     /// <summary>
@@ -429,10 +410,8 @@ type
     /// </summary>
     property OtherTypeDescription:string read FOtherTypeDescription write FOtherTypeDescription stored False;
     /// <summary>
-    ///  Una cadena que describe el fabricante y tipo de sistema operativo - utilizado cuando la propiedad OSType 
-    ///  del sistema operativo, se establece como 1 ("Otros"). El formato de la cadena insertada en OtherTypeDescription 
-    ///  debe ser similar en formato a las cadenas Values definidas para OSType.  OtherTypeDescription debe establecerse 
-    ///  como nulo cuandoOSType es cualquier valor diferente de 1.
+    ///  Booleano que indica si la extensión de direcciones físicas (PAE) está habilitada en el sistema operativo.
+    ///  Valores: TRUE o FALSE. El valor TRUE indica que PAE está habilitada.
     /// </summary>
     property PAEEnabled:boolean read FPAEEnabled write FPAEEnabled stored False;
     /// <summary>
@@ -467,6 +446,16 @@ type
     /// </summary>
     property ProductType:integer read FProductType write FProductType stored False;
     /// <summary>
+    ///  La propiedad QuantumLength indica la longitud del cuanto de tiempo del sistema operativo (número de 
+    ///  unidades de tiempo de cada cuanto). No está soportada en todas las plataformas.
+    /// </summary>
+    property QuantumLength:integer read FQuantumLength write FQuantumLength stored False;
+    /// <summary>
+    ///  La propiedad QuantumType indica el tipo de cuanto de tiempo utilizado por el sistema operativo. 
+    ///  No está soportada en todas las plataformas.
+    /// </summary>
+    property QuantumType:integer read FQuantumType write FQuantumType stored False;
+    /// <summary>
     ///  La propiedad RegisteredUser indica el nombre del usuario registrado del sistema operativo.
     ///  Ejemplo: Juan 
     ///  Santos
@@ -497,9 +486,8 @@ type
     /// </summary>
     property SizeStoredInPagingFiles:int64 read FSizeStoredInPagingFiles write FSizeStoredInPagingFiles stored False;
     /// <summary>
-    ///  El número total de kilobytes que se pueden almacenar en los archivos de paginación del sistema operativo. 
-    ///  Note que este número no representa el tamaño físico actual del archivo de paginación en disco. 0 indica 
-    ///  que no hay archivos de paginación.
+    ///  Estado del objeto. Valores: OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service,
+    ///  Stressed, NonRecover, No Contact y Lost Comm.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
@@ -748,7 +736,7 @@ const
   ENUM_STRING_OSTYPE_10 = 'MVS';
   ENUM_STRING_OSTYPE_11 = 'OS400';
   ENUM_STRING_OSTYPE_12 = 'OS/2';
-  ENUM_STRING_OSTYPE_13 = 'JAVAVM';
+  ENUM_STRING_OSTYPE_13 = 'JavaVM';
   ENUM_STRING_OSTYPE_14 = 'MSDOS';
   ENUM_STRING_OSTYPE_15 = 'WIN3x';
   ENUM_STRING_OSTYPE_16 = 'WIN95';
@@ -762,7 +750,7 @@ const
   ENUM_STRING_OSTYPE_24 = 'Reliant UNIX';
   ENUM_STRING_OSTYPE_25 = 'SCO UnixWare';
   ENUM_STRING_OSTYPE_26 = 'SCO OpenServer';
-  ENUM_STRING_OSTYPE_27 = 'Sucesivo';
+  ENUM_STRING_OSTYPE_27 = 'Sequent';
   ENUM_STRING_OSTYPE_28 = 'IRIX';
   ENUM_STRING_OSTYPE_29 = 'Solaris';
   ENUM_STRING_OSTYPE_30 = 'SunOS';
@@ -779,7 +767,7 @@ const
   ENUM_STRING_OSTYPE_41 = 'BSDUNIX';
   ENUM_STRING_OSTYPE_42 = 'FreeBSD';
   ENUM_STRING_OSTYPE_43 = 'NetBSD';
-  ENUM_STRING_OSTYPE_44 = 'Hurd GNU';
+  ENUM_STRING_OSTYPE_44 = 'GNU Hurd';
   ENUM_STRING_OSTYPE_45 = 'OS9';
   ENUM_STRING_OSTYPE_46 = 'MACH Kernel';
   ENUM_STRING_OSTYPE_47 = 'Inferno';
@@ -801,9 +789,10 @@ const
 
 // Constantes para la propiedad ProductType
 const 
-  ENUM_STRING_PRODUCTTYPE_00 = 'Estación de trabajo';
-  ENUM_STRING_PRODUCTTYPE_01 = 'Controlador de dominio';
-  ENUM_STRING_PRODUCTTYPE_02 = 'Servidor';
+  ENUM_STRING_PRODUCTTYPE_00 = 'Sin definir';
+  ENUM_STRING_PRODUCTTYPE_01 = 'Estación de trabajo';
+  ENUM_STRING_PRODUCTTYPE_02 = 'Controlador de dominio';
+  ENUM_STRING_PRODUCTTYPE_03 = 'Servidor';
 
 //=========================================================================
 //
@@ -870,6 +859,8 @@ begin
   Self.OperatingSystemProperties.FPortableOperatingSystem := False;
   Self.OperatingSystemProperties.FPrimary := False;
   Self.OperatingSystemProperties.FProductType := 0;
+  Self.OperatingSystemProperties.FQuantumLength := 0;
+  Self.OperatingSystemProperties.FQuantumType := 0;
   Self.OperatingSystemProperties.FRegisteredUser := EmptyStr;
   Self.OperatingSystemProperties.FSerialNumber := EmptyStr;
   Self.OperatingSystemProperties.FServicePackMajorVersion := 0;
@@ -1093,6 +1084,12 @@ begin
   GetWMIPropertyValue(Self, 'ProductType', v, vNull);
   vp.FProductType := VariantIntegerValue(v, vNull);
 
+  GetWMIPropertyValue(Self, 'QuantumLength', v, vNull);
+  vp.FQuantumLength := VariantIntegerValue(v, vNull);
+
+  GetWMIPropertyValue(Self, 'QuantumType', v, vNull);
+  vp.FQuantumType := VariantIntegerValue(v, vNull);
+
   GetWMIPropertyValue(Self, 'RegisteredUser', v, vNull);
   vp.FRegisteredUser := VariantStrValue(v, vNull);
 
@@ -1302,6 +1299,7 @@ begin
     00: Result := ENUM_STRING_PRODUCTTYPE_00;
     01: Result := ENUM_STRING_PRODUCTTYPE_01;
     02: Result := ENUM_STRING_PRODUCTTYPE_02;
+    03: Result := ENUM_STRING_PRODUCTTYPE_03;
   else
     Result := STR_EMPTY;
   end;
@@ -1347,7 +1345,7 @@ end;
 // Obtener núm. de elementos de la propiedad como string
 function TOperatingSystemProperties.GetAllProductTypeCount:integer;
 begin
-  Result := 3
+  Result := 4
 end;
 
 // Obtiene el resultado de ejecutar un método como string 

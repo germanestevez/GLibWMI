@@ -1,5 +1,5 @@
 {
-TPrintJobInfo Component Version 3.3 - Suite GLibWMI
+TPrintJobInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 CIM_Job es un elemento lógico que representa una unidad de trabajo para un sistema, tal como un trabajo 
@@ -69,7 +69,6 @@ type
     FPrintProcessor:string;
     FPriority:integer;
     FSize:integer;
-    FSizeHigh:integer;
     FStartTime:TDatetime;
     FStatus:string;
     FStatusMask:integer;
@@ -88,6 +87,7 @@ type
   published
     {%PublishedProperties PropertiesClass%}
     /// <summary>
+    ///  A short textual description of the object.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -105,10 +105,7 @@ type
     /// </summary>
     property DataType:string read FDataType write FDataType stored False;
     /// <summary>
-    ///  The DataType property indicates the format of the data for this print job. This instructs the printer 
-    ///  driver to eithertranslate the data (generic text, PostScript, or PCL) before printing, or to print in 
-    ///  a raw format (for graphics and pictures).
-    ///  Example: TEXT
+    ///  A textual description of the object.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -122,7 +119,7 @@ type
     /// </summary>
     property DriverName:string read FDriverName write FDriverName stored False;
     /// <summary>
-    ///  The DriverName property indicates the name of the printer driver used for the print job.
+    ///  Length of time the job has been executing.
     /// </summary>
     property ElapsedTime:TDatetime read FElapsedTime write FElapsedTime stored False;
     /// <summary>
@@ -130,7 +127,7 @@ type
     /// </summary>
     property HostPrintQueue:string read FHostPrintQueue write FHostPrintQueue stored False;
     /// <summary>
-    ///  The HostPrintQueue property contains the name of the computer on which the print job was created.
+    ///  Indicates when the object was installed. Lack of a value does not indicate that the object is not installed.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -139,8 +136,7 @@ type
     /// </summary>
     property JobId:integer read FJobId write FJobId stored False;
     /// <summary>
-    ///  The JobId property indicates the identifier number of the job. It is used by other methods as a handle 
-    ///  to a single job spooling to the printer.
+    ///  Free-form string that represents the job status.
     /// </summary>
     property JobStatus:string read FJobStatus write FJobStatus stored False;
     /// <summary>
@@ -153,8 +149,7 @@ type
     /// </summary>
     property Notify:string read FNotify write FNotify stored False;
     /// <summary>
-    ///  User to be notified upon job completion or failure. This property is restricted to 16 characters under 
-    ///  Windows 9x platforms.
+    ///  User who submitted the job.
     /// </summary>
     property Owner:string read FOwner write FOwner stored False;
     /// <summary>
@@ -163,18 +158,15 @@ type
     /// </summary>
     property PagesPrinted:integer read FPagesPrinted write FPagesPrinted stored False;
     /// <summary>
-    ///  The PagesPrinted property specifies the number of pages that have been printed. This value may be zero 
-    ///  if the print job does not contain page delimiting information.
+    ///  Length of the paper. Units: tenths of a millimeter. Example: 2794
     /// </summary>
     property PaperLength:integer read FPaperLength write FPaperLength stored False;
     /// <summary>
-    ///  The PagesPrinted property specifies the number of pages that have been printed. This value may be zero 
-    ///  if the print job does not contain page delimiting information.
+    ///  Size of the paper used to print the job. The value is one of the possible paper sizes for the printer specified in the PaperSizesSupported property of Win32_Printer class.
     /// </summary>
     property PaperSize:string read FPaperSize write FPaperSize stored False;
     /// <summary>
-    ///  The PagesPrinted property specifies the number of pages that have been printed. This value may be zero 
-    ///  if the print job does not contain page delimiting information.
+    ///  Width of the paper. Units: tenths of a millimeter. Example: 2159
     /// </summary>
     property PaperWidth:integer read FPaperWidth write FPaperWidth stored False;
     /// <summary>
@@ -189,30 +181,19 @@ type
     /// </summary>
     property PrintProcessor:string read FPrintProcessor write FPrintProcessor stored False;
     /// <summary>
-    ///  The PrintProcessor property indicates the print processor service used to process the print job. A printer 
-    ///  processor works in conjunction with the printer driver to provide additional translation of printer data 
-    ///  for the printer, and can also be used to provide special options such as a title page for the job.
+    ///  Importance of a job's execution.
     /// </summary>
     property Priority:integer read FPriority write FPriority stored False;
     /// <summary>
-    ///  The PrintProcessor property indicates the print processor service used to process the print job. A printer 
-    ///  processor works in conjunction with the printer driver to provide additional translation of printer data 
-    ///  for the printer, and can also be used to provide special options such as a title page for the job.
+    ///  Size of the print job. Units: bytes.
     /// </summary>
     property Size:integer read FSize write FSize stored False;
     /// <summary>
-    ///  The SizeHigh property indicates the size of the print job if the Size property exceeds 4,294,967,295 
-    ///  bytes.
-    /// </summary>
-    property SizeHigh:integer read FSizeHigh write FSizeHigh stored False;
-    /// <summary>
-    ///  The SizeHigh property indicates the size of the print job if the Size property exceeds 4,294,967,295 
-    ///  bytes.
+    ///  Time that the job began.
     /// </summary>
     property StartTime:TDatetime read FStartTime write FStartTime stored False;
     /// <summary>
-    ///  The SizeHigh property indicates the size of the print job if the Size property exceeds 4,294,967,295 
-    ///  bytes.
+    ///  String that indicates the current status of the object. Values include: OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service, Stressed, NonRecover, No Contact and Lost Comm.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
@@ -220,7 +201,7 @@ type
     /// </summary>
     property StatusMask:integer read FStatusMask write FStatusMask stored False;
     /// <summary>
-    ///  The StatusMask property specifies a bitmap of the possible statuses relating to this print job.
+    ///  Time that the job was submitted.
     /// </summary>
     property TimeSubmitted:TDatetime read FTimeSubmitted write FTimeSubmitted stored False;
     /// <summary>
@@ -229,8 +210,7 @@ type
     /// </summary>
     property TotalPages:integer read FTotalPages write FTotalPages stored False;
     /// <summary>
-    ///  The TotalPages property specifies the number of pages required to complete the job. This value may be 
-    ///  zero if the print job does not contain page-delimiting information.
+    ///  Time at which the job is invalid or should be stopped.
     /// </summary>
     property UntilTime:TDatetime read FUntilTime write FUntilTime stored False;
   end;
@@ -328,7 +308,6 @@ begin
   Self.PrintJobProperties.FPrintProcessor := EmptyStr;
   Self.PrintJobProperties.FPriority := 0;
   Self.PrintJobProperties.FSize := 0;
-  Self.PrintJobProperties.FSizeHigh := 0;
   Self.PrintJobProperties.FStartTime := 0;
   Self.PrintJobProperties.FStatus := EmptyStr;
   Self.PrintJobProperties.FStatusMask := 0;
@@ -450,9 +429,6 @@ begin
 
   GetWMIPropertyValue(Self, 'Size', v, vNull);
   vp.FSize := VariantIntegerValue(v, vNull);
-
-  GetWMIPropertyValue(Self, 'SizeHigh', v, vNull);
-  vp.FSizeHigh := VariantIntegerValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'StartTime', v, vNull);
   vp.FStartTime := VariantDateTimeValue(v, vNull);

@@ -1,5 +1,5 @@
 {
-TVideoControllerInfo Component Version 3.3 - Suite GLibWMI
+TVideoControllerInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_VideoController representa las posibilidades y la capacidad de administración de la controladora 
@@ -678,7 +678,7 @@ const
   ENUM_STRING_AVAILABILITY_05 = 'No aplicable';
   ENUM_STRING_AVAILABILITY_06 = 'Apagado';
   ENUM_STRING_AVAILABILITY_07 = 'Sin conexión a la red';
-  ENUM_STRING_AVAILABILITY_08 = 'Inactivo';
+  ENUM_STRING_AVAILABILITY_08 = 'Fuera de servicio';
   ENUM_STRING_AVAILABILITY_09 = 'Degradado';
   ENUM_STRING_AVAILABILITY_10 = 'No instalado';
   ENUM_STRING_AVAILABILITY_11 = 'Error de instalación';
@@ -688,9 +688,9 @@ const
   ENUM_STRING_AVAILABILITY_15 = 'Ciclo de energía';
   ENUM_STRING_AVAILABILITY_16 = 'Ahorro de energía: advertencia';
   ENUM_STRING_AVAILABILITY_17 = 'Pausado';
-  ENUM_STRING_AVAILABILITY_18 = 'no está listo';
+  ENUM_STRING_AVAILABILITY_18 = 'No está listo';
   ENUM_STRING_AVAILABILITY_19 = 'No configurado';
-  ENUM_STRING_AVAILABILITY_20 = 'Inactivo';
+  ENUM_STRING_AVAILABILITY_20 = 'En reposo';
 
 // Constantes para la propiedad ConfigManagerErrorCode
 const 
@@ -751,7 +751,7 @@ const
 // Constantes para la propiedad ICMMethod
 const 
   ENUM_STRING_ICMMETHOD_00 = 'Deshabilitado';
-  ENUM_STRING_ICMMETHOD_01 = 'Ventanas';
+  ENUM_STRING_ICMMETHOD_01 = 'Windows';
   ENUM_STRING_ICMMETHOD_02 = 'Controlador de dispositivo';
   ENUM_STRING_ICMMETHOD_03 = 'Dispositivo de destino';
 

@@ -14,10 +14,8 @@ object FormMainBios: TFormMainBios
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = True
   OnCloseQuery = FormCloseQuery
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object PanelFondo: TPanel
     Left = 0
@@ -47,28 +45,28 @@ object FormMainBios: TFormMainBios
         TabOrder = 0
         object ToolButton1: TToolButton
           Left = 0
-          Top = 2
+          Top = 0
           Width = 8
           Caption = 'ToolButton1'
           Style = tbsDivider
         end
         object ToolButton2: TToolButton
           Left = 8
-          Top = 2
+          Top = 0
           Action = ActionInfo
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton5: TToolButton
           Left = 31
-          Top = 2
+          Top = 0
           Action = ActionPrint
           ParentShowHint = False
           ShowHint = True
         end
         object ToolButton4: TToolButton
           Left = 54
-          Top = 2
+          Top = 0
           Width = 8
           Caption = 'ToolButton4'
           ImageIndex = 1
@@ -76,7 +74,7 @@ object FormMainBios: TFormMainBios
         end
         object ToolButton3: TToolButton
           Left = 62
-          Top = 2
+          Top = 0
           Action = ActionCerrar
           ParentShowHint = False
           ShowHint = True

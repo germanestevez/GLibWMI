@@ -1,5 +1,5 @@
 {
-TProductInfo Component Version 3.3 - Suite GLibWMI
+TProductInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 Las instancias de esta clase representan productos instalados por MSI. Por lo general, un producto suele 
@@ -49,7 +49,6 @@ type
     FAssignmentType:integer;
     FCaption:string;
     FDescription:string;
-    FElementName:string;
     FHelpLink:string;
     FHelpTelephone:string;
     FIdentifyingNumber:string;
@@ -58,7 +57,6 @@ type
     FInstallLocation:string;
     FInstallSource:string;
     FInstallState:integer;
-    FInstanceID:string;
     FLanguage:string;
     FLocalPackage:string;
     FName:string;
@@ -74,8 +72,6 @@ type
     FURLUpdateInfo:string;
     FVendor:string;
     FVersion:string;
-    FWarrantyDuration:integer;
-    FWarrantyStartDate:TDatetime;
     FWordCount:integer;
 
   private
@@ -97,48 +93,23 @@ type
   published
     {%PublishedProperties PropertiesClass%}
     /// <summary>
+    ///  Tipo de asignación del producto. Ver las constantes ENUM_STRING_ASSIGNMENTTYPE. No disponible en Windows Server 2003.
     /// </summary>
     property AssignmentType:integer read FAssignmentType write FAssignmentType stored False;
     /// <summary>
+    ///  Descripción breve del producto en una sola línea.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
+    ///  Descripción del producto.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
-    ///  A user-friendly name for the object. This property allows each instance to define a user-friendly name 
-    ///  in addition to its key properties, identity data, and description information. 
-    ///  Note that the Name property 
-    ///  of ManagedSystemElement is also defined as a user-friendly name. But, it is often subclassed to be a 
-    ///  Key. It is not reasonable that the same property can convey both identity and a user-friendly name, without 
-    ///  inconsistencies. Where Name exists and is not a Key (such as for instances of LogicalDevice), the same 
-    ///  information can be present in both the Name and ElementName properties. Note that if there is an associated 
-    ///  instance of CIM_EnabledLogicalElementCapabilities, restrictions on this properties may exist as defined 
-    ///  in ElementNameMask and MaxElementNameLen properties defined in that class.
-    /// </summary>
-    property ElementName:string read FElementName write FElementName stored False;
-    /// <summary>
-    ///  A user-friendly name for the object. This property allows each instance to define a user-friendly name 
-    ///  in addition to its key properties, identity data, and description information. 
-    ///  Note that the Name property 
-    ///  of ManagedSystemElement is also defined as a user-friendly name. But, it is often subclassed to be a 
-    ///  Key. It is not reasonable that the same property can convey both identity and a user-friendly name, without 
-    ///  inconsistencies. Where Name exists and is not a Key (such as for instances of LogicalDevice), the same 
-    ///  information can be present in both the Name and ElementName properties. Note that if there is an associated 
-    ///  instance of CIM_EnabledLogicalElementCapabilities, restrictions on this properties may exist as defined 
-    ///  in ElementNameMask and MaxElementNameLen properties defined in that class.
+    ///  Dirección URL de la información de ayuda del producto.
     /// </summary>
     property HelpLink:string read FHelpLink write FHelpLink stored False;
     /// <summary>
-    ///  A user-friendly name for the object. This property allows each instance to define a user-friendly name 
-    ///  in addition to its key properties, identity data, and description information. 
-    ///  Note that the Name property 
-    ///  of ManagedSystemElement is also defined as a user-friendly name. But, it is often subclassed to be a 
-    ///  Key. It is not reasonable that the same property can convey both identity and a user-friendly name, without 
-    ///  inconsistencies. Where Name exists and is not a Key (such as for instances of LogicalDevice), the same 
-    ///  information can be present in both the Name and ElementName properties. Note that if there is an associated 
-    ///  instance of CIM_EnabledLogicalElementCapabilities, restrictions on this properties may exist as defined 
-    ///  in ElementNameMask and MaxElementNameLen properties defined in that class.
+    ///  Número de teléfono de ayuda del producto.
     /// </summary>
     property HelpTelephone:string read FHelpTelephone write FHelpTelephone stored False;
     /// <summary>
@@ -147,355 +118,76 @@ type
     /// </summary>
     property IdentifyingNumber:string read FIdentifyingNumber write FIdentifyingNumber stored False;
     /// <summary>
-    ///  La fecha de instalación. La propiedad InstallDate quedó obsoleta en favor de la propiedad InstallDate2 
-    ///  que es del tipo DateTime más que de String. Las nuevas implementaciones deben usar la propiedad Inst
-    ///  allDate2.
+    ///  Fecha de instalación en formato de cadena. Propiedad obsoleta: use InstallDate2.
     /// </summary>
     property InstallDate:string read FInstallDate write FInstallDate stored False;
     /// <summary>
-    ///  La fecha de instalación. La propiedad InstallDate quedó obsoleta en favor de la propiedad InstallDate2 
-    ///  que es del tipo DateTime más que de String. Las nuevas implementaciones deben usar la propiedad Inst
-    ///  allDate2.
+    ///  Fecha de instalación del producto.
     /// </summary>
     property InstallDate2:TDatetime read FInstallDate2 write FInstallDate2 stored False;
     /// <summary>
-    ///  La fecha de instalación. La propiedad InstallDate quedó obsoleta en favor de la propiedad InstallDate2 
-    ///  que es del tipo DateTime más que de String. Las nuevas implementaciones deben usar la propiedad Inst
-    ///  allDate2.
+    ///  Ubicación del producto instalado.
     /// </summary>
     property InstallLocation:string read FInstallLocation write FInstallLocation stored False;
     /// <summary>
-    ///  La fecha de instalación. La propiedad InstallDate quedó obsoleta en favor de la propiedad InstallDate2 
-    ///  que es del tipo DateTime más que de String. Las nuevas implementaciones deben usar la propiedad Inst
-    ///  allDate2.
+    ///  Directorio de origen desde el que se instaló el producto.
     /// </summary>
     property InstallSource:string read FInstallSource write FInstallSource stored False;
     /// <summary>
-    ///  La fecha de instalación. La propiedad InstallDate quedó obsoleta en favor de la propiedad InstallDate2 
-    ///  que es del tipo DateTime más que de String. Las nuevas implementaciones deben usar la propiedad Inst
-    ///  allDate2.
+    ///  Estado de instalación del producto. Ver las constantes ENUM_STRING_INSTALLSTATE. Valores: -6 Configuración incorrecta,
+    ///  -2 Argumento no válido, -1 Paquete desconocido, 1 Anunciado, 2 Ausente, 5 Instalado.
     /// </summary>
     property InstallState:integer read FInstallState write FInstallState stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
-    /// </summary>
-    property InstanceID:string read FInstanceID write FInstanceID stored False;
-    /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Idioma del producto. Lista de identificadores de idioma separados por comas.
     /// </summary>
     property Language:string read FLanguage write FLanguage stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Ruta del paquete de instalación almacenado en el equipo local.
     /// </summary>
     property LocalPackage:string read FLocalPackage write FLocalPackage stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Nombre del producto.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Ruta de la caché de paquetes donde se almacena el paquete de instalación.
     /// </summary>
     property PackageCache:string read FPackageCache write FPackageCache stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Identificador GUID del paquete de instalación (PackageCode).
     /// </summary>
     property PackageCode:string read FPackageCode write FPackageCode stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Nombre del paquete de instalación.
     /// </summary>
     property PackageName:string read FPackageName write FPackageName stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Identificador del producto asignado por el proveedor.
     /// </summary>
     property ProductID:string read FProductID write FProductID stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Empresa a la que está registrado el producto.
     /// </summary>
     property RegCompany:string read FRegCompany write FRegCompany stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Propietario registrado del producto.
     /// </summary>
     property RegOwner:string read FRegOwner write FRegOwner stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Número de referencia comercial (SKU) del producto.
     /// </summary>
     property SKUNumber:string read FSKUNumber write FSKUNumber stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  Transformaciones (archivos .mst) aplicadas a la instalación del producto.
     /// </summary>
     property Transforms:string read FTransforms write FTransforms stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  URL con información adicional sobre el producto.
     /// </summary>
     property URLInfoAbout:string read FURLInfoAbout write FURLInfoAbout stored False;
     /// <summary>
-    ///  InstanceID is an optional property that may be used to opaquely and uniquely identify an instance of 
-    ///  this class within the scope of the instantiating Namespace. Various subclasses of this class may override 
-    ///  this property to make it required, or a key. Such subclasses may also modify the preferred algorithms 
-    ///  for ensuring uniqueness that are defined below.
-    ///  To ensure uniqueness within the NameSpace, the value 
-    ///  of InstanceID should be constructed using the following "preferred" algorithm: 
-    ///  <OrgID>:<LocalID> 
-    ///  Where 
-    ///  <OrgID> and <LocalID> are separated by a colon (:), and where <OrgID> must include a copyrighted, trademarked, 
-    ///  or otherwise unique name that is owned by the business entity that is creating or defining the InstanceID 
-    ///  or that is a registered ID assigned to the business entity by a recognized global authority. (This requirement 
-    ///  is similar to the <Schema Name>_<Class Name> structure of Schema class names.) In addition, to ensure 
-    ///  uniqueness, <OrgID> must not contain a colon (:). When using this algorithm, the first colon to appear 
-    ///  in InstanceID must appear between <OrgID> and <LocalID>. 
-    ///  <LocalID> is chosen by the business entity 
-    ///  and should not be reused to identify different underlying (real-world) elements. If not null and the 
-    ///  above "preferred" algorithm is not used, the defining entity must assure that the resulting InstanceID 
-    ///  is not reused across any InstanceIDs produced by this or other providers for the NameSpace of this instance. 
-    ///  If not set to null for DMTF-defined instances, the "preferred" algorithm must be used with the <OrgID> 
-    ///  set to CIM.
+    ///  URL con información de actualizaciones del producto.
     /// </summary>
     property URLUpdateInfo:string read FURLUpdateInfo write FURLUpdateInfo stored False;
     /// <summary>
@@ -510,18 +202,7 @@ type
     /// </summary>
     property Version:string read FVersion write FVersion stored False;
     /// <summary>
-    ///  Información de versión del producto. Corresponde a la propiedad Version del objeto Product en el estándar 
-    ///  de intercambio de soluciones DMTF.
-    /// </summary>
-    property WarrantyDuration:integer read FWarrantyDuration write FWarrantyDuration stored False;
-    /// <summary>
-    ///  Información de versión del producto. Corresponde a la propiedad Version del objeto Product en el estándar 
-    ///  de intercambio de soluciones DMTF.
-    /// </summary>
-    property WarrantyStartDate:TDatetime read FWarrantyStartDate write FWarrantyStartDate stored False;
-    /// <summary>
-    ///  Información de versión del producto. Corresponde a la propiedad Version del objeto Product en el estándar 
-    ///  de intercambio de soluciones DMTF.
+    ///  Recuento de palabras del paquete de instalación.
     /// </summary>
     property WordCount:integer read FWordCount write FWordCount stored False;
   end;
@@ -564,10 +245,7 @@ type
     ///  2147549445 - Error de servidor RPC. 
     ///  Otros - Para obtener información sobre otros 
     ///  valores enteros distintos de los que se muestran en la lista anterior, consulte la documentación de códigos 
-    ///  de error devueltos por el API de Windows Instaler y los códigos de error de Win32.
-    /// <param name="Install"> boolean -  </param>
-    /// <param name="Install"> string -  </param>
-    /// <param name="Install"> string -  </param>
+    ///  de error devueltos por el API de Windows Installer y los códigos de error de Win32.
     /// </summary>
     function Install(AInstanceProp:string; AInstanceValue:Variant;
       aAllUsers:boolean;
@@ -577,12 +255,10 @@ type
     ///  Este método volverá a instalar una instancia asociada de Win32_Product usando el modo de reinstalación 
     ///  especificado. El método puede devolver los siguientes valores:
     ///  0 - Correcto.
-    ///  2147549445 - Error de servidor 
-    ///  RPC. 
+    ///  2147549445 - Error de servidor RPC.
     ///  Otros - Para obtener información sobre otros valores enteros distintos de los que se muestran en 
-    ///  la lista anterior, consulte la documentación de códigos de error devueltos por el API de Windows Instaler 
+    ///  la lista anterior, consulte la documentación de códigos de error devueltos por el API de Windows Installer 
     ///  y los códigos de error de Win32.
-    /// <param name="Reinstall"> integer -  </param>
     /// </summary>
     function Reinstall(AInstanceProp:string; AInstanceValue:Variant;
       aReinstallMode:integer):integer;
@@ -594,9 +270,7 @@ type
     ///  2147549445 - Error de servidor RPC. 
     ///  Otros - Para obtener información 
     ///  sobre otros valores enteros distintos de los que se muestran en la lista anterior, consulte la documentación 
-    ///  de códigos de error devueltos por el API de Windows Instaler y los códigos de error de Win32.
-    /// <param name="Upgrade"> string -  </param>
-    /// <param name="Upgrade"> string -  </param>
+    ///  de códigos de error devueltos por el API de Windows Installer y los códigos de error de Win32.
     /// </summary>
     function Upgrade(AInstanceProp:string; AInstanceValue:Variant;
       aOptions:string;
@@ -608,7 +282,7 @@ type
     ///  2147549445 - Error de servidor RPC. 
     ///  Otros - Para obtener información sobre otros 
     ///  valores enteros distintos de los que se muestran en la lista anterior, consulte la documentación de códigos 
-    ///  de error devueltos por el API de Windows Instaler y los códigos de error de Win32.
+    ///  de error devueltos por el API de Windows Installer y los códigos de error de Win32.
     /// </summary>
     function Uninstall(AInstanceProp:string; AInstanceValue:Variant):integer;
   published
@@ -649,7 +323,6 @@ begin
   Self.ProductProperties.FAssignmentType := 0;
   Self.ProductProperties.FCaption := EmptyStr;
   Self.ProductProperties.FDescription := EmptyStr;
-  Self.ProductProperties.FElementName := EmptyStr;
   Self.ProductProperties.FHelpLink := EmptyStr;
   Self.ProductProperties.FHelpTelephone := EmptyStr;
   Self.ProductProperties.FIdentifyingNumber := EmptyStr;
@@ -658,7 +331,6 @@ begin
   Self.ProductProperties.FInstallLocation := EmptyStr;
   Self.ProductProperties.FInstallSource := EmptyStr;
   Self.ProductProperties.FInstallState := 0;
-  Self.ProductProperties.FInstanceID := EmptyStr;
   Self.ProductProperties.FLanguage := EmptyStr;
   Self.ProductProperties.FLocalPackage := EmptyStr;
   Self.ProductProperties.FName := EmptyStr;
@@ -674,8 +346,6 @@ begin
   Self.ProductProperties.FURLUpdateInfo := EmptyStr;
   Self.ProductProperties.FVendor := EmptyStr;
   Self.ProductProperties.FVersion := EmptyStr;
-  Self.ProductProperties.FWarrantyDuration := 0;
-  Self.ProductProperties.FWarrantyStartDate := 0;
   Self.ProductProperties.FWordCount := 0;
 end;
 
@@ -736,9 +406,6 @@ begin
   GetWMIPropertyValue(Self, 'Description', v, vNull);
   vp.FDescription := VariantStrValue(v, vNull);
 
-  GetWMIPropertyValue(Self, 'ElementName', v, vNull);
-  vp.FElementName := VariantStrValue(v, vNull);
-
   GetWMIPropertyValue(Self, 'HelpLink', v, vNull);
   vp.FHelpLink := VariantStrValue(v, vNull);
 
@@ -762,9 +429,6 @@ begin
 
   GetWMIPropertyValue(Self, 'InstallState', v, vNull);
   vp.FInstallState := VariantIntegerValue(v, vNull);
-
-  GetWMIPropertyValue(Self, 'InstanceID', v, vNull);
-  vp.FInstanceID := VariantStrValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'Language', v, vNull);
   vp.FLanguage := VariantStrValue(v, vNull);
@@ -810,12 +474,6 @@ begin
 
   GetWMIPropertyValue(Self, 'Version', v, vNull);
   vp.FVersion := VariantStrValue(v, vNull);
-
-  GetWMIPropertyValue(Self, 'WarrantyDuration', v, vNull);
-  vp.FWarrantyDuration := VariantIntegerValue(v, vNull);
-
-  GetWMIPropertyValue(Self, 'WarrantyStartDate', v, vNull);
-  vp.FWarrantyStartDate := VariantDateTimeValue(v, vNull);
 
   GetWMIPropertyValue(Self, 'WordCount', v, vNull);
   vp.FWordCount := VariantIntegerValue(v, vNull);
@@ -866,10 +524,9 @@ function TProductInfo.GetErrorControlAsString(FErrorControl:integer): string;
 begin
    case FErrorControl of
      0: Result := 'Correcto';
-     1: Result := 'Error del servidor RPC';
-     2: Result := 'Otros';
-    else
-      Result := EmptyStr
+     Integer($80010105): Result := 'Error del servidor RPC';
+     else
+      Result := 'Otros';
     end;
 end;
 
@@ -910,7 +567,7 @@ begin
     ['ReinstallMode'],
     arr,
     [ptIn],
-    [wbemCIMTypeUint16],
+    [wbemCIMTypeUint32],
     v);
   Result := v;
 end;

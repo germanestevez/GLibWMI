@@ -1,0 +1,38 @@
+GLibWMI Component Library 
+
+Historial de la versión 3.4
+10/11/2026
+===========================================================
+4 nuevos componentes:
+	* TAccountInfo 
+	* TBaseBoardInfo 
+	* TNetworkProtocolInfo 
+	* TSerialPortInfo,
+
+
+Historial de la versión 3.3
+21/02/2024
+===========================================================
+
+* Añadido soporte para Delphi 13 Florence
+* Revisión de las demos
+
+
+
+Historial de la versión 3.2
+21/02/2024
+===========================================================
+
+* Añadido soporte para Delphi 12 Athens
+* Correccion de errores menores
+* Revisión de las demos
+
+
+
+Acerca de...
+===========================================================
+Copyright © Germán Estévez (Neftalí). Todos los derechos reservados.
+german_ral@hotmail.com
+Futuras versiones del componente en:
+http://neftali.clubdelphi.com/
+

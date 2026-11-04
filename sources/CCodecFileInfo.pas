@@ -1,5 +1,5 @@
 {
-TCodecFileInfo Component Version 3.3 - Suite GLibWMI
+TCodecFileInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_CodecFile representa el códec de audio o vídeo instalado en el equipo. Los códecs convierten 
@@ -126,178 +126,105 @@ type
     /// </summary>
     property CSName:string read FCSName write FCSName stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
+    ///  Nombre completo del controlador de códec. Se supone que esta cadena 
     ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Ejemplo: Convertidor PCM de Microsoft.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Letra de la unidad, incluidos los dos puntos, por ejemplo c:.
     /// </summary>
     property Drive:string read FDrive write FDrive stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Nombre de archivo DOS 8.3, por ejemplo c:\progra~1.
     /// </summary>
     property EightDotThreeFileName:string read FEightDotThreeFileName write FEightDotThreeFileName stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Si es True, el archivo está cifrado.
     /// </summary>
     property Encrypted:boolean read FEncrypted write FEncrypted stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Método de cifrado del archivo. Valores: Unknown, Encrypted, Not Encrypted.
     /// </summary>
     property EncryptionMethod:string read FEncryptionMethod write FEncryptionMethod stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Extensión del archivo sin el punto, por ejemplo txt, mof o mdb.
     /// </summary>
     property Extension:string read FExtension write FExtension stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Nombre del archivo sin la extensión, por ejemplo autoexec.
     /// </summary>
     property FileName:string read FFileName write FFileName stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Tamaño del archivo en bytes.
     /// </summary>
     property FileSize:int64 read FFileSize write FFileSize stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Tipo de archivo indicado por la extensión.
     /// </summary>
     property FileType:string read FFileType write FFileType stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Nombre de la clase del sistema de archivos.
     /// </summary>
     property FSCreationClassName:string read FFSCreationClassName write FFSCreationClassName stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Nombre del sistema de archivos.
     /// </summary>
     property FSName:string read FFSName write FFSName stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Códec representado por la clase: Audio o Video.
     /// </summary>
     property Group:string read FGroup write FGroup stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Si es True, el archivo está oculto.
     /// </summary>
     property Hidden:boolean read FHidden write FHidden stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Fecha de instalación del archivo.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Número actual de veces que el archivo está abierto.
     /// </summary>
     property InUseCount:int64 read FInUseCount write FInUseCount stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Fecha y hora del último acceso al archivo.
     /// </summary>
     property LastAccessed:TDatetime read FLastAccessed write FLastAccessed stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Fecha y hora de la última modificación del archivo.
     /// </summary>
     property LastModified:TDatetime read FLastModified write FLastModified stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Fabricante del códec, si está disponible en el recurso de versión.
     /// </summary>
     property Manufacturer:string read FManufacturer write FManufacturer stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Nombre clave completo del archivo, por ejemplo C:\Windows\system\win.ini.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Ruta del archivo, con barras invertidas al principio y al final, por ejemplo \windows\system\.
     /// </summary>
     property Path:string read FPath write FPath stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Si es True, el archivo es legible.
     /// </summary>
     property Readable:boolean read FReadable write FReadable stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Estado del objeto. Valores: OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service, Stressed, NonRecover, No Contact, Lost Comm.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Si es True, el archivo es un archivo del sistema.
     /// </summary>
     property System:boolean read FSystem write FSystem stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Versión del códec, si está disponible en el recurso de versión.
     /// </summary>
     property Version:string read FVersion write FVersion stored False;
     /// <summary>
-    ///  La propiedad Description indica el nombre completo del controlador de códec. Se supone que esta cadena 
-    ///  se presentará en espacios grandes, ya que su propósito es descriptivo.
-    ///  Ejemplo: Convertidor PCM de M
-    ///  icrosoft.
+    ///  Si es True, el archivo es escribible.
     /// </summary>
     property Writeable:boolean read FWriteable write FWriteable stored False;
   end;

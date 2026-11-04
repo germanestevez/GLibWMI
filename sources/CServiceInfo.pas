@@ -1,5 +1,5 @@
 {
-TServiceInfo Component Version 3.3 - Suite GLibWMI
+TServiceInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_Service representa un servicio en un sistema Win32. Un aplicación de servicio cumple las 
@@ -115,9 +115,7 @@ type
     /// </summary>
     property AcceptStop:boolean read FAcceptStop write FAcceptStop stored False;
     /// <summary>
-    ///  La propiedad AcceptStop indica si se puede detener el servicio.
-    ///  Valores: TRUE o FALSE. El valor TRUE 
-    ///  indica que se puede detener el servicio.
+    ///  La propiedad Caption indica una breve descripción del servicio, en una sola línea.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -141,8 +139,7 @@ type
     /// </summary>
     property DelayedAutoStart:boolean read FDelayedAutoStart write FDelayedAutoStart stored False;
     /// <summary>
-    ///  La propiedad DelayedAutoStart especifica si el servicio se inicia una vez iniciados otros servicios de 
-    ///  inicio automático más un  retraso breve. 
+    ///  La propiedad Description describe el objeto.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -179,11 +176,8 @@ type
     /// </summary>
     property ExitCode:integer read FExitCode write FExitCode stored False;
     /// <summary>
-    ///  La propiedad ExitCode especifica un código de error win32 que define los problemas encontrados al iniciar 
-    ///  o detener el servicio. Esta propiedad tiene el valor ERROR_SERVICE_SPECIFIC_ERROR (1066) cuando el error 
-    ///  es único del servicio representado por esta clase y la información acerca del error está disponible en 
-    ///  el miembro ServiceSpecificExitCode. El servicio asigna el valor NO_ERROR al ejecutarse y, de nuevo, tras 
-    ///  la terminación normal.
+    ///  La propiedad InstallDate indica la fecha de instalación del objeto. Esta propiedad no requiere
+    ///  un valor para indicar que el objeto está instalado.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -243,55 +237,22 @@ type
     /// </summary>
     property StartName:string read FStartName write FStartName stored False;
     /// <summary>
-    ///  La propiedad StartName indica el nombre de la cuenta en la que se ejecuta el servicio. Dependiendo del 
-    ///  tipo de servicio, el nombre de la cuenta puede tener el formato "NombreDominio\NombreUsuario". El proceso 
-    ///  del servicio se registrará con uno de estos dos formatos cuando se ejecute. Si la cuenta pertenece al 
-    ///  dominio integrado, se puede especificar ".\NombreUsuario". Si se especifica NULL, el servicio se conectará 
-    ///  con la cuenta SistemaLocal. Para los controladores de kernel o del sistema, StartName contiene el nombre 
-    ///  del objeto controlador, es decir, \FileSystem\Rdr o \Driver\Xns, que el sistema de entrada y salida (I/O) 
-    ///  usa para cargar el controlador de dispositivo. Además, si se especifica NULL, el controlador se ejecuta 
-    ///  con un nombre de objeto predeterminado creado por el sistema de entrada y salida que se basa en el nombre 
-    ///  del servicio.
-    ///  Ejemplo: DWDOM\Admin.
+    ///  La propiedad State indica el estado actual del servicio de base.
+    ///  Valores: Detenido, Inicio pendiente, Detención pendiente, Activo, Continuación pendiente,
+    ///  Pausa pendiente, Pausado y Desconocido.
     /// </summary>
     property State:string read FState write FState stored False;
     /// <summary>
-    ///  La propiedad StartName indica el nombre de la cuenta en la que se ejecuta el servicio. Dependiendo del 
-    ///  tipo de servicio, el nombre de la cuenta puede tener el formato "NombreDominio\NombreUsuario". El proceso 
-    ///  del servicio se registrará con uno de estos dos formatos cuando se ejecute. Si la cuenta pertenece al 
-    ///  dominio integrado, se puede especificar ".\NombreUsuario". Si se especifica NULL, el servicio se conectará 
-    ///  con la cuenta SistemaLocal. Para los controladores de kernel o del sistema, StartName contiene el nombre 
-    ///  del objeto controlador, es decir, \FileSystem\Rdr o \Driver\Xns, que el sistema de entrada y salida (I/O) 
-    ///  usa para cargar el controlador de dispositivo. Además, si se especifica NULL, el controlador se ejecuta 
-    ///  con un nombre de objeto predeterminado creado por el sistema de entrada y salida que se basa en el nombre 
-    ///  del servicio.
-    ///  Ejemplo: DWDOM\Admin.
+    ///  La propiedad Status indica el estado actual del objeto. Los estados operativos incluyen "OK",
+    ///  "Degraded" y "Pred Fail"; los no operativos incluyen "Error", "Starting", "Stopping" y "Service".
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
-    ///  La propiedad StartName indica el nombre de la cuenta en la que se ejecuta el servicio. Dependiendo del 
-    ///  tipo de servicio, el nombre de la cuenta puede tener el formato "NombreDominio\NombreUsuario". El proceso 
-    ///  del servicio se registrará con uno de estos dos formatos cuando se ejecute. Si la cuenta pertenece al 
-    ///  dominio integrado, se puede especificar ".\NombreUsuario". Si se especifica NULL, el servicio se conectará 
-    ///  con la cuenta SistemaLocal. Para los controladores de kernel o del sistema, StartName contiene el nombre 
-    ///  del objeto controlador, es decir, \FileSystem\Rdr o \Driver\Xns, que el sistema de entrada y salida (I/O) 
-    ///  usa para cargar el controlador de dispositivo. Además, si se especifica NULL, el controlador se ejecuta 
-    ///  con un nombre de objeto predeterminado creado por el sistema de entrada y salida que se basa en el nombre 
-    ///  del servicio.
-    ///  Ejemplo: DWDOM\Admin.
+    ///  La propiedad SystemCreationClassName indica el nombre del tipo del sistema que aloja este servicio.
     /// </summary>
     property SystemCreationClassName:string read FSystemCreationClassName write FSystemCreationClassName stored False;
     /// <summary>
-    ///  La propiedad StartName indica el nombre de la cuenta en la que se ejecuta el servicio. Dependiendo del 
-    ///  tipo de servicio, el nombre de la cuenta puede tener el formato "NombreDominio\NombreUsuario". El proceso 
-    ///  del servicio se registrará con uno de estos dos formatos cuando se ejecute. Si la cuenta pertenece al 
-    ///  dominio integrado, se puede especificar ".\NombreUsuario". Si se especifica NULL, el servicio se conectará 
-    ///  con la cuenta SistemaLocal. Para los controladores de kernel o del sistema, StartName contiene el nombre 
-    ///  del objeto controlador, es decir, \FileSystem\Rdr o \Driver\Xns, que el sistema de entrada y salida (I/O) 
-    ///  usa para cargar el controlador de dispositivo. Además, si se especifica NULL, el controlador se ejecuta 
-    ///  con un nombre de objeto predeterminado creado por el sistema de entrada y salida que se basa en el nombre 
-    ///  del servicio.
-    ///  Ejemplo: DWDOM\Admin.
+    ///  La propiedad SystemName indica el nombre del sistema que aloja este servicio.
     /// </summary>
     property SystemName:string read FSystemName write FSystemName stored False;
     /// <summary>
@@ -684,7 +645,7 @@ const
   ENUM_STRING_STATE_02 = 'Detención pendiente';
   ENUM_STRING_STATE_03 = 'Activo';
   ENUM_STRING_STATE_04 = 'Continuación pendiente';
-  ENUM_STRING_STATE_05 = 'Pausar el pendiente';
+  ENUM_STRING_STATE_05 = 'Pausa pendiente';
   ENUM_STRING_STATE_06 = 'Pausado';
   ENUM_STRING_STATE_07 = 'Desconocido';
 

@@ -1,5 +1,5 @@
 {
-TRegistryInfo Component Version 3.3 - Suite GLibWMI
+TRegistryInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 
@@ -64,6 +64,8 @@ type
   published
     {%PublishedProperties PropertiesClass%}
     /// <summary>
+    ///  La propiedad Caption indica una breve descripción textual del Registro de Win32.
+    ///  Se hereda de CIM_ManagedSystemElement.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -72,13 +74,13 @@ type
     /// </summary>
     property CurrentSize:integer read FCurrentSize write FCurrentSize stored False;
     /// <summary>
-    ///  La propiedad CurrentSize indica el tamaño físico actual del Registro de Win32.
-    ///  Ejemplo: 10.
+    ///  La propiedad Description indica una descripción textual del Registro de Win32.
+    ///  Se hereda de CIM_ManagedSystemElement.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
-    ///  La propiedad CurrentSize indica el tamaño físico actual del Registro de Win32.
-    ///  Ejemplo: 10.
+    ///  La propiedad InstallDate indica cuándo se instaló el Registro de Win32. La falta de valor no indica que el Registro no esté instalado.
+    ///  Se hereda de CIM_ManagedSystemElement.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -99,9 +101,10 @@ type
     /// </summary>
     property ProposedSize:integer read FProposedSize write FProposedSize stored False;
     /// <summary>
-    ///  La propiedad ProposedSize indica el tamaño propuesto del Registro de Win32. Es el único valor de la configuración 
-    ///  del Registro que se puede cambiar y el valor que propone se intenta la próxima vez que se arranca el 
-    ///  sistema.
+    ///  La propiedad Status indica el estado actual del Registro de Win32. Puede ser operativo (OK, Degraded, Pred Fail)
+    ///  o no operativo (Error, Starting, Stopping, Service, ...).
+    ///  Valores: OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service, Stressed, NonRecover, No Contact, Lost Comm.
+    ///  Se hereda de CIM_ManagedSystemElement.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
   end;

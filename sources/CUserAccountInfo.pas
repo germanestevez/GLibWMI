@@ -1,5 +1,5 @@
 {
-TUserAccountInfo Component Version 3.3 - Suite GLibWMI
+TUserAccountInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_UserAccount contiene información acerca de una cuenta de usuario de un sistema Win32.
@@ -92,33 +92,11 @@ type
     /// </summary>
     property AccountType:integer read FAccountType write FAccountType stored False;
     /// <summary>
-    ///  La propiedad AccountType contiene marcadores que describen las características de la cuenta de usuario 
-    ///  de Win32:
-    ///  UF_TEMP_DUPLICATE_ACCOUNT: cuenta de usuario local para usuarios cuya cuenta principal está 
-    ///  en otro dominio. Esta cuenta proporciona acceso de usuario a este dominio, pero no a cualquier dominio 
-    ///  que confíe en este dominio.
-    ///  UF_NORMAL_ACCOUNT: tipo predeterminado de cuenta que representa a un usuario 
-    ///  típico. 
-    ///  UF_INTERDOMAIN_TRUST_ACCOUNT: es la cuenta de un dominio del sistema que confía en otros dominios.
-    ///  UF_WORKSTATION_TRUST_ACCOUNT: 
-    ///  es la cuenta de equipo de un equipo Windows NT o Windows 2000 que es miembro de este dominio.
-    ///  UF_SERVER_TRUST_ACCOUNT: 
-    ///  es la cuenta de un controlador de dominio de reserva del sistema que es miembro de este dominio.
+    ///  La propiedad Caption indica el dominio y el nombre de usuario de la cuenta.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
-    ///  La propiedad AccountType contiene marcadores que describen las características de la cuenta de usuario 
-    ///  de Win32:
-    ///  UF_TEMP_DUPLICATE_ACCOUNT: cuenta de usuario local para usuarios cuya cuenta principal está 
-    ///  en otro dominio. Esta cuenta proporciona acceso de usuario a este dominio, pero no a cualquier dominio 
-    ///  que confíe en este dominio.
-    ///  UF_NORMAL_ACCOUNT: tipo predeterminado de cuenta que representa a un usuario 
-    ///  típico. 
-    ///  UF_INTERDOMAIN_TRUST_ACCOUNT: es la cuenta de un dominio del sistema que confía en otros dominios.
-    ///  UF_WORKSTATION_TRUST_ACCOUNT: 
-    ///  es la cuenta de equipo de un equipo Windows NT o Windows 2000 que es miembro de este dominio.
-    ///  UF_SERVER_TRUST_ACCOUNT: 
-    ///  es la cuenta de un controlador de dominio de reserva del sistema que es miembro de este dominio.
+    ///  La propiedad Description contiene la descripción de la cuenta de usuario.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -139,14 +117,13 @@ type
     /// </summary>
     property FullName:string read FFullName write FFullName stored False;
     /// <summary>
-    ///  La propiedad FullName indica el nombre completo del usuario local.
-    ///  Ejemplo: Juan Santos
+    ///  La propiedad InstallDate indica la fecha de instalación del objeto. No es necesario que la propiedad
+    ///  tenga un valor para indicar que el objeto está instalado.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
     ///  La propiedad LocalAccount indica si la cuenta está definida en el equipo local. Para recuperar sólo las 
-    ///  cuentas definidas en el equipo local se hace una solicitud que incluye la condición "LocalAccount=TR
-    ///  UE".
+    ///  cuentas definidas en el equipo local se hace una solicitud que incluye la condición "LocalAccount=TRUE".
     /// </summary>
     property LocalAccount:boolean read FLocalAccount write FLocalAccount stored False;
     /// <summary>
@@ -209,21 +186,10 @@ type
     /// </summary>
     property SIDType:integer read FSIDType write FSIDType stored False;
     /// <summary>
-    ///  La propiedad SIDType contiene valores enumerados que especifican el tipo de identificador de seguridad 
-    ///  (SID). SIDTypes incluye:
-    ///  SidTypeUser : indica el SID de un usuario.
-    ///  SidTypeGroup: indica el SID de un 
-    ///  grupo.
-    ///  SidTypeDomain: indica el SID de un dominio.
-    ///  SidTypeAlias: indica el SID de un alias.
-    ///  SidTypeWellKnownGroup: 
-    ///  indica el SID de un grupo conocido.
-    ///  SidTypeDeletedAccount: indica el SID de una cuenta eliminada.
-    ///  SidTypeInvalid: 
-    ///  indica un SID que no es válido.
-    ///  SidTypeUnknown: indica un tipo de SID desconocido.
-    ///  SidTypeComputer: indica 
-    ///  el SID de un equipo.
+    ///  La propiedad Status indica el estado actual del objeto. Los estados operativos incluyen OK, Degraded
+    ///  y Pred Fail; los no operativos incluyen Error, Starting, Stopping y Service.
+    ///  Valores: OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service, Stressed, NonRecover,
+    ///  No Contact y Lost Comm.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
   end;

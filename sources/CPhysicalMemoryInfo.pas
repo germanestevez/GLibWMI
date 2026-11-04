@@ -1,5 +1,5 @@
 {
-TPhysicalMemoryInfo Component Version 3.3 - Suite GLibWMI
+TPhysicalMemoryInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_PhysicalMemory representa un dispositivo de memoria física que se encuentra en un sistema 
@@ -102,6 +102,8 @@ type
   published
     {%PublishedProperties PropertiesClass%}
     /// <summary>
+    ///  Atributos de la memoria física (SMBIOS, tipo 17). Representa el RANK.
+    ///  No soportado antes de Windows Server 2016 y Windows 10.
     /// </summary>
     property Attributes:integer read FAttributes write FAttributes stored False;
     /// <summary>
@@ -110,13 +112,11 @@ type
     /// </summary>
     property BankLabel:string read FBankLabel write FBankLabel stored False;
     /// <summary>
-    ///  Una cadena que identifica el banco etiquetado físicamente donde se encuentra la memoria; por ejemplo, 
-    ///  'Banco 0' o 'Banco A'.
+    ///  Capacidad total de la memoria física, en bytes.
     /// </summary>
     property Capacity:int64 read FCapacity write FCapacity stored False;
     /// <summary>
-    ///  Una cadena que identifica el banco etiquetado físicamente donde se encuentra la memoria; por ejemplo, 
-    ///  'Banco 0' o 'Banco A'.
+    ///  Descripción breve del objeto: una cadena de una sola línea.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -125,8 +125,7 @@ type
     /// </summary>
     property ConfiguredClockSpeed:integer read FConfiguredClockSpeed write FConfiguredClockSpeed stored False;
     /// <summary>
-    ///  Voltaje configurado mínimo de este dispositivo, en milivoltios. Si el valor es 0, se desconoce el vo
-    ///  ltaje.
+    ///  Voltaje configurado de este dispositivo, en milivoltios. Si el valor es 0, se desconoce el voltaje.
     /// </summary>
     property ConfiguredVoltage:integer read FConfiguredVoltage write FConfiguredVoltage stored False;
     /// <summary>
@@ -141,8 +140,7 @@ type
     /// </summary>
     property DataWidth:integer read FDataWidth write FDataWidth stored False;
     /// <summary>
-    ///  El ancho de datos de la memoria física, en bits. Un ancho de datos de cero y un ancho total de ocho indicarían 
-    ///  que la memoria se usa únicamente para proporcionar bits de corrección de errores.
+    ///  Descripción de un objeto.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -164,10 +162,7 @@ type
     /// </summary>
     property HotSwappable:boolean read FHotSwappable write FHotSwappable stored False;
     /// <summary>
-    ///  Un componente físico es intercambiable en caliente si es posible reemplazar el elemento con otro físicamente 
-    ///  diferente pero equivalente al tiempo que se aplica energía al paquete contenedor (es decir, mientras 
-    ///  está conectado). Por ejemplo, un componente ventilador puede estar diseñado para ser intercambiable en 
-    ///  caliente. Todos los componentes de este tipo son extraíbles y reemplazables de forma inherente.
+    ///  Fecha y hora en que se instaló el objeto. Esta propiedad no necesita un valor para indicar que el objeto está instalado.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -194,8 +189,7 @@ type
     /// </summary>
     property MaxVoltage:integer read FMaxVoltage write FMaxVoltage stored False;
     /// <summary>
-    ///  Voltaje de funcionamiento máximo de este dispositivo, en milivoltios. Si el valor es 0, se desconoce 
-    ///  el voltaje
+    ///  Tipo de memoria física. Es un valor CIM asignado al valor de SMBIOS. La propiedad SMBIOSMemoryType contiene el tipo de memoria SMBIOS sin procesar.
     /// </summary>
     property MemoryType:integer read FMemoryType write FMemoryType stored False;
     /// <summary>
@@ -204,13 +198,11 @@ type
     /// </summary>
     property MinVoltage:integer read FMinVoltage write FMinVoltage stored False;
     /// <summary>
-    ///  Voltaje de funcionamiento mínimo de este dispositivo, en milivoltios. Si el valor es 0, se desconoce 
-    ///  el voltaje
+    ///  Nombre del elemento físico.
     /// </summary>
     property Model:string read FModel write FModel stored False;
     /// <summary>
-    ///  Voltaje de funcionamiento mínimo de este dispositivo, en milivoltios. Si el valor es 0, se desconoce 
-    ///  el voltaje
+    ///  Etiqueta del objeto. Al heredarse, la propiedad puede sobrescribirse para ser una clave.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
@@ -258,7 +250,7 @@ type
     /// </summary>
     property SerialNumber:string read FSerialNumber write FSerialNumber stored False;
     /// <summary>
-    ///  Un número asignado por el fabricante que se usa para identificar el elemento físico.
+    ///  Número de referencia de inventario (SKU) del elemento físico.
     /// </summary>
     property SKU:string read FSKU write FSKU stored False;
     /// <summary>
@@ -268,15 +260,11 @@ type
     /// </summary>
     property SMBIOSMemoryType:integer read FSMBIOSMemoryType write FSMBIOSMemoryType stored False;
     /// <summary>
-    ///  Tipo de memoria usado en este dispositivo. Es una propiedad adicional que se agrega para registrar el 
-    ///  tipo de memoria binaria de SMBIOS. El valor registrado por la propiedad MemoryType es un valor de CIM 
-    ///  asignado al valor de SMBIOS.
+    ///  Velocidad de la memoria física, en nanosegundos.
     /// </summary>
     property Speed:integer read FSpeed write FSpeed stored False;
     /// <summary>
-    ///  Tipo de memoria usado en este dispositivo. Es una propiedad adicional que se agrega para registrar el 
-    ///  tipo de memoria binaria de SMBIOS. El valor registrado por la propiedad MemoryType es un valor de CIM 
-    ///  asignado al valor de SMBIOS.
+    ///  Estado actual del objeto. Valores: OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service, Stressed, NonRecover, No Contact, Lost Comm.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
@@ -297,8 +285,7 @@ type
     /// </summary>
     property TypeDetail:integer read FTypeDetail write FTypeDetail stored False;
     /// <summary>
-    ///  La propiedad TypeDetail indica el tipo de memoria física representada por la clase Win32_PhysicalMem
-    ///  ory.
+    ///  Versión del elemento físico.
     /// </summary>
     property Version:string read FVersion write FVersion stored False;
   end;
@@ -389,6 +376,9 @@ const
   ENUM_STRING_MEMORYTYPE_20 = 'DDR';
   ENUM_STRING_MEMORYTYPE_21 = 'DDR2';
   ENUM_STRING_MEMORYTYPE_22 = 'FB-DIMM DDR2';
+  ENUM_STRING_MEMORYTYPE_24 = 'DDR3';
+  ENUM_STRING_MEMORYTYPE_25 = 'FBD2';
+  ENUM_STRING_MEMORYTYPE_26 = 'DDR4';
 
 //=========================================================================
 //
@@ -661,6 +651,9 @@ begin
     20: Result := ENUM_STRING_MEMORYTYPE_20;
     21: Result := ENUM_STRING_MEMORYTYPE_21;
     22: Result := ENUM_STRING_MEMORYTYPE_22;
+    24: Result := ENUM_STRING_MEMORYTYPE_24;
+    25: Result := ENUM_STRING_MEMORYTYPE_25;
+    26: Result := ENUM_STRING_MEMORYTYPE_26;
   else
     Result := STR_EMPTY;
   end;
@@ -676,7 +669,7 @@ end;
 // Obtener núm. de elementos de la propiedad como string
 function TPhysicalMemoryProperties.GetAllMemoryTypeCount:integer;
 begin
-  Result := 23
+  Result := 27
 end;
 
 

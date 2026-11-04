@@ -12,7 +12,7 @@ interface
 uses
   {$IFDEF DELPHIX_TOKYO_UP} System.UITypes, {$ENDIF}
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, CWMIBase, CCDRomDriveInfo, OI, ExtCtrls, ComCtrls, FrComponent,
+  Dialogs, CWMIBase, CCDRomDriveInfo, ExtCtrls, ComCtrls, FrComponent,
   CBiosInfo, CDiskDriveInfo, ImgList, CPrinterInfo,
   CKeyboardInfo, CProcessorInfo, StdCtrls, Buttons, CSoundDeviceInfo,
   CBatteryInfo, COperatingSystemInfo, CPointingDeviceInfo,
@@ -21,10 +21,9 @@ uses
   CDesktopMonitorInfo, CStartupCommandInfo, ActnList, ToolWin, CShareInfo,
   CUserAccountInfo, CNetworkAdapterInfo, CUSBControllerInfo, CPrintJobInfo,
   CDiskPartitionInfo, CEnvironmentInfo, CFanInfo, CPnPEntityInfo,
-  CVideoControllerInfo, CProductInfo, CDisplayConfigurationInfo
-{$IFDEF DELPHIXE_UP}
-  , System.Actions, System.ImageList
-{$ENDIF}  
+  CVideoControllerInfo, CProductInfo, CDisplayConfigurationInfo,
+  CAccountInfo, System.Actions, System.ImageList, CSerialPortInfo,
+  CBaseBoardInfo, CNetworkProtocolInfo
   ;
 
 type
@@ -88,7 +87,7 @@ type
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
     Bevel1: TBevel;
-    ScrollBox1: TScrollBox;
+    ScrollBox2: TScrollBox;
     FrameProcess: TFrameComponent;
     FrameService: TFrameComponent;
     FrameDeskopMonitor: TFrameComponent;
@@ -108,7 +107,7 @@ type
     FrameDiskPartition: TFrameComponent;
     EnvironmentInfo1: TEnvironmentInfo;
     FrameEnvironment: TFrameComponent;
-    ScrollBox2: TScrollBox;
+    ScrollBox1: TScrollBox;
     FrameOperatingSystem: TFrameComponent;
     FrameBattery: TFrameComponent;
     FrameSoundDevice: TFrameComponent;
@@ -133,20 +132,17 @@ type
     ProductInfo1: TProductInfo;
     VideoControllerInfo1: TVideoControllerInfo;
     DisplayConfigurationInfo1: TDisplayConfigurationInfo;
+    FrameAccount: TFrameComponent;
+    AccountInfo1: TAccountInfo;
+    NetworkProtocolInfo1: TNetworkProtocolInfo;
+    BaseBoardInfo1: TBaseBoardInfo;
+    SerialPortInfo1: TSerialPortInfo;
+    FrameSerialPort: TFrameComponent;
+    FrameNetworkProtocol: TFrameComponent;
+    FrameBaseBoard: TFrameComponent;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ListAdvancedCustomDrawItem(Sender: TCustomListView;
-      Item: TListItem; State: TCustomDrawState; Stage: TCustomDrawStage;
-      var DefaultDraw: Boolean);
-    procedure ListAdvancedCustomDrawSubItem(Sender: TCustomListView;
-      Item: TListItem; SubItem: Integer; State: TCustomDrawState;
-      Stage: TCustomDrawStage; var DefaultDraw: Boolean);
-    procedure ListDblClick(Sender: TObject);
-    procedure ListKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure ListMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure ListResize(Sender: TObject);
+
     procedure Label15Click(Sender: TObject);
     procedure StatusBar1Click(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
@@ -160,16 +156,12 @@ type
     procedure ActionImprimirExecute(Sender: TObject);
     procedure ActionCerrarExecute(Sender: TObject);
   private
-    // Object Inspector MITEC
-    OI: TMObjectInspector;
     InstanceIndex:integer;
     ClassComponent:TWMIBase;
     ActiveFrame:TFrameComponent;
 
     procedure UpdateInstances(Component:TWMIBase);
-    function EnumClassProps(AProp: TObject; AIndent: integer): Integer;
-    procedure RefreshOI(AObject: TObject);
-    function ExpandClassProps(AProp: TObject; AIndex,AIndent: integer): Integer;
+    procedure MostrarPropiedades(AList: TListView; AObj: TPersistent);
 
     procedure OnSelectFrame(Sender: TObject);
   public
@@ -289,62 +281,103 @@ begin
   end;
 end;
 
-function TFormMain.ExpandClassProps(AProp: TObject; AIndex,AIndent: integer): Integer;
+procedure TFormMain.MostrarPropiedades(AList: TListView; AObj: TPersistent);
 var
-  i: Integer;
-begin
-  Result:=0;
-  with TMObjectInspector.Create(nil) do
+  Lista: PPropList;
+  Count, I: Integer;
+  Nombre, Valor: string;
+  Item: TListItem;
+
+  function ValorPropiedad(AObj: TObject; P: PPropInfo): string;
+  var
+    Tipo: PTypeInfo;
+    F: Double;
+  begin
+    Tipo := P^.PropType^;
     try
-      Obj:=AProp;
-      for i:=0 to Properties.Count-1 do
-        if (SameText(Kinds[i],'8') ) or
-           (not SameText(Kinds[i],'8') ) then
-          with List.Items.Insert(AIndex) do begin
-            Inc(Result);
-            Caption:=StringOfChar(' ',AIndent*5)+Properties[i];
-            if SameText(Types[i],'TColor') then
-              SubItems.Add(ColorToString(StrToInt(Values[i])))
-            else if SameText(Types[i],'TCursor') then
-              SubItems.Add(CursorNames[Abs(StrToInt(Values[i]))])
-            else
-              SubItems.Add(Values[i]);
-            SubItems.Add(Types[i]);
-            SubItems.Add(IntToStr(AIndent));
-            ImageIndex:=-1;
-            if SameText(Kinds[i],'7') and (TObject(GetOrdProp(Obj,Properties[i]))<>oi.Obj) then begin
-              if EnumClassProps(TObject(GetOrdProp(Obj,Properties[i])),AIndent+1)>0 then begin
-                Data:=TObject(GetOrdProp(Obj,Properties[i]));
-                ImageIndex:=3;
-              end;
-            end;
-            Inc(AIndex);
-          end;
-    finally
-      Free;
+      // Booleanos (Boolean, ByteBool, WordBool, LongBool)
+      if (Tipo = TypeInfo(Boolean)) or (Tipo = TypeInfo(ByteBool)) or
+         (Tipo = TypeInfo(WordBool)) or (Tipo = TypeInfo(LongBool)) then
+        Result := BoolToStr(GetOrdProp(AObj, P) <> 0, True)
+
+      // Fecha y hora
+      else if Tipo = TypeInfo(TDateTime) then
+      begin
+        F := GetFloatProp(AObj, P);
+        if F = 0 then
+          Result := ''
+        else
+          Result := FormatDateTime('dd/mm/yyyy hh:nn:ss', F);
+      end
+      else if Tipo = TypeInfo(TDate) then
+        Result := FormatDateTime('dd/mm/yyyy', GetFloatProp(AObj, P))
+      else if Tipo = TypeInfo(TTime) then
+        Result := FormatDateTime('hh:nn:ss', GetFloatProp(AObj, P))
+
+      // Resto de tipos simples
+      else
+        Result := VarToStr(GetPropValue(AObj, string(P^.Name), True));
+    except
+      on E: Exception do
+        Result := '(' + E.Message + ')';
     end;
-end;
+  end;
 
 
-function TFormMain.EnumClassProps(AProp: TObject; AIndent: integer): Integer;
-var
-  i: Integer;
+
 begin
-  Result:=0;
-  with TMObjectInspector.Create(nil) do
+  AList.Items.BeginUpdate;
+  try
+    AList.Items.Clear;
+
+    if AList.Columns.Count = 0 then
+    begin
+      AList.ViewStyle := vsReport;
+      AList.RowSelect := True;
+      AList.ReadOnly := True;
+      with AList.Columns.Add do
+      begin
+        Caption := 'Propiedad';
+        Width := 150;
+      end;
+      with AList.Columns.Add do
+      begin
+        Caption := 'Valor';
+        AutoSize := True;
+      end;
+    end;
+
+    if AObj = nil then
+      Exit;
+
+    Count := GetPropList(AObj.ClassInfo, tkProperties, nil);
+    GetMem(Lista, Count * SizeOf(PPropInfo));
     try
-      Obj:=AProp;
-      for i:=0 to Properties.Count-1 do
-        if (SameText(Kinds[i],'8') ) or
-           (not SameText(Kinds[i],'8') ) then begin
-          Inc(Result);
+      GetPropList(AObj.ClassInfo, tkProperties, Lista, True); // ordenadas por nombre
+      for I := 0 to Count - 1 do
+      begin
+        Nombre := string(Lista^[I]^.Name);
+        try
+          Nombre := string(Lista^[I]^.Name);
+          Valor := ValorPropiedad(AObj, Lista^[I]);
+        except
+          on E: Exception do
+            Valor := '(' + E.Message + ')';
         end;
+        Item := AList.Items.Add;
+        Item.Caption := Nombre;
+        Item.SubItems.Add(Valor);
+        Item.Data := Lista^[I];
+      end;
     finally
-      Free;
+      FreeMem(Lista);
     end;
+  finally
+    AList.Items.EndUpdate;
+  end;
 end;
 
-
+{
 procedure TFormMain.RefreshOI(AObject: TObject);
 var
   i: Integer;
@@ -381,11 +414,10 @@ begin
     List.Items.EndUpdate;
   end;
 end;
-
+}
 
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
-  OI := TMObjectInspector.Create(Self);
   List.Columns[0].Width := 100;
 end;
 
@@ -428,6 +460,10 @@ begin
   FrameVideoController.SetComponentProp(VideoControllerInfo1, VideoControllerInfo1.VideoControllerProperties);
   FrameDisplayConfiguration.SetComponentProp(DisplayConfigurationInfo1, DisplayConfigurationInfo1.DisplayConfigurationProperties);
 
+  FrameAccount.SetComponentProp(AccountInfo1, AccountInfo1.AccountProperties);
+  FrameNetworkProtocol.SetComponentProp(NetworkProtocolInfo1, NetworkProtocolInfo1.NetworkProtocolProperties);
+  FrameBaseBoard.SetComponentProp(BaseBoardInfo1, BaseBoardInfo1.BaseBoardProperties);
+  FrameSerialPort.SetComponentProp(SerialPortInfo1, SerialPortInfo1.SerialPortProperties);
 
 
   // Asignar el evento OnSelect
@@ -489,7 +525,8 @@ begin
       // instancias de la clase
       UpdateInstances(ClassComponent);
       // Actualizar propiedades
-      RefreshOI(ActiveFrame.CompProps);
+      //-v1-RefreshOI(ActiveFrame.CompProps);
+      MostrarPropiedades(List, ActiveFrame.CompProps);
     end;
 
   finally
@@ -500,91 +537,6 @@ begin
   end;
 end;
 
-procedure TFormMain.ListAdvancedCustomDrawItem(Sender: TCustomListView;
-  Item: TListItem; State: TCustomDrawState; Stage: TCustomDrawStage;
-  var DefaultDraw: Boolean);
-begin
-  if Item.SubItems[0]='' then
-    Sender.Canvas.Font.Color:=clGray;
-  if SameText(Item.Caption,'Name') then
-    Sender.Canvas.Font.Style:=[fsBold];
-  if (Item.ImageIndex>-1) then
-    ListView_DrawImage(Sender,Item,State,DefaultDraw,List.SmallImages,Item.ImageIndex-2,StrToInt(Item.Subitems[2]),ImageList1.BkColor,LineColor)
-  else
-    ListView_DrawGutter(Sender,Item,State,DefaultDraw,StrToInt(Item.Subitems[2]),ImageList1.BkColor,LineColor);
-  ListView_DrawLine(Sender,Item,State,DefaultDraw,StrToInt(Item.Subitems[2]),LineColor);
-
-end;
-
-procedure TFormMain.ListAdvancedCustomDrawSubItem(Sender: TCustomListView;
-  Item: TListItem; SubItem: Integer; State: TCustomDrawState;
-  Stage: TCustomDrawStage; var DefaultDraw: Boolean);
-begin
-  if SubItem=1 then
-    Sender.Canvas.Font.Color:=clNavy;
-  if SameText(Item.Caption,'Name') then
-    Sender.Canvas.Font.Style:=[fsBold];
-  ListView_DrawDivider(Sender,Item,SubItem,State,DefaultDraw,LineColor);
-end;
-
-procedure TFormMain.ListDblClick(Sender: TObject);
-var
-  i,ind: Integer;
-begin
-  if not Assigned(List.Selected) or (List.Selected.ImageIndex=-1) then
-    Exit;
-  List.Items.BeginUpdate;
-  try
-    i:=List.Selected.Index+1;
-    ind:=StrToInt(List.Items[List.Selected.Index].SubItems[2]);
-    if List.Selected.ImageIndex=2 then begin
-      while StrToInt(List.Items[i].SubItems[2])>ind do
-        List.Items.Delete(i);
-      List.Selected.ImageIndex:=3;
-    end else begin
-      ExpandClassProps(TObject(List.Selected.Data),i,ind+1);
-      List.Selected.ImageIndex:=2;
-    end;
-  finally
-    List.Items.EndUpdate;
-  end;
-end;
-
-procedure TFormMain.ListKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  if not Assigned(List.Selected) or (List.Selected.ImageIndex=-1) then
-    Exit;
-  if (Shift=[]) and (Key in [vk_add,vk_subtract]) then
-    ListDblClick(nil);
-end;
-
-procedure TFormMain.ListMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-var
-  n: TListItem;
-  R: TRect;
-  p: TPoint;
-  ind: integer;
-begin
-  n:=List.GetItemAt(x,y);
-  if not Assigned(n) or (n.ImageIndex=-1) then
-    Exit;
-  ind:=StrToInt(n.SubItems[2]);
-  p.X:=x;
-  p.Y:=y;
-  R:=n.DisplayRect(drIcon);
-  InflateRect(R,ind*GutterSize,0);
-  if PtInRect(R,p) then
-    ListDblClick(nil);
-end;
-
-procedure TFormMain.ListResize(Sender: TObject);
-begin
-
-  List.Columns[1].Width := List.Width - List.Columns[0].Width - 26;
-
-end;
 
 procedure TFormMain.Label15Click(Sender: TObject);
 var
@@ -688,7 +640,8 @@ begin
   InstanceIndex := Max(InstanceIndex - 1, 1);
   ClassComponent.ObjectIndex := InstanceIndex;
   // Actualizar propiedades
-  RefreshOI(ActiveFrame.CompProps);
+  //-v1-RefreshOI(ActiveFrame.CompProps);
+  MostrarPropiedades(List, ActiveFrame.CompProps);
   // instancias de la clase
   UpdateInstances(ClassComponent);
 end;
@@ -699,7 +652,8 @@ begin
   InstanceIndex := Min(InstanceIndex + 1, ClassComponent.ObjectsCount);
   ClassComponent.ObjectIndex := InstanceIndex;
   // Actualizar propiedades
-  RefreshOI(ActiveFrame.CompProps);
+  //-v1-RefreshOI(ActiveFrame.CompProps);
+  MostrarPropiedades(List, ActiveFrame.CompProps);
   // instancias de la clase
   UpdateInstances(ClassComponent);
 end;

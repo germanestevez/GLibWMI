@@ -71,6 +71,12 @@ contains
   CFanInfo in '..\sources\CFanInfo.pas',
   CDisplayConfigurationInfo in '..\sources\CDisplayConfigurationInfo.pas',
   CProcessInfo in '..\sources\CProcessInfo.pas',
-  WbemScripting_TLB in '..\sources\WbemScripting_TLB.pas';
+  WbemScripting_TLB in '..\sources\WbemScripting_TLB.pas',
+  CBaseBoardInfo in '..\Sources\CBaseBoardInfo.pas',
+  CNetworkProtocolInfo in '..\Sources\CNetworkProtocolInfo.pas',
+  CSerialPortInfo in '..\Sources\CSerialPortInfo.pas',
+  CAccountInfo in '..\Sources\CAccountInfo.pas',
+  CRegistryInfo in '..\sources\CRegistryInfo.pas',
+  FrComponent in '..\demos\generic\FrComponent.pas' {FrameComponent: TFrame};
 
 end.

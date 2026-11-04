@@ -1,10 +1,10 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{1ABE80AC-FEC6-42D6-B6E9-4892D820846B}</ProjectGuid>
+        <ProjectGuid>{91A07AD3-08DC-460B-AC97-1800828A95C7}</ProjectGuid>
         <MainSource>GLibWMI.dpk</MainSource>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>20.3</ProjectVersion>
+        <ProjectVersion>20.5</ProjectVersion>
         <Base>True</Base>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Package</AppType>
@@ -182,6 +182,16 @@
         <DCCReference Include="..\sources\CDisplayConfigurationInfo.pas"/>
         <DCCReference Include="..\sources\CProcessInfo.pas"/>
         <DCCReference Include="..\sources\WbemScripting_TLB.pas"/>
+        <DCCReference Include="..\Sources\CBaseBoardInfo.pas"/>
+        <DCCReference Include="..\Sources\CNetworkProtocolInfo.pas"/>
+        <DCCReference Include="..\Sources\CSerialPortInfo.pas"/>
+        <DCCReference Include="..\Sources\CAccountInfo.pas"/>
+        <DCCReference Include="..\sources\CRegistryInfo.pas"/>
+        <DCCReference Include="..\demos\generic\FrComponent.pas">
+            <Form>FrameComponent</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <None Include="ModelSupport_GLibWMI\default.txaPackage"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
@@ -248,6 +258,12 @@
             </Platforms>
             <Deployment Version="5">
                 <DeployFile LocalName="..\DCUs\GLibWMI.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\DCUs\GLibWMI.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>GLibWMI.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\DCUs\GLibWMI.bpl" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
@@ -839,6 +855,9 @@
                     <Platform Name="Win64x">
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="WinARM64EC">
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectiOSDeviceDebug">
                     <Platform Name="iOSDevice32">
@@ -877,6 +896,10 @@
                         <RemoteDir>Assets</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="WinARM64EC">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="UWP_DelphiLogo44">
                     <Platform Name="Win32">
@@ -884,6 +907,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="WinARM64EC">
                         <RemoteDir>Assets</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -1101,6 +1128,7 @@
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win64x" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="WinARM64EC" Name="$(PROJECTNAME)"/>
             </Deployment>
             <ModelSupport>True</ModelSupport>
         </BorlandProject>

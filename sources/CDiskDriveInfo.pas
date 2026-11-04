@@ -1,5 +1,5 @@
 {
-TDiskDriveInfo Component Version 3.3 - Suite GLibWMI
+TDiskDriveInfo Component Version 3.4 - Suite GLibWMI
 Copyright (©) 2024,  by Germán Estévez (Neftalí)
 
 La clase Win32_DiskDrive representa una unidad física de disco tal y como la percibe un equipo donde 
@@ -188,10 +188,7 @@ type
     /// </summary>
     property CapabilityDescriptionsAsString:string read FCapabilityDescriptionsAsString write FCapabilityDescriptionsAsString stored False;
     /// <summary>
-    ///  Una matriz de cadenas de forma libre proporcionando  explicaciones más detalladas para cualquiera de 
-    ///  las  características de dispositivo de acceso indicadas en la matriz de capacidades. Nota, cada entrada 
-    ///  a esta matriz está relacionada con la entrada en la matriz de capacidades ubicada en el mismo índice
-    ///  .
+    ///  Descripción breve del objeto.
     /// </summary>
     property Caption:string read FCaption write FCaption stored False;
     /// <summary>
@@ -262,60 +259,7 @@ type
     /// </summary>
     property ConfigManagerErrorCode:integer read FConfigManagerErrorCode write FConfigManagerErrorCode stored False;
     /// <summary>
-    ///  Indica el código de error del Administrador de configuración de Win32. Los valores siguientes pueden 
-    ///  ser devueltos: 
-    ///  0 Este dispositivo funciona correctamente. 
-    ///  1 Este dispositivo no está configurado correctamente. 
-    ///  2 Windows no puede cargar el controlador para este dispositivo. 
-    ///  3 El controlador de este dispositivo 
-    ///  puede estar dañado o le falta memoria o recursos a su sistema. 
-    ///  4 Este dispositivo no funciona correctamente. 
-    ///  Uno de sus controladores o el Registro pueden estar dañados. 
-    ///  5 El controlador de este dispositivo necesita 
-    ///  un recurso que Windows no puede administrar. 
-    ///  6 La configuración de arranque de este dispositivo entra 
-    ///  en conflicto con otros dispositivos. 
-    ///  7 No se puede filtrar. 
-    ///  8 Falta el cargador de controlador del 
-    ///  dispositivo. 
-    ///  9 Este dispositivo no funciona correctamente porque el firmware de control está informando 
-    ///  incorrectamente acerca de los recursos del dispositivo. 
-    ///  10 El dispositivo no puede se iniciar. 
-    ///  11 Error 
-    ///  en el dispositivo. 
-    ///  12 Este dispositivo no encuentra suficientes recursos libres para usar. 
-    ///  13 Windows 
-    ///  no puede comprobar los recursos de este dispositivo. 
-    ///  14 Este dispositivo no funcionará correctamente 
-    ///  hasta que reinicie su equipo. 
-    ///  15 Este dispositivo no funciona correctamente porque hay un posible problema 
-    ///  de enumeración. 
-    ///  16 Windows no puede identificar todos los recursos que utiliza este dispositivo. 
-    ///  17 
-    ///  Este dispositivo está solicitando un tipo de recurso desconocido. 
-    ///  18 Vuelva a instalar los controladores 
-    ///  de este dispositivo 
-    ///  19 Su Registro debe estar dañado. 
-    ///  20 Error usar el cargador VxD. 
-    ///  21 Error del 
-    ///  sistema: intente cambiar el controlador de este dispositivo. Si esto no funciona, consulte la documentación 
-    ///  de hardware. Windows está quitando este dispositivo. 
-    ///  22 Este dispositivo está deshabilitado. 
-    ///  23 Error 
-    ///  del ntación de hardware. 
-    ///  24 Este dispositivo no está presente, no funciona correctamente o no tiene 
-    ///  todos los controladores instalados. 
-    ///  25 Windows aún está instalando este dispositivo. 
-    ///  26 Windows aún 
-    ///  está instalando este dispositivo. 
-    ///  27 Este dispositivo no tiene una configuración de Registro válida. 
-    ///  28 Los controladores de este dispositivo no están instalados. 
-    ///  29 Este dispositivo está deshabilitado 
-    ///  porque el firmware no proporcionó los recursos requeridos. 
-    ///  30 Este dispositivo está utilizando una recurso 
-    ///  de solicitud de interrupción (IRQ) que ya está usando otro dispositivo. 
-    ///  31 Este dispositivo no funciona 
-    ///  correctamente porque Windows no puede cargar los controladores requeridos.
+    ///  Si es True, el dispositivo usa una configuración definida por el usuario.
     /// </summary>
     property ConfigManagerUserConfig:boolean read FConfigManagerUserConfig write FConfigManagerUserConfig stored False;
     /// <summary>
@@ -325,15 +269,11 @@ type
     /// </summary>
     property CreationClassName:string read FCreationClassName write FCreationClassName stored False;
     /// <summary>
-    ///  CreationClassName indica el nombre de la clase o subclase que se usa en la creación de una instancia. 
-    ///  Cuando se usa con las demás propiedades clave de esta clase, esta propiedad permite que se identifiquen 
-    ///  de manera única todas las instancias de esta clase y sus subclases.
+    ///  Tamaño de bloque predeterminado, en bytes, para este dispositivo.
     /// </summary>
     property DefaultBlockSize:int64 read FDefaultBlockSize write FDefaultBlockSize stored False;
     /// <summary>
-    ///  CreationClassName indica el nombre de la clase o subclase que se usa en la creación de una instancia. 
-    ///  Cuando se usa con las demás propiedades clave de esta clase, esta propiedad permite que se identifiquen 
-    ///  de manera única todas las instancias de esta clase y sus subclases.
+    ///  Descripción del objeto.
     /// </summary>
     property Description:string read FDescription write FDescription stored False;
     /// <summary>
@@ -358,22 +298,18 @@ type
     /// </summary>
     property ErrorMethodology:string read FErrorMethodology write FErrorMethodology stored False;
     /// <summary>
-    ///  La propiedad Firmware Revision es un número asignado por el fabricante que sirve para identificar los 
-    ///  medios físicos.
+    ///  Revisión del firmware de la unidad de disco, asignada por el fabricante.
     /// </summary>
     property FirmwareRevision:string read FFirmwareRevision write FFirmwareRevision stored False;
     /// <summary>
     ///  La propiedad Index indica el número de unidad física de la unidad dada. Este miembro se llena con la 
-    ///  información de Get Drive Map Info (Obtener información de mapa de unidades). El valor 0xFF indica que 
+    ///  información de Get Drive Map Info (Obtener información de mapa de unidades). El valor 0xFFFFFFFF indica que 
     ///  la unidad dada no se asigna a una unidad física.
     ///  Ejemplo: 1
     /// </summary>
     property Index:integer read FIndex write FIndex stored False;
     /// <summary>
-    ///  La propiedad Index indica el número de unidad física de la unidad dada. Este miembro se llena con la 
-    ///  información de Get Drive Map Info (Obtener información de mapa de unidades). El valor 0xFF indica que 
-    ///  la unidad dada no se asigna a una unidad física.
-    ///  Ejemplo: 1
+    ///  Fecha y hora en que se instaló el objeto. Esta propiedad no necesita un valor para indicar que el objeto está instalado.
     /// </summary>
     property InstallDate:TDatetime read FInstallDate write FInstallDate stored False;
     /// <summary>
@@ -423,9 +359,7 @@ type
     /// </summary>
     property Model:string read FModel write FModel stored False;
     /// <summary>
-    ///  La propiedad Model indica el número de modelo del fabricante de la unidad de disco.
-    ///  Ejemplo: ST32171
-    ///  W
+    ///  Etiqueta por la que se conoce el objeto. Al heredarla, la propiedad puede sobrescribirse para ser clave.
     /// </summary>
     property Name:string read FName write FName stored False;
     /// <summary>
@@ -445,9 +379,7 @@ type
     /// </summary>
     property Partitions:integer read FPartitions write FPartitions stored False;
     /// <summary>
-    ///  La propiedad Partitions indica el número de particiones de esta unidad física de disco que reconoce el 
-    ///  sistema operativo.
-    ///  Ejemplo: 2
+    ///  Identificador de dispositivo Plug and Play de Windows del dispositivo lógico. Ejemplo: *PNP030b.
     /// </summary>
     property PNPDeviceID:string read FPNPDeviceID write FPNPDeviceID stored False;
     /// <summary>
@@ -515,8 +447,8 @@ type
     /// </summary>
     property Size:int64 read FSize write FSize stored False;
     /// <summary>
-    ///  La propiedad Size indica el tamaño de la unidad de disco. Se calcula al multiplicar el número total de 
-    ///  cilindros, las pistas de cada cilindro, los sectores de cada pista y los bytes de cada sector.
+    ///  Estado actual del objeto. Valores: OK, Error, Degraded, Unknown, Pred Fail, Starting, Stopping, Service, 
+    ///  Stressed, NonRecover, No Contact, Lost Comm.
     /// </summary>
     property Status:string read FStatus write FStatus stored False;
     /// <summary>
@@ -526,15 +458,11 @@ type
     /// </summary>
     property StatusInfo:integer read FStatusInfo write FStatusInfo stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  Valor de CreationClassName del equipo que actúa como ámbito.
     /// </summary>
     property SystemCreationClassName:string read FSystemCreationClassName write FSystemCreationClassName stored False;
     /// <summary>
-    ///  StatusInfo es una cadena que indica si el dispositivo lógico está en un estado habilitado (valor = 3), 
-    ///  deshabilitado (valor = 4) o algún otro estado (1) o un estado desconocido (2). Si esta propiedad no se 
-    ///  aplica al dispositivo lógico, el valor, 5 ("No aplicable"), debe ser usado.
+    ///  Nombre del sistema que actúa como ámbito.
     /// </summary>
     property SystemName:string read FSystemName write FSystemName stored False;
     /// <summary>
@@ -637,9 +565,9 @@ const
   ENUM_STRING_AVAILABILITY_15 = 'Ciclo de energía';
   ENUM_STRING_AVAILABILITY_16 = 'Ahorro de energía: advertencia';
   ENUM_STRING_AVAILABILITY_17 = 'Pausado';
-  ENUM_STRING_AVAILABILITY_18 = 'no está listo';
+  ENUM_STRING_AVAILABILITY_18 = 'No está listo';
   ENUM_STRING_AVAILABILITY_19 = 'No configurado';
-  ENUM_STRING_AVAILABILITY_20 = 'Inactivo';
+  ENUM_STRING_AVAILABILITY_20 = 'No disponible';
 
 // Constantes para la propiedad Capabilities
 const 
@@ -697,6 +625,7 @@ const
   ENUM_STRING_MEDIATYPE_00 = 'Medios extraíbles';
   ENUM_STRING_MEDIATYPE_01 = 'Disco duro fijo';
   ENUM_STRING_MEDIATYPE_02 = 'Desconocido';
+  ENUM_STRING_MEDIATYPE_03 = 'Disco duro externo';
 
 // Constantes para la propiedad PowerManagementCapabilities
 const 
@@ -1126,6 +1055,7 @@ begin
     00: Result := ENUM_STRING_MEDIATYPE_00;
     01: Result := ENUM_STRING_MEDIATYPE_01;
     02: Result := ENUM_STRING_MEDIATYPE_02;
+    03: Result := ENUM_STRING_MEDIATYPE_03;
   else
     Result := STR_EMPTY;
   end;
@@ -1184,7 +1114,7 @@ end;
 // Obtener núm. de elementos de la propiedad como string
 function TDiskDriveProperties.GetAllMediaTypeCount:integer;
 begin
-  Result := 3
+  Result := 4
 end;
 
 // Obtener núm. de elementos de la propiedad como string
